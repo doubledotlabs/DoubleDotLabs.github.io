@@ -690,9 +690,7 @@ a img{
               Contributors
               <i class="material-icons">arrow_drop_up</i>
             </a>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect" for="version-dropdown">
-              <li class="mdl-menu__item">Something</li>
-            </ul>
+            <ul class="mdl-menu mdl-js-menu mdl-menu--top-left mdl-js-ripple-effect" for="version-dropdown" id="userlist"></ul>
             <a class="android-link mdl-typography--font-light" href="">Github</a>
           </div>
 
@@ -701,5 +699,24 @@ a img{
     </div>
     <a href="https://github.com/google/material-design-lite/blob/master/templates/android-dot-com/" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast">View Source</a>
     <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    
+    <script>
+  var userContent = new XMLHttpRequest();
+  userContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/members", false);
+  userContent.onreadystatechange = function () {
+    if(userContent.readyState === 4) {
+      if(userContent.status === 200 || userContent.status == 0) {
+        var obj = JSON.parse(userContent.responseText);
+        for (var i = 0; true; i++) {
+          if (obj[i] == null) break;
+          var name = obj[i].login;
+          var url = "https://github.com/" + name;
+          document.getElementById('userlist').innerHTML += "<li class=\"mdl-menu__item\" onclick=\"window.location.href=\'" + url + "\';\">" + name + "</li>";
+        }
+      }
+    }
+  }
+  userContent.send(null);
+              </script>
   </body>
 </html>

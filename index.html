@@ -632,43 +632,7 @@ a img{
         </div>
         <div class="android-more-section" id="more">
           <div class="android-section-title mdl-typography--display-1-color-contrast">More from Double Dot Labs</div>
-          <div class="android-card-container mdl-grid">
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-              <div class="mdl-card__media">
-                <img src="images/more-from-1.png">
-              </div>
-              <div class="mdl-card__title">
-                 <h4 class="mdl-card__title-text">Buttery Slack</h4>
-              </div>
-              <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">A material design Slack client, made by the butter enthusaists for the butter enthusaists ;)</span>
-              </div>
-              <div class="mdl-card__actions">
-                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="https://github.com/DoubleDotLabs/ButterySlack">
-                   View
-                   <i class="material-icons">chevron_right</i>
-                 </a>
-              </div>
-            </div>
-
-            <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp">
-              <div class="mdl-card__media">
-                <img src="images/more-from-4.png">
-              </div>
-              <div class="mdl-card__title">
-                 <h4 class="mdl-card__title-text">Buttery Walls</h4>
-              </div>
-              <div class="mdl-card__supporting-text">
-                <span class="mdl-typography--font-light mdl-typography--subhead">A collection of awesome wallpapers that fit any device!</span>
-              </div>
-              <div class="mdl-card__actions">
-                 <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href="https://github.com/DoubleDotLabs/ButteryWalls">
-                   View
-                   <i class="material-icons">chevron_right</i>
-                 </a>
-              </div>
-            </div>
-          </div>
+          <div class="android-card-container mdl-grid" id="repolist"></div>
         </div>
 
         <footer class="android-footer mdl-mega-footer">
@@ -701,6 +665,24 @@ a img{
     <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
     
     <script>
+  var repoContent = new XMLHttpRequest();
+  repoContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/repos", false);
+  repoContent.onreadystatechange = function () {
+    if(repoContent.readyState === 4) {
+      if(repoContent.status === 200 || repoContent.status == 0) {
+        var obj = JSON.parse(repoContent.responseText);
+        for (var i = 0; true; i++) {
+          if (obj[i] == null) break;
+          var name = obj[i].login;
+          var url = "https://github.com/" + full_name;
+          document.getElementById('repolist').innerHTML += "<div class=\"mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp\"><div class=\"mdl-card__title\"><h4 class=\"mdl-card__title-text\">" + name + "</h4></div><div class=\"mdl-card__supporting-text\"><span class=\"mdl-typography--font-light mdl-typography--subhead\">" + obj[i].created_at + "</br>" + obj[i].watchers_count + " watching" + "</span></div><div class=\"mdl-card__actions\"><a class=\"android-link mdl-button mdl-js-button mdl-typography--text-uppercase\" href=\"" + url + "\">View<i class=\"material-icons\">chevron_right</i></a></div></div>";
+        }
+      }
+    }
+  }
+  repoContent.send(null);
+    
+    
   var userContent = new XMLHttpRequest();
   userContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/members", false);
   userContent.onreadystatechange = function () {

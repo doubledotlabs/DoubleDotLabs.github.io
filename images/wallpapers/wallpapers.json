@@ -7,6 +7,10 @@
         "url": "http://doubledotlabs.github.io/images/wallpapers/London.jpg"
       },
       {
+        "name": "Oxford",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Oxford.jpg"
+      },
+      {
         "name": "Village Locks",
         "url": "http://doubledotlabs.github.io/images/wallpapers/Village-Locks.jpg"
       }
@@ -16,8 +20,8 @@
     "name": "Grayscale",
     "wallpapers": [
       {
-        "name": "Leaves",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Leaves.jpg"
+        "name": "Highway",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Highway.jpg"
       }
     ]
   },
@@ -46,12 +50,16 @@
     "name": "Nature",
     "wallpapers": [
       {
-        "name": "Beach",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Beach.jpg"
-      },
-      {
         "name": "Mulch",
         "url": "http://doubledotlabs.github.io/images/wallpapers/Mulch.jpg"
+      },
+      {
+        "name": "Trees",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Trees.jpg"
+      },
+      {
+        "name": "Leaves",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Leaves.jpg"
       }
     ]
   },

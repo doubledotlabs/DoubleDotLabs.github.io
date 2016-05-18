@@ -1,28 +1,63 @@
 [
   {
-    "name" : "Architecture",
-    "wallpapers" : [
-    
+    "name": "Architecture",
+    "wallpapers": [
+      {
+        "name": "London",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/London.jpg"
+      }
+      {
+        "name": "Village Locks",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Village-Locks.jpg"
+      }
     ]
   },
-  
   {
-    "name" : "Landscape",
-    "wallpapers" : [
-    
+    "name": "Grayscale",
+    "wallpapers": [
+      {
+        "name": "Leaves",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Leaves.jpg"
+      }
     ]
   },
-  
   {
-    "name" : "Grayscale",
-    "wallpapers" : [
-    
+    "name": "Landscape",
+    "wallpapers": [
+      {
+        "name": "Beach",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Beach.jpg"
+      }
+      {
+        "name": "Red Rocks",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Rocks-Lake.jpg"
+      }
+      {
+        "name": "Red Rocks 2",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Rocks-Lake_2.jpg"
+      }
+      {
+        "name": "Village River",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Village-River.jpg"
+      }
     ]
   },
-  
   {
-    "name" : "Other",
-    "wallpapers" : [
+    "name": "Nature",
+    "wallpapers": [
+      {
+        "name": "Beach",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Beach.jpg"
+      }
+      {
+        "name": "Mulch",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/Mulch.jpg"
+      }
+    ]
+  }
+  {
+    "name": "Other",
+    "wallpapers": [
     
     ]
   }

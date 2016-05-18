@@ -66,7 +66,22 @@
   {
     "name": "Other",
     "wallpapers": [
-    
+      {
+        "name": "Blue V",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/blue_v.png"
+      },
+      {
+        "name": "Orange V",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/orange_v.png"
+      },
+      {
+        "name": "Blue Slash",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/black-blue_slash.png"
+      },
+      {
+        "name": "Purple Slash",
+        "url": "http://doubledotlabs.github.io/images/wallpapers/purple_slash.png"
+      }
     ]
   }
 ]

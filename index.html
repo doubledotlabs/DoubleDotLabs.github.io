@@ -679,7 +679,7 @@ a img{
           if (obj[i] == null) break;
           var name = obj[i].name;
           var url = "https://github.com/" + obj[i].full_name;
-          document.getElementById('repolist').innerHTML += "<div class=\"mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp\"><div class=\"mdl-card__title\"><h4 class=\"mdl-card__title-text\">" + name + "</h4></div><div class=\"mdl-card__supporting-text\"><span class=\"mdl-typography--font-light mdl-typography--subhead\">" + obj[i].created_at + "</br>" + obj[i].watchers_count + " watching" + "</span></div><div class=\"mdl-card__actions\"><a class=\"android-link mdl-button mdl-js-button mdl-typography--text-uppercase\" href=\"" + url + "\">View<i class=\"material-icons\">chevron_right</i></a></div></div>";
+          document.getElementById('repolist').innerHTML += "<div class=\"mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp\"><div class=\"mdl-card__title\"><h4 class=\"mdl-card__title-text\">" + name + "</h4></div><div class=\"mdl-card__supporting-text\"><span class=\"mdl-typography--font-light mdl-typography--subhead\">" + obj[i].description + "</br>" + obj[i].watchers_count + " watching" + "</span></div><div class=\"mdl-card__actions\"><a class=\"android-link mdl-button mdl-js-button mdl-typography--text-uppercase\" href=\"" + url + "\">View<i class=\"material-icons\">chevron_right</i></a></div></div>";
         }
       }
     }
@@ -710,7 +710,7 @@ a img{
                   if (obj[i].fork) continue;
                   var name = obj[i].name;
                   var url = "https://github.com/" + obj[i].full_name;
-                  document.getElementById('otherrepolist').innerHTML += "<div class=\"mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp\"><div class=\"mdl-card__title\"><h4 class=\"mdl-card__title-text\">" + name + "</h4></div><div class=\"mdl-card__supporting-text\"><span class=\"mdl-typography--font-light mdl-typography--subhead\">" + obj[i].created_at + "</br>" + obj[i].watchers_count + " watching" + "</span></div><div class=\"mdl-card__actions\"><a class=\"android-link mdl-button mdl-js-button mdl-typography--text-uppercase\" href=\"" + url + "\">View<i class=\"material-icons\">chevron_right</i></a></div></div>";
+                  document.getElementById('otherrepolist').innerHTML += "<div class=\"mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp\"><div class=\"mdl-card__title\"><h4 class=\"mdl-card__title-text\">" + name + "</h4></div><div class=\"mdl-card__supporting-text\"><span class=\"mdl-typography--font-light mdl-typography--subhead\">" + obj[i].description + "</br>" + obj[i].watchers_count + " watching" + "</span></div><div class=\"mdl-card__actions\"><a class=\"android-link mdl-button mdl-js-button mdl-typography--text-uppercase\" href=\"" + url + "\">View<i class=\"material-icons\">chevron_right</i></a></div></div>";
                 }
               }
             }

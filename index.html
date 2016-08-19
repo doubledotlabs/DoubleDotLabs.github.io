@@ -220,7 +220,7 @@ a img{
   height: 800px;
   width: auto;
   background-color: #f3f3f3;
-  background: url('images/doubledot.png') center 30% no-repeat;
+  background: url('http://doubledotlabs.github.io/images/doubledot.png') center 30% no-repeat;
   background-size: cover;
 }
 
@@ -347,7 +347,7 @@ a img{
 
 .android-wear-section {
   position: relative;
-  background: url('images/wear.png') center top no-repeat;
+  background: url('http://doubledotlabs.github.io/images/wear.png') center top no-repeat;
   background-size: cover;
   height: 800px;
 }
@@ -418,7 +418,7 @@ a img{
   }
 
 .android-customized-section-image {
-  background: url('images/devices.jpg') center top no-repeat;
+  background: url('http://doubledotlabs.github.io/images/devices.jpg') center top no-repeat;
   background-size: cover;
   height: 400px;
 }
@@ -501,9 +501,25 @@ a img{
   }
 
 
-.android-link-menu:hover {
-  cursor: pointer;
-}
+  .android-link-menu:hover {
+    cursor: pointer;
+  }
+
+  .devbg {
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('http://doubledotlabs.github.io/images/wallpapers/Beach.jpg');
+    padding: 185px;
+    margin: auto;
+    margin-bottom: 36px;
+    width: 80%;
+  }
+  
+  .designbg {
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('http://doubledotlabs.github.io/images/wallpapers/Mulch.jpg');
+    padding: 185px;
+    margin: auto;
+    margin-bottom: 36px;
+    width: 80%;
+  }
 
 
 /**** Mobile layout ****/
@@ -581,6 +597,14 @@ a img{
   .android-footer .mdl-mega-footer--bottom-section {
     display: none;
   }
+  
+  .devbg {
+    padding: 10%;
+  }
+  
+  .designbg {
+    padding: 10%;
+  }
 }
     </style>
   </head>
@@ -590,7 +614,7 @@ a img{
       <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row">
           <span class="android-title mdl-layout-title">
-            <img class="android-logo-image" src="images/android-logo.png">
+            <img class="android-logo-image" src="http://doubledotlabs.github.io/images/android-logo.png">
           </span>
           <!-- Add spacer, to align navigation to the right in desktop -->
           <div class="android-header-spacer mdl-layout-spacer"></div>
@@ -603,7 +627,7 @@ a img{
             </nav>
           </div>
           <span class="android-mobile-title mdl-layout-title">
-            <img class="android-logo-image" src="images/android-logo.png">
+            <img class="android-logo-image" src="http://doubledotlabs.github.io/images/android-logo.png">
           </span>
         </div>
       </div>
@@ -655,14 +679,20 @@ a img{
           <div class="android-customized-section-image"></div>
         </div>
         
-        <div class="android-more-section" id="more">
-          <div class="android-section-title mdl-typography--display-1-color-contrast">More from Double Dot Labs</div>
-          <div class="android-card-container mdl-grid" id="repolist"></div>
+        <div style="text-align: center;" class="android-more-section devbg" id="more">
+          <div style="color: white; text-align: center;" class="android-section-title mdl-typography--display-1-color-contrast">Developer Resources</div>
+          
+          <a class="mdl-typography--font-regular mdl-typography--text-uppercase android-alt-link" href="http://doubledotlabs.github.io/developer/">
+            View&nbsp;<i class="material-icons">chevron_right</i>
+          </a>
         </div>
         
-        <div class="android-more-section" id="more_stuff">
-          <div class="android-section-title mdl-typography--display-1-color-contrast">Stuff Made by Some People</div>
-          <div class="android-card-container mdl-grid" id="otherrepolist"></div>
+        <div style="text-align: center;" class="android-more-section designbg" id="more_stuff">
+          <div style="color: white; text-align: center;" class="android-section-title mdl-typography--display-1-color-contrast">Design Resources</div>
+          
+          <a class="mdl-typography--font-regular mdl-typography--text-uppercase android-alt-link" href="http://doubledotlabs.github.io/design/">
+            View&nbsp;<i class="material-icons">chevron_right</i>
+          </a>      
         </div>
 
         <footer class="android-footer mdl-mega-footer">
@@ -700,25 +730,7 @@ a img{
     
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     
-    <script>
-  var repoContent = new XMLHttpRequest();
-  repoContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/repos", false);
-  repoContent.onreadystatechange = function () {
-    if(repoContent.readyState === 4) {
-      if(repoContent.status === 200 || repoContent.status == 0) {
-        var obj = JSON.parse(repoContent.responseText);
-        for (var i = 0; true; i++) {
-          if (obj[i] == null) break;
-          var name = obj[i].name;
-          var url = "https://github.com/" + obj[i].full_name;
-          document.getElementById('repolist').innerHTML += "<div class=\"mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp\"><div class=\"mdl-card__title\"><h4 class=\"mdl-card__title-text\">" + name + "</h4></div><div class=\"mdl-card__supporting-text\"><span class=\"mdl-typography--font-light mdl-typography--subhead\">" + obj[i].description + "</br>" + obj[i].watchers_count + " watching" + "</span></div><div class=\"mdl-card__actions\"><a class=\"android-link mdl-button mdl-js-button mdl-typography--text-uppercase\" href=\"" + url + "\">View<i class=\"material-icons\">chevron_right</i></a></div></div>";
-        }
-      }
-    }
-  }
-  repoContent.send(null);
-    
-    
+    <script>    
   var userContent = new XMLHttpRequest();
   userContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/members", false);
   userContent.onreadystatechange = function () {
@@ -730,24 +742,6 @@ a img{
           var name = obj[i].login;
           var url = "https://github.com/" + name;
           document.getElementById('userlist').innerHTML += "<li class=\"mdl-menu__item\" onclick=\"window.location.href=\'" + url + "\';\">" + name + "</li>";
-          
-          var userRepoContent = new XMLHttpRequest();
-          userRepoContent.open("GET", obj[i].repos_url, false);
-          userRepoContent.onreadystatechange = function () {
-            if(userRepoContent.readyState === 4) {
-              if(userRepoContent.status === 200 || userRepoContent.status == 0) {
-                var obj = JSON.parse(userRepoContent.responseText);
-                for (var i = 0; true; i++) {
-                  if (obj[i] == null) break;
-                  if (obj[i].fork) continue;
-                  var name = obj[i].name;
-                  var url = "https://github.com/" + obj[i].full_name;
-                  document.getElementById('otherrepolist').innerHTML += "<div class=\"mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--3dp\"><div class=\"mdl-card__title\"><h4 class=\"mdl-card__title-text\">" + name + "</h4></div><div class=\"mdl-card__supporting-text\"><span class=\"mdl-typography--font-light mdl-typography--subhead\">" + obj[i].description + "</br>" + obj[i].watchers_count + " watching" + "</span></div><div class=\"mdl-card__actions\"><a class=\"android-link mdl-button mdl-js-button mdl-typography--text-uppercase\" href=\"" + url + "\">View<i class=\"material-icons\">chevron_right</i></a></div></div>";
-                }
-              }
-            }
-          }
-          userRepoContent.send(null);
         }
       }
     }

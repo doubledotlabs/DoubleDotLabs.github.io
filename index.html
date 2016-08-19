@@ -506,19 +506,11 @@ a img{
   }
 
   .devbg {
-    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('http://doubledotlabs.github.io/images/wallpapers/Beach.jpg');
-    padding: 185px;
-    margin: auto;
-    margin-bottom: 36px;
-    width: 80%;
+    background: linear-gradient(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('http://doubledotlabs.github.io/images/wallpapers/Beach.jpg');
   }
   
   .designbg {
-    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('http://doubledotlabs.github.io/images/wallpapers/Mulch.jpg');
-    padding: 185px;
-    margin: auto;
-    margin-bottom: 36px;
-    width: 80%;
+    background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.45)), url('http://doubledotlabs.github.io/images/wallpapers/Mulch.jpg');
   }
 
 
@@ -597,14 +589,6 @@ a img{
   .android-footer .mdl-mega-footer--bottom-section {
     display: none;
   }
-  
-  .devbg {
-    padding: 10%;
-  }
-  
-  .designbg {
-    padding: 10%;
-  }
 }
     </style>
   </head>
@@ -667,6 +651,7 @@ a img{
             </div>
           </div>
         </div>
+        
         <div class="android-customized-section" id="apps">
           <div class="android-customized-section-text">
             <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">Apps made by us, for you</div>
@@ -679,20 +664,28 @@ a img{
           <div class="android-customized-section-image"></div>
         </div>
         
-        <div style="text-align: center;" class="android-more-section devbg" id="more">
-          <div style="color: white; text-align: center;" class="android-section-title mdl-typography--display-1-color-contrast">Developer Resources</div>
-          
-          <a class="mdl-typography--font-regular mdl-typography--text-uppercase android-alt-link" href="http://doubledotlabs.github.io/developer/">
-            View&nbsp;<i class="material-icons">chevron_right</i>
-          </a>
+        <div class="android-customized-section" id="more">
+          <div class="android-customized-section-text">
+            <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">Developer Resources</div>
+            <p class="mdl-typography--font-light">
+              The developer resources section contains a collection of open source projects made by Double Dot Labs as well as a few additional projects that may be useful.
+              <br>
+              <a href="http://doubledotlabs.github.io/developer/" class="android-link mdl-typography--font-light">VIEW&nbsp;<i class="material-icons">chevron_right</i></a>
+            </p>
+          </div>
+          <div class="android-customized-section-image devbg"></div>
         </div>
         
-        <div style="text-align: center;" class="android-more-section designbg" id="more_stuff">
-          <div style="color: white; text-align: center;" class="android-section-title mdl-typography--display-1-color-contrast">Design Resources</div>
-          
-          <a class="mdl-typography--font-regular mdl-typography--text-uppercase android-alt-link" href="http://doubledotlabs.github.io/design/">
-            View&nbsp;<i class="material-icons">chevron_right</i>
-          </a>      
+        <div class="android-customized-section">
+          <div class="android-customized-section-text">
+            <div class="mdl-typography--font-light mdl-typography--display-1-color-contrast">Design Resources</div>
+            <p class="mdl-typography--font-light">
+              Design resources made by Double Dot Labs are meant only for inspiration and spontaneous oogling unless otherwise specified.
+              <br>
+              <a href="http://doubledotlabs.github.io/design/" class="android-link mdl-typography--font-light">VIEW&nbsp;<i class="material-icons">chevron_right</i></a>
+            </p>
+          </div>
+          <div class="android-customized-section-image designbg"></div>
         </div>
 
         <footer class="android-footer mdl-mega-footer">

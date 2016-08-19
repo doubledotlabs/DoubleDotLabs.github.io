@@ -74,7 +74,7 @@
        (max-width: 1024px) and (-webkit-max-device-pixel-ratio: 1.5),
        (max-width: 1024px) and (max-resolution: 1.5dppx) {
   body::before {
-    background-image: url('http://doubledotlabs.github.io/images/wallpapers/Beach.jpg');
+    background-image: url('http://doubledotlabs.github.io/images/wallpapers/Mulch.jpg');
   }
 }
 @media (min-width: 513px)  and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5),
@@ -82,7 +82,7 @@
        (min-width: 1025px) and (max-width: 2048px) and (-webkit-max-device-pixel-ratio: 1.5),
        (min-width: 1025px) and (max-width: 2048px) and (max-resolution: 1.5dppx)  {
   body::before {
-    background-image: url('http://doubledotlabs.github.io/images/wallpapers/Beach.jpg');
+    background-image: url('http://doubledotlabs.github.io/images/wallpapers/Mulch.jpg');
   }
 }
 @media (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 1.5),
@@ -90,7 +90,7 @@
        (min-width: 2049px) and (-webkit-max-device-pixel-ratio: 1.5),
        (min-width: 2049px) and (max-resolution: 1.5dppx) {
   body::before {
-    background-image: url('http://doubledotlabs.github.io/images/wallpapers/Beach.jpg');
+    background-image: url('http://doubledotlabs.github.io/images/wallpapers/Mulch.jpg');
   }
 }
 body .demo-blog {
@@ -240,7 +240,7 @@ body .demo-blog {
           order: -1;
 }
 .demo-blog .coffee-pic .mdl-card__media {
-  background-image: url('http://doubledotlabs.github.io/images/wear-dev.png');
+  background-image: url('http://doubledotlabs.github.io/images/wear-design.png');
 }
 .demo-blog .something-else .mdl-card__media {
   display: -webkit-flex;
@@ -538,7 +538,7 @@ body .demo-blog {
         <div id="list" class="demo-blog__posts mdl-grid">
           <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
             <div class="mdl-card__media mdl-color-text--grey-50">
-              <h3 style="color: black;">Developer Repositories</h3>
+              <h3 style="color: black;">Design Resources</h3>
             </div>
           </div>
           <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
@@ -571,14 +571,22 @@ body .demo-blog {
     <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
     <script>
       var repoContent = new XMLHttpRequest();
-      repoContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/repos", false);
+      repoContent.open("GET", "http://doubledotlabs.github.io/images/design/resources.json", false);
       repoContent.onreadystatechange = function () {
         if(repoContent.readyState === 4) {
           if(repoContent.status === 200 || repoContent.status == 0) {
             var obj = JSON.parse(repoContent.responseText);
             for (var i = 0; true; i++) {
               if (obj[i] == null) break;
-              document.getElementById('list').innerHTML += "<div class=\"mdl-card shopping mdl-cell mdl-cell--12-col\"><div class=\"mdl-card__media mdl-color-text--grey-50\" onclick=\"location.href=\'" + "https://github.com/" + obj[i].full_name + "\';\"><h3>" + obj[i].name + "</h3></div><div class=\"mdl-card__supporting-text mdl-color-text--grey-600\">" + obj[i].full_name + "<br>" + obj[i].description + "</div><div class=\"mdl-card__supporting-text meta mdl-color-text--grey-600\"><div class=\"minilogo\"></div><div><strong>" + obj[i].owner.login + "</strong><span>" + obj[i].updated_at + "</span></div></div></div>";
+              
+              var description = "";
+              if (obj[i].description != null) description = obj[i].description;
+              
+              var link = "";
+              if (obj[i].link != null) link = "onclick=\"location.href=\'" + obj[i].link + "\';\"";
+              else link = "onclick=\"location.href=\'" + obj[i].url + "\';\"";
+              
+              document.getElementById('list').innerHTML += "<div class=\"mdl-card shopping mdl-cell mdl-cell--12-col\"><div style=\"background-image: url(\'" + obj[i].url + "\');\" class=\"mdl-card__media mdl-color-text--grey-50\" " + link + "><h3>" + obj[i].name + "</h3></div><div class=\"mdl-card__supporting-text mdl-color-text--grey-600\">" + obj[i].name + "<br>" + description + "</div><div class=\"mdl-card__supporting-text meta mdl-color-text--grey-600\"><div class=\"minilogo\"></div><div><strong>" + obj[i].author + "</strong><span>" + obj[i].date + "</span></div></div></div>";
             }
           }
         }

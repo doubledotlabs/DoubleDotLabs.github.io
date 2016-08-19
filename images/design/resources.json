@@ -1,18 +1,21 @@
 [
   {
     "name": "Illustration - Designer Dot",
+    "description": "Everyone knows the designers do more work. Thus, we gave this dot a suit. Because it deserves one.",
     "author": "TheAndroidMaster",
     "date": "Friday August 19, 2016",
     "url": "http://doubledotlabs.github.io/images/wear-design.png"
   },
   {
     "name": "Illustration - Developer Dot",
+    "description": "Everyone knows the developers do more work. Thus, we gave this dot a lab coat. Because why not.",
     "author": "TheAndroidMaster",
     "date": "Friday August 19, 2016",
     "url": "http://doubledotlabs.github.io/images/wear-dev.png"
   },
   {
     "name": "Illustration - Double Dots",
+    "description": "The two dots of Double Dot Labs: a developer and designer. They have yet to be given names.",
     "author": "TheAndroidMaster",
     "date": "Friday August 19, 2016",
     "url": "http://doubledotlabs.github.io/images/wear.png"

@@ -25,7 +25,7 @@ else {
 
         $roomJson = json_encode(array('name' => $name, 'id' => $room));
 
-        if (strlen($roomsJson) > 2) substr_replace($roomsJson, "," . $roomJson, strlen($roomsJson) - 2);
+        if (strlen($roomsJson) > 0) $roomsJson = substr_replace($roomsJson, "," . $roomJson, strlen($roomsJson) - 1) . "]";
         else $roomsJson = "[" . $roomJson . "]";
 
         $rooms = fopen("rooms.json", "w") or die("unable to write to rooms.json");
@@ -39,12 +39,12 @@ else {
 
     $textJson = "{}";
     if ($text != null) {
-        $textJson = json_encode(array('user' => $userId, 'text' => $text, 'date' => date_timestamp_get(date_create())));
+        $textJson = json_encode(array('user' => $userId, 'text' => $text, 'date' => date('Y-m-d H:i:s')));
     } else if ($image != null) {
-        $textJson = json_encode(array('user' => $userId, 'image' => $image, 'date' => date_timestamp_get(date_create())));
+        $textJson = json_encode(array('user' => $userId, 'image' => $image, 'date' => date('Y-m-d H:i:s')));
     }
 
-    if (strlen($textsJson) > 2) substr_replace($textsJson, "," . $textJson, strlen($textsJson) - 2);
+    if (strlen($textsJson) > 0) $textsJson = substr_replace($textsJson, "," . $textJson, strlen($textsJson) - 1) . "]";
     else $textsJson = "[" . $textJson . "]";
 
     $texts = fopen($fileName, "w") or die("unable to write to " . $fileName);
@@ -52,7 +52,7 @@ else {
     fwrite($texts, $textsJson);
     fclose($texts);
 
-    echo $textJson;
+    echo $textsJson;
 }
 
 ?>

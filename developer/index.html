@@ -570,6 +570,25 @@ body .demo-blog {
     </div>
     <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
     <script>
+      var colors = [
+        "#EF5350",
+        "#EF6C00",
+        "#A1887F",
+        "#1E88E5",
+        "#039BE5",
+        "#0097A7",
+        "#64DD17",
+        "#7986CB",
+        "#00897B",
+        "#43A047",
+        "#FF6E40",
+        "#FFD600",
+        "#00C853",
+        "#0091EA",
+        "#304FFE"
+      ];
+    
+    
       var repoContent = new XMLHttpRequest();
       repoContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/repos", false);
       repoContent.onreadystatechange = function () {
@@ -578,7 +597,7 @@ body .demo-blog {
             var obj = JSON.parse(repoContent.responseText);
             for (var i = 0; true; i++) {
               if (obj[i] == null) break;
-              document.getElementById('list').innerHTML += "<div class=\"mdl-card shopping mdl-cell mdl-cell--12-col\"><div class=\"mdl-card__media mdl-color-text--grey-50\" onclick=\"location.href=\'" + "https://github.com/" + obj[i].full_name + "\';\"><h3>" + obj[i].name + "</h3></div><div class=\"mdl-card__supporting-text mdl-color-text--grey-600\">" + obj[i].full_name + "<br>" + obj[i].description + "</div><div class=\"mdl-card__supporting-text meta mdl-color-text--grey-600\"><div class=\"minilogo\"></div><div><strong>" + obj[i].owner.login + "</strong><span>" + obj[i].updated_at + "</span></div></div></div>";
+              document.getElementById('list').innerHTML += "<div class=\"mdl-card shopping mdl-cell mdl-cell--12-col\" onclick=\"location.href=\'" + obj[i].html_url + "\';\"><div class=\"mdl-card__media mdl-color-text--grey-50\" style=\"background-color:" + colors[i % colors.length] + ";\"><h3>" + obj[i].name + "</h3></div><div class=\"mdl-card__supporting-text mdl-color-text--grey-600\">" + obj[i].full_name + "<br>" + obj[i].description + "</div><div class=\"mdl-card__supporting-text meta mdl-color-text--grey-600\"><div class=\"minilogo\"></div><div><strong>" + obj[i].owner.login + "</strong><span>" + obj[i].updated_at + "</span></div></div></div>";
             }
           }
         }

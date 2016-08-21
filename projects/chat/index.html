@@ -107,7 +107,9 @@
   roomContent.onload = function() {
     if(roomContent.readyState === 4) {
       if(roomContent.status === 200 || roomContent.status == 0) {
-        var obj = JSON.parse(roomContent.responseText.substring(roomContent.responseText.indexOf('['), roomContent.responseText.indexOf(']')));
+        var response = roomContent.responseText;
+        response = response.substring(response.indexOf('['), response.indexOf(']'));
+        var obj = JSON.parse(response);
         var roomsHTML = "";
           
         for (var i = 0; true; i++) {

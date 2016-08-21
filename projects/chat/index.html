@@ -46,44 +46,68 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.min.css">
+
+    <style>
+      #login-panel {
+        visibility: visible;
+      }  
+
+      #rooms-panel {
+        visibility: hidden;
+      }
+
+      #chat-panel {
+        visibility: hidden;
+      }
+    </style>
   </head>
   <body>
-    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+    <div id="login-panel">
+    </div>
 
-      <div class="mdl-tabs__panel is-active" id="login-panel">
-      </div>
-
-      <div class="mdl-tabs__panel" id="rooms-panel">
-        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-          <div class="mdl-tabs__tab-bar">
-            <a href="#rooms-view-panel" class="mdl-tabs__tab is-active">Rooms</a>
-            <a href="#rooms-settings-panel" class="mdl-tabs__tab">Settings</a>
-          </div>
+    <div id="rooms-panel">
+      <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+        <div class="mdl-tabs__tab-bar">
+          <a href="#rooms-view-panel" class="mdl-tabs__tab is-active">Rooms</a>
+          <a href="#rooms-settings-panel" class="mdl-tabs__tab">Settings</a>
+        </div>
     
-          <div class="mdl-tabs__panel is-active" id="rooms-view-panel">
-            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-              <thead>
-                <tr>
-                  <th class="mdl-data-table__cell--non-numeric">Room Name</th>
-                  <th>Something</th>
-                  <th>Something Else</th>
-                </tr>
-              </thead>
-              <tbody id="rooms-table"></tbody>
-            </table>
-          </div>
-          <div class="mdl-tabs__panel" id="rooms-settings-panel">
-          </div>
-      </div>
+        <div class="mdl-tabs__panel is-active" id="rooms-view-panel">
+          <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+            <thead>
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric">Room Name</th>
+                <th>Something</th>
+                <th>Something Else</th>
+              </tr>
+            </thead>
+            <tbody id="rooms-table"></tbody>
+          </table>
+        </div>
+        <div class="mdl-tabs__panel" id="rooms-settings-panel">
+        </div>
+      </div>  
+    </div>
 
-      <div class="mdl-tabs__panel" id="chat-panel">
-      </div>
+    <div id="chat-panel">
     </div>
 
 
     <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
+    <!--
+      PHP docs:
+
+      Room Lifecycle:
+      - creating a room: request url http://doubledotlabs.byethost31.com/index.php?room=[room id]&name=[room name (base64)]
+      - existing rooms can be 'added' to a user's account by sharing the room's id (or url?) - a storage method still needs to be created for this
+      - rename a room: request url http://doubledotlabs.byethost31.com/index.php?room=[room id]&name=[room name (base64)]
+      - get the room log: request url http://doubledotlabs.byethost31.com/index.php?room=[room id] - will return an error if the room is not created - adding the room name will prevent this
+      - send a message: request url http://doubledotlabs.byethost31.com/index.php?user=[user id]&room=[room id]&text=[message (base64)] - will return an error if the room is not created - adding the room name will prevent this
+      - send an image: request url http://doubledotlabs.byethost31.com/index.php?user=[user id]&room=[room id]&image=[image url (base64)] - will return an error if the room is not created - adding the room name will prevent this
+      - delete a room: managed by site admins
+    -->
     <script>
   function createCORSRequest(method, url) {
     var xhr = new XMLHttpRequest();
@@ -103,49 +127,84 @@
 
   //put google login request stuff here
 
-  var roomContent = createCORSRequest("GET", "http://doubledotlabs.byethost31.com/index.php");
-  roomContent.onload = function() {
-    if(roomContent.readyState === 4) {
-      if(roomContent.status === 200 || roomContent.status == 0) {
-        var response = roomContent.responseText;
-        response = response.substring(response.indexOf('['), response.indexOf(']') + 1);
-        var obj = JSON.parse(response);
-        var roomsHTML = "";
+  function showLogin() {
+    document.getElementById('login-panel').style.visibility = "visible";
+    document.getElementById('rooms-panel').style.visibility = "hidden";
+    document.getElementById('chat-panel').style.visibility = "hidden";
+  }
+
+  function showRooms() {
+    document.getElementById('login-panel').style.visibility = "hidden";
+    document.getElementById('rooms-panel').style.visibility = "visible";
+    document.getElementById('chat-panel').style.visibility = "hidden";
+
+    var roomContent = createCORSRequest("GET", "http://doubledotlabs.byethost31.com/index.php");
+    roomContent.onload = function() {
+      if(roomContent.readyState === 4) {
+        if(roomContent.status === 200 || roomContent.status == 0) {
+          var response = roomContent.responseText;
+          if (response.contains('[') && response.contains(']')) response = response.substring(response.indexOf('['), response.indexOf(']') + 1);
+          else {
+              alert("Error: " + response);
+              return;
+          }
+          var obj = JSON.parse(response);
+          var roomsHTML = "";
           
-        for (var i = 0; true; i++) {
-          if (obj[i] == null) break;
+          for (var i = 0; true; i++) {
+            if (obj[i] == null) break;
           
-          roomsHTML += "<tr onclick=\"location.href=\'http://doubledotlabs.github.io/projects/chat/room/" + obj[i].id + "\'\"><td class=\"mdl-data-table__cell--non-numeric\">" + obj[i].name + "</td><td>Hai</td><td>Ayyyyyy</td></tr>";
+            roomsHTML += "<tr onclick=\"showRoom(" + obj[i].id + ");\"><td class=\"mdl-data-table__cell--non-numeric\">" + btoa(obj[i].name) + "</td><td>Hai</td><td>Ayyyyyy</td></tr>";
+          }
+          
+          document.getElementById('rooms-table').innerHTML = roomsHTML;
+        } else {
+          console.log("Error getting chatrooms: " + roomContent.status);
         }
-          
-        document.getElementById('rooms-table').innerHTML = roomsHTML;
-      } else {
-        console.log("Error getting chatrooms: " + roomContent.status);
       }
     }
-  }
-  roomContent.onerror = function() {
+    roomContent.onerror = function() {
       alert("Something went wrong: Error " + roomContent.status);
+    }
+    roomContent.send();
   }
-  roomContent.send();
+
+  function showChat() {
+    document.getElementById('login-panel').style.visibility = "hidden";
+    document.getElementById('rooms-panel').style.visibility = "hidden";
+    document.getElementById('chat-panel').style.visibility = "visible";  
+  }
+
+  function showRoom(room) {
+    //load the content of the room id
+    //let page.js handle this stuff
+    location.href = "http://doubledotlabs.github.io/projects/chat/room/" + room;
+  }
 
   window.addEventListener('WebComponentsReady', function() {
     page('/', function(ctx, params) {
-      if (userId == null) location.href = "#login-panel";
-      else location.href = "#rooms-panel";
+      if (userId == null) showLogin();
+      else showRooms();
     });
     
     page('/room/:room', function(ctx, params) {
       console.log("Room: " + ctx.params.room);
 
-      location.href = "#chat-panel";
+      if (userId == null) showLogin();
+      else showChat();
+
+      //load the content of the room
+      //request url is http://doubledotlabs.byethost31.com/index.php?room=ctx.params.room
     });
 
     page('/room/:room/:url', function(ctx, params) {
       console.log("Room: " + ctx.params.room);
       console.log("Url: " + ctx.params.url);
 
-      location.href = "#chat-panel";
+      if (userId == null) showLogin();
+      else showChat();
+
+      //load the image url in fullscreen with the chatroom as the return url
     });
 
     page({

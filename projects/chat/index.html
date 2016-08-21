@@ -108,7 +108,7 @@
     if(roomContent.readyState === 4) {
       if(roomContent.status === 200 || roomContent.status == 0) {
         var response = roomContent.responseText;
-        response = response.substring(response.indexOf('['), response.indexOf(']'));
+        response = response.substring(response.indexOf('['), response.indexOf(']') + 1);
         var obj = JSON.parse(response);
         var roomsHTML = "";
           

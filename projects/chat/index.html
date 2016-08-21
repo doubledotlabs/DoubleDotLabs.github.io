@@ -107,7 +107,7 @@
   roomContent.onload = function() {
     if(roomContent.readyState === 4) {
       if(roomContent.status === 200 || roomContent.status == 0) {
-        var obj = JSON.parse(roomContent.responseText);
+        var obj = JSON.parse(roomContent.responseText.substring(roomContent.responseText.indexOf('['), roomContent.responseText.indexOf(']')));
         var roomsHTML = "";
           
         for (var i = 0; true; i++) {
@@ -123,7 +123,7 @@
     }
   }
   roomContent.onerror = function() {
-      alert("Something went wrong.");
+      alert("Something went wrong: Error " + roomContent.status);
   }
   roomContent.send();
 

@@ -1,0 +1,140 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      https://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="This is a thing.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat</title>
+    
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="http://doubledotlabs.github.io/images/favicon.png">
+    
+     <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Chat">
+    <link rel="apple-touch-icon-precomposed" href="http://doubledotlabs.github.io/images/favicon.png">
+    
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="http://doubledotlabs.github.io/images/favicon.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="http://doubledotlabs.github.io/images/favicon.png">
+
+    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
+    <!--
+    <link rel="canonical" href="http://www.example.com/">
+    -->
+
+    <!-- Page styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.min.css">
+  </head>
+  <body>
+    <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+
+      <div class="mdl-tabs__panel is-active" id="login-panel">
+      </div>
+
+      <div class="mdl-tabs__panel" id="rooms-panel">
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+          <div class="mdl-tabs__tab-bar">
+            <a href="#rooms-view-panel" class="mdl-tabs__tab is-active">Rooms</a>
+            <a href="#rooms-settings-panel" class="mdl-tabs__tab">Settings</a>
+          </div>
+    
+          <div class="mdl-tabs__panel is-active" id="rooms-view-panel">
+            <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+              <thead>
+                <tr>
+                  <th class="mdl-data-table__cell--non-numeric">Room Name</th>
+                  <th>Something</th>
+                  <th>Something Else</th>
+                </tr>
+              </thead>
+              <tbody id="rooms-table"></tbody>
+            </table>
+          </div>
+          <div class="mdl-tabs__panel" id="rooms-settings-panel">
+          </div>
+      </div>
+
+      <div class="mdl-tabs__panel" id="chat-panel">
+      </div>
+    </div>
+
+
+    <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+
+    <script>
+  var userId;
+
+  //put google login request stuff here
+
+  var roomContent = new XMLHttpRequest();
+  roomContent.onreadystatechange = function () {
+    if(roomContent.readyState === 4) {
+      
+      if(roomContent.status === 200 || roomContent.status == 0) {
+        var obj = JSON.parse(roomContent.responseText);
+        var roomsHTML = "";
+          
+        for (var i = 0; true; i++) {
+          if (obj[i] == null) break;
+          
+          roomsHTML += "<tr onclick=\"location.href=\'http://doubledotlabs.github.io/projects/chat/room/" + obj[i].id + "\'\"><td class=\"mdl-data-table__cell--non-numeric\">" + obj[i].name + "</td><td>Hai</td><td>Ayyyyyy</td></tr>";
+        }
+          
+        document.getElementById('rooms-table').innerHTML = roomsHTML;
+      } else {
+        console.log("Error getting chatrooms: " + roomContent.status);
+      }
+    }
+  }
+  roomContent.open("GET", "http://doubledotlabs.comlu.com/rooms.json", true);
+  roomContent.send(null);
+
+  window.addEventListener('WebComponentsReady', function() {
+    page('/', function(ctx, params) {
+      if (userId == null) location.href = "#login-panel";
+      else location.href = "#rooms-panel";
+    });
+    
+    page('/room/:room', function(ctx, params) {
+      console.log("Room: " + ctx.params.room);
+
+      location.href = "#chat-panel";
+    });
+
+    page('/room/:room/:url', function(ctx, params) {
+      console.log("Room: " + ctx.params.room);
+      console.log("Url: " + ctx.params.url);
+
+      location.href = "#chat-panel";
+    });
+
+    page({
+      hashbang: true
+    });
+  });
+    </script>
+  </body>
+</html>

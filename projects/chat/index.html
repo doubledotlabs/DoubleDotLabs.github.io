@@ -85,14 +85,27 @@
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
 
     <script>
+  function createCORSRequest(method, url) {
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr) {
+      xhr.open(method, url, true);
+    } else if (typeof XDomainRequest != "undefined") {
+      xhr = new XDomainRequest();
+      xhr.open(method, url);
+    } else {
+      xhr = null;
+    }
+    xhr.withCredentials = true;
+    return xhr;
+  }
+
   var userId;
 
   //put google login request stuff here
 
-  var roomContent = new XMLHttpRequest();
-  roomContent.onreadystatechange = function () {
+  var roomContent = createCORSRequest("GET", "http://doubledotlabs.byethost31.com/index.php");
+  roomContent.onload = function() {
     if(roomContent.readyState === 4) {
-      
       if(roomContent.status === 200 || roomContent.status == 0) {
         var obj = JSON.parse(roomContent.responseText);
         var roomsHTML = "";
@@ -109,8 +122,10 @@
       }
     }
   }
-  roomContent.open("GET", "http://doubledotlabs.byethost31.com/index.php", true);
-  roomContent.send(null);
+  roomContent.onerror = function() {
+      alert("Something went wrong.");
+  }
+  roomContent.send();
 
   window.addEventListener('WebComponentsReady', function() {
     page('/', function(ctx, params) {

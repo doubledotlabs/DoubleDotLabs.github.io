@@ -59,6 +59,10 @@
       #chat-panel {
         visibility: hidden;
       }
+
+      #rooms-table {
+        margin: 48px auto 48px auto;  
+      }
     </style>
   </head>
   <body>
@@ -73,7 +77,7 @@
         </div>
     
         <div class="mdl-tabs__panel is-active" id="rooms-view-panel">
-          <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+          <table id="rooms-table" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
               <tr>
                 <th class="mdl-data-table__cell--non-numeric">Room Name</th>

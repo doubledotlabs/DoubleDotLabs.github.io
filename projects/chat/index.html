@@ -214,14 +214,14 @@
             var obj = JSON.parse(response);
             finishedCallback(obj);  
           } catch(err) {
-            errorCallback();
+            errorCallback(url, response);
           }
         }
       }
     };
 
     xhr.onerror = function() {
-      errorCallback();
+      errorCallback(url, null);
     }
 
     xhr.send();
@@ -329,7 +329,7 @@
         }
           
         document.getElementById('rooms-table').innerHTML = roomsHTML;
-      }, function() {
+      }, function(url, message) {
           alert("Something has gone horribly wrong.");
       });
     }
@@ -359,16 +359,16 @@
           if (requestUsers[i + 1]) {
             createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function(user) {
               users.push(user);
-            }, function() {
-              console.log("Error fetching info for a user.");
+            }, function(url, message) {
+              console.log("Error fetching user:" + url);
             }); 
           } else {
             createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function(user) {
               users.push(user);
               addMessages();  
               console.log("addMessages() called");
-            }, function() {
-              console.log("Error fetching info for a user.");
+            }, function(url, message) {
+              console.log("Error fetching user:" + url);
             });   
           }
         }
@@ -418,7 +418,7 @@
         for (var i = 0; obj[i]; i++) {
           //TODO: show a confirmation message
         }
-      }, function() {
+      }, function(url, message) {
         console.log("Something has gone horribly wrong.");
       });
     }  

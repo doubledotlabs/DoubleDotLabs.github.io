@@ -214,6 +214,7 @@
             var obj = JSON.parse(response);
             finishedCallback(obj);  
           } catch(err) {
+            console.log(err);  
             errorCallback(url, response);
           }
         }

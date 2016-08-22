@@ -51,13 +51,14 @@
       #login-panel {
         visibility: visible;
       }  
-
       #rooms-panel {
         visibility: hidden;
       }
-
       #chat-panel {
         visibility: hidden;
+      }
+      #rooms-table {
+        margin: 48px auto 48px auto;  
       }
     </style>
   </head>
@@ -73,7 +74,7 @@
         </div>
     
         <div class="mdl-tabs__panel is-active" id="rooms-view-panel">
-          <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+          <table id="rooms-table" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
             <thead>
               <tr>
                 <th class="mdl-data-table__cell--non-numeric">Room Name</th>
@@ -98,7 +99,6 @@
 
     <!--
       PHP docs:
-
       Room Lifecycle:
       - creating a room: request url http://doubledotlabs.byethost31.com/index.php?room=[room id]&name=[room name (base64)]
       - existing rooms can be 'added' to a user's account by sharing the room's id (or url?) - a storage method still needs to be created for this
@@ -122,28 +122,23 @@
     xhr.withCredentials = true;
     return xhr;
   }
-
   var userId;
-
   //put google login request stuff here
-
   function showLogin() {
     document.getElementById('login-panel').style.visibility = "visible";
     document.getElementById('rooms-panel').style.visibility = "hidden";
     document.getElementById('chat-panel').style.visibility = "hidden";
   }
-
   function showRooms() {
     document.getElementById('login-panel').style.visibility = "hidden";
     document.getElementById('rooms-panel').style.visibility = "visible";
     document.getElementById('chat-panel').style.visibility = "hidden";
-
     var roomContent = createCORSRequest("GET", "http://doubledotlabs.byethost31.com/index.php");
     roomContent.onload = function() {
       if(roomContent.readyState === 4) {
         if(roomContent.status === 200 || roomContent.status == 0) {
           var response = roomContent.responseText;
-          if (response.contains('[') && response.contains(']')) response = response.substring(response.indexOf('['), response.indexOf(']') + 1);
+          if (response.includes('[') && response.includes(']')) response = response.substring(response.indexOf('['), response.indexOf(']') + 1);
           else {
               alert("Error: " + response);
               return;
@@ -168,19 +163,16 @@
     }
     roomContent.send();
   }
-
   function showChat() {
     document.getElementById('login-panel').style.visibility = "hidden";
     document.getElementById('rooms-panel').style.visibility = "hidden";
     document.getElementById('chat-panel').style.visibility = "visible";  
   }
-
   function showRoom(room) {
     //load the content of the room id
     //let page.js handle this stuff
     location.href = "http://doubledotlabs.github.io/projects/chat/room/" + room;
   }
-
   window.addEventListener('WebComponentsReady', function() {
     page('/', function(ctx, params) {
       if (userId == null) showLogin();
@@ -189,24 +181,18 @@
     
     page('/room/:room', function(ctx, params) {
       console.log("Room: " + ctx.params.room);
-
       if (userId == null) showLogin();
       else showChat();
-
       //load the content of the room
       //request url is http://doubledotlabs.byethost31.com/index.php?room=ctx.params.room
     });
-
     page('/room/:room/:url', function(ctx, params) {
       console.log("Room: " + ctx.params.room);
       console.log("Url: " + ctx.params.url);
-
       if (userId == null) showLogin();
       else showChat();
-
       //load the image url in fullscreen with the chatroom as the return url
     });
-
     page({
       hashbang: true
     });

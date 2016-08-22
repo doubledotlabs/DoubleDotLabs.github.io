@@ -83,7 +83,7 @@
     <div id="login-panel">
       <h2>Login:</h2> 
       <hr>
-      <div id="login-button" class="g-signin2" data-onsuccess="showRooms"></div>
+      <div id="login-button" class="g-signin2"></div>
       <p id="login-notice">Please note: by logging in with your google account, you acknowledge that any information entered into this site is publicly available and that your google account will be associated with any actions you perform. Please be courteous and have respect for other users on this site.</p>
     </div>
 
@@ -132,29 +132,106 @@
       - delete a room: managed by site admins
     -->
     <script>    
-  function createCORSRequest(method, url) {
+  function createRequest(url, requestFinished) {
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr) {
-      xhr.open(method, url, true);
+      xhr.open("GET", url, true);
     } else if (typeof XDomainRequest != "undefined") {
       xhr = new XDomainRequest();
-      xhr.open(method, url);
+      xhr.open("GET", url);
     } else {
       xhr = null;
     }
     xhr.withCredentials = true;
+
+    xhr.onload = function() {
+      if(xhr.readyState === 4) {
+        if(xhr.status === 200 || xhr.status == 0) {
+          var response = roomContent.responseText;
+          if (response.includes('[') && response.includes(']')) response = response.substring(response.indexOf('['), response.indexOf(']') + 1);
+          else {
+            alert("Error: " + response);
+            return;
+          }
+
+          var obj = JSON.parse(response);
+          requestFinished(obj);
+        }
+      }
+    };
+
+    xhr.onerror = function() {
+      alert("Something went wrong: Error " + xhr.status);
+    }
+
+    xhr.send();
     return xhr;
   }
 
-  var userId;
+  //google login stuff
+  var auth2;
+  var googleUser;
 
-  //put google login request stuff here
-
-  window.onLoadCallback = function() {
-    gapi.auth2.init({
-      client_id: 'CLIENT_ID.apps.googleusercontent.com'
-    });
+  window.onload = function() {
+    gapi.load('auth2', initSigninV2);
   }
+
+  var initSigninV2 = function() {
+    auth2 = gapi.auth2.init({
+      client_id: 'CLIENT_ID.apps.googleusercontent.com',
+      scope: 'profile'
+    });
+
+    auth2.isSignedIn.listen(signinChanged);
+    auth2.currentUser.listen(userChanged);
+
+    if (auth2.isSignedIn.get() == true) {
+      auth2.signIn();
+    }
+
+    refreshValues();
+  };
+
+  var signinChanged = function(val) {
+    if (val) {
+      if (room) showRoom(room);
+      else showRooms();
+    }
+    else showLogin();
+  };
+
+  var userChanged = function(user) {
+    googleUser = user;
+    updateGoogleUser();
+  };
+
+  var updateGoogleUser = function () {
+    if (googleUser) {
+      //update the UI for the current google user
+      if (room) showRoom(room);
+      else showRooms();
+    } else showLogin();
+  };
+
+
+  var refreshValues = function() {
+    if (auth2) {
+      googleUser = auth2.currentUser.get();
+      updateGoogleUser();
+
+      return googleUser != null;
+    } else return false;
+  }
+
+  function signOut() {
+    if (auth2) {
+      auth2.signOut();
+      return true;  
+    } else return false;
+  }
+
+  //UI stuff
+  var room;
 
   function showLogin() {
     document.getElementById('login-panel').style.visibility = "visible";
@@ -167,62 +244,89 @@
     document.getElementById('rooms-panel').style.visibility = "visible";
     document.getElementById('chat-panel').style.visibility = "hidden";
 
-    var roomContent = createCORSRequest("GET", "http://doubledotlabs.byethost31.com/index.php");
-    roomContent.onload = function() {
-      if(roomContent.readyState === 4) {
-        if(roomContent.status === 200 || roomContent.status == 0) {
-          var response = roomContent.responseText;
-          if (response.includes('[') && response.includes(']')) response = response.substring(response.indexOf('['), response.indexOf(']') + 1);
-          else {
-              alert("Error: " + response);
-              return;
-          }
-          var obj = JSON.parse(response);
-          var roomsHTML = "";
+    //TODO: replace with user-specific list of rooms once sign-ij works properly
+    createRequest("http://doubledotlabs.byethost31.com/index.php", function(obj) {
+      var roomsHTML = "";
           
-          for (var i = 0; true; i++) {
-            if (obj[i] == null) break;
+      for (var i = 0; true; i++) {
+        if (obj[i] == null) break;
           
-            roomsHTML += "<tr onclick=\"showRoom(\'" + obj[i].id + "\');\"><td class=\"mdl-data-table__cell--non-numeric\">" + atob(obj[i].name) + "</td><td>Hai</td><td>Ayyyyyy</td></tr>";
-          }
-          
-          document.getElementById('rooms-table').innerHTML = roomsHTML;
-        } else {
-          console.log("Error getting chatrooms: " + roomContent.status);
-        }
+        roomsHTML += "<tr onclick=\"showRoom(\'" + obj[i].id + "\');\"><td class=\"mdl-data-table__cell--non-numeric\">" + atob(obj[i].name) + "</td><td>Hai</td><td>Ayyyyyy</td></tr>";
       }
-    }
-    roomContent.onerror = function() {
-      alert("Something went wrong: Error " + roomContent.status);
-    }
-    roomContent.send();
+          
+      document.getElementById('rooms-table').innerHTML = roomsHTML;
+    });
   }
 
-  function showChat() {
+  function showRoom(roomId) {
     document.getElementById('login-panel').style.visibility = "hidden";
     document.getElementById('rooms-panel').style.visibility = "hidden";
-    document.getElementById('chat-panel').style.visibility = "visible";  
+    document.getElementById('chat-panel').style.visibility = "visible";
+
+    createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + roomId, function(obj) {          
+      for (var i = 0; true; i++) {
+        if (obj[i] == null) break;
+        //TODO: show room content
+      }
+    });
   }
 
-  function showRoom(room) {
-    //load the content of the room id
-    //let page.js handle this stuff
-    location.href = "http://doubledotlabs.github.io/projects/chat/room/" + room;
+  //UI actions
+  function createRoom(id, name) {
+    //TODO: create the room
+    /*
+    createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + id + "&name=" + name, function(obj) {          
+      for (var i = 0; true; i++) {
+        if (obj[i] == null) break;
+        //TODO: show a confirmation message
+      }
+    });  
+    */
+  }
+
+  function sendMessage(message) {
+    if (googleUser && room) {
+      //TODO: send the message
+      /*
+      createRequest("http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&text=" + message, function(obj) {          
+        for (var i = 0; true; i++) {
+          if (obj[i] == null) break;
+          //TODO: show a confirmation message
+        }
+      });  
+      */
+    }  
+  }
+
+  function sendImage(url) {
+    if (googleUser && room) {
+      //TODO: send the image
+      /*
+      createRequest("http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&image=" + url, function(obj) {          
+        for (var i = 0; true; i++) {
+          if (obj[i] == null) break;
+          //TODO: show a confirmation message
+        }
+      });  
+      */
+    }  
   }
 
   window.addEventListener('WebComponentsReady', function() {
     page('/', function(ctx, params) {
-      if (userId == null) showLogin();
-      else showRooms();
+      if (googleUser) showRooms();
+      else showLogin();
     });
     
     page('/room/:room', function(ctx, params) {
       console.log("Room: " + ctx.params.room);
 
-      if (userId == null) showLogin();
-      else showChat();
+      room = ctx.params.room;
 
-      //load the content of the room
+      if (googleUser) showRoom(ctx.params.room);
+      else showLogin();
+
+      //TODO: load the content of the room
       //request url is http://doubledotlabs.byethost31.com/index.php?room=ctx.params.room
     });
 
@@ -230,10 +334,13 @@
       console.log("Room: " + ctx.params.room);
       console.log("Url: " + ctx.params.url);
 
-      if (userId == null) showLogin();
-      else showChat();
-
-      //load the image url in fullscreen with the chatroom as the return url
+      if (googleUser) {
+        if (room != ctx.params.room) {
+          room = ctx.params.room;  
+          showRoom(room);  
+        }
+        //TODO: load the image url in fullscreen with the chatroom as the return url
+      } else showLogin();
     });
 
     page({

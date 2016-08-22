@@ -215,6 +215,7 @@
             finishedCallback(obj);  
           } catch(err) {
             console.log(err);  
+            console.log(err.stack);
             errorCallback(url, response);
           }
         }

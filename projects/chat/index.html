@@ -110,14 +110,14 @@
         border-radius: 32px;
         background-color: #BDBDBD;  
         vertical-align: top;
-        margin: 8px;
+        margin-right: 16px;
       }
 
       .message-text {
         display: inline-block;
         background-color: #424242;
         color: white;
-        border-radius: 16px;
+        border-radius: 12px;
         padding: 16px;  
       }
 
@@ -367,11 +367,10 @@
           } else {
             createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function(user) {
               users.push(user);
-              addMessages();  
-              console.log("addMessages() called");
+              addMessages();
             }, function(url, message) {
               console.log("Error fetching user:" + url);
-            });   
+            });
           }
         }
       }, function() {

@@ -341,16 +341,19 @@
           if (obj[i] == null) break;
 
           var parent = document.getElementById('chat-messages');
-          
-          createRequest("http://picasaweb.google.com/data/entry/api/user/" + obj[i].user + "?alt=json", false, function(user) {
-            var HTML = "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + obj[i].text + "<br>" + obj[i].date + "</p></div>";
+
+          var finishedCallback = function(user) {
+            var HTML = "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + obj.text + "<br>" + obj.date + "</p></div>";
             var child = htmlToElement(HTML);
 
             if (i > parent.childNodes.length - 1) parent.appendChild(child);
-            else parent.insertBefore(child, parent.children[i + 1]);
+            else parent.insertBefore(child, parent.children[i + 1]);  
+          }
 
-          }, function() {
-            console.log("Error fetching info for user" + obj[i].user);
+          finishedCallback.obj = obj[i];
+          
+          createRequest("http://picasaweb.google.com/data/entry/api/user/" + obj[i].user + "?alt=json", false, finishedCallback, function() {
+            console.log("Error fetching info for a user."); //most descriptive error message in existence
           })
 
           //TODO: show room content

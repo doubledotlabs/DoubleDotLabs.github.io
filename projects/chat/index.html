@@ -50,7 +50,21 @@
     <style>
       #login-panel {
         visibility: visible;
+        text-align: center;
+        padding-left: calc(10% - 64px);
+        padding-right: calc(10% - 64px);
+        padding-top: 128px;
+        padding-bottom: 128px;
       }  
+
+      #login-button {
+        margin: 48px auto 48px auto;  
+      }
+
+      #login-notice {
+        width: calc(40% + 128px);  
+        margin: auto;
+      }
 
       #rooms-panel {
         visibility: hidden;
@@ -67,6 +81,10 @@
   </head>
   <body>
     <div id="login-panel">
+      <h2>Login:</h2> 
+      <hr>
+      <div id="login-button" class="g-signin2" data-onsuccess="showRooms"></div>
+      <p id="login-notice">Please note: by logging in with your google account, you acknowledge that any information entered into this site is publicly available and that your google account will be associated with any actions you perform. Please be courteous and have respect for other users on this site.</p>
     </div>
 
     <div id="rooms-panel">
@@ -99,6 +117,7 @@
 
     <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
     <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <!--
       PHP docs:
@@ -112,7 +131,7 @@
       - send an image: request url http://doubledotlabs.byethost31.com/index.php?user=[user id]&room=[room id]&image=[image url (base64)] - will return an error if the room is not created - adding the room name will prevent this
       - delete a room: managed by site admins
     -->
-    <script>
+    <script>    
   function createCORSRequest(method, url) {
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr) {
@@ -130,6 +149,12 @@
   var userId;
 
   //put google login request stuff here
+
+  window.onLoadCallback = function() {
+    gapi.auth2.init({
+      client_id: 'CLIENT_ID.apps.googleusercontent.com'
+    });
+  }
 
   function showLogin() {
     document.getElementById('login-panel').style.visibility = "visible";

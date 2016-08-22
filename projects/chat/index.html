@@ -109,6 +109,8 @@
         width: 64px;
         border-radius: 32px;
         background-color: #BDBDBD;  
+        vertical-align: top;
+        margin: 8px;
       }
 
       .message-text {
@@ -212,7 +214,7 @@
             var obj = JSON.parse(response);
             finishedCallback(obj);  
           } catch(err) {
-              errorCallback();
+            errorCallback();
           }
         }
       }
@@ -235,7 +237,8 @@
 
     document.getElementById('chat-form').addEventListener("submit", function(e) {
       e.preventDefault();
-      
+      var input = document.getElementById('chat-input-input');
+      sendMessage(input.value);
     }, false); 
   }
 
@@ -295,6 +298,8 @@
 
   //UI stuff
   var room;
+  var messages;
+  var users;
 
   function showLogin() {
     if (googleUser) {
@@ -331,36 +336,75 @@
   }
 
   function showRoom(roomId) {
+    document.getElementById('chat-messages').innerHTML = "";  
+
     if (googleUser) {
       document.getElementById('login-panel').style.display = "none";
       document.getElementById('rooms-panel').style.display = "none";
       document.getElementById('chat-panel').style.display = "block";
 
-      createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + roomId, true, function(obj) {          
+      createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + roomId, true, function(obj) {
+        messages = obj;
+        users = [];
+
+        var requestUsers = [];
+
         for (var i = 0; true; i++) {
-          if (obj[i] == null) break;
+          if (messages[i] == null) break;
 
-          var parent = document.getElementById('chat-messages');
-
-          var finishedCallback = function(user) {
-            var HTML = "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + obj.text + "<br>" + obj.date + "</p></div>";
-            var child = htmlToElement(HTML);
-
-            if (i > parent.childNodes.length - 1) parent.appendChild(child);
-            else parent.insertBefore(child, parent.children[i + 1]);  
+          if (!getUser(messages[i].id)) {
+            requestUsers.push(messages[i].id);  
           }
+        }
 
-          finishedCallback.obj = obj[i];
-          
-          createRequest("http://picasaweb.google.com/data/entry/api/user/" + obj[i].user + "?alt=json", false, finishedCallback, function() {
-            console.log("Error fetching info for a user."); //most descriptive error message in existence
-          })
+        for (var i = 0; true; i++) {
+          if (!requestUsers[i]) break;
 
-          //TODO: show room content
+          if (requestUsers[i + 1]) {
+            createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function(user) {
+              users.push(user);
+            }, function() {
+              console.log("Error fetching info for a user.");
+            }); 
+          } else {
+            createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function() {
+              users.push(user);
+              addMessages();  
+            }, function() {
+              console.log("Error fetching info for a user.");
+            });   
+          }
         }
       }, function() {
+        document.getElementById('chat-messages').innerHTML = "Something didn't work properly."; //most descriptive error message in existence
       });  
     } 
+  }
+
+  function getUser(id) {
+    for (var i = 0; true; i++) {
+      if (users[i] == null) break;
+      if (users[i].entry.title.gphoto$user.$t == id) return users[i];  
+    }
+    return null;  
+  }
+
+  function addMessages() {
+    var parent = document.getElementById('chat-messages');
+    parent.innerHTML = "";    
+
+    for (var i = 0; true; i++) {
+      if (messages[i] == null) break;
+
+      var user = getUser(obj[i].user);
+      if (user) {
+        var HTML = "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + messages[i].text + "<br>" + messages[i].date + "</p></div>";
+        var child = htmlToElement(HTML);
+
+        if (i > parent.childNodes.length - 1) parent.appendChild(child);
+        else parent.insertBefore(child, parent.children[i + 1]);    
+      }  
+    }  
   }
 
   function htmlToElement(html) {
@@ -386,8 +430,6 @@
 
   function sendMessage(message) {
     if (googleUser && room) {
-      //TODO: send the message
-      /*
       createRequest("http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&text=" + message, true, function(obj) {          
         for (var i = 0; true; i++) {
           if (obj[i] == null) break;
@@ -395,8 +437,7 @@
         }
       }, function() {
         console.log("Something has gone horribly wrong.");
-      });  
-      */
+      });
     }  
   }
 

@@ -70,12 +70,13 @@
         display: none;
       }
 
-      #chat-panel {
-        display: none;
-      }
-
       #rooms-table {
         margin: 48px auto 48px auto;  
+        width: calc(30% + 128px);
+      }
+
+      #chat-panel {
+        display: none;
       }
     </style>
   </head>
@@ -95,12 +96,10 @@
         </div>
     
         <div class="mdl-tabs__panel is-active" id="rooms-view-panel">
-          <table id="rooms-table" class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+          <table id="rooms-table" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
             <thead>
               <tr>
                 <th class="mdl-data-table__cell--non-numeric">Room Name</th>
-                <th>Something</th>
-                <th>Something Else</th>
               </tr>
             </thead>
             <tbody id="rooms-table"></tbody>
@@ -237,8 +236,7 @@
     if (googleUser) {
       if (room) showRoom(room);
       else showRooms();  
-    }
-    else {
+    } else {
       document.getElementById('login-panel').style.display = "block";
       document.getElementById('rooms-panel').style.display = "none";
       document.getElementById('chat-panel').style.display = "none";  
@@ -258,7 +256,7 @@
         for (var i = 0; true; i++) {
           if (obj[i] == null) break;
           
-          roomsHTML += "<tr onclick=\"showRoom(\'" + obj[i].id + "\');\"><td class=\"mdl-data-table__cell--non-numeric\">" + atob(obj[i].name) + "</td><td>Hai</td><td>Ayyyyyy</td></tr>";
+          roomsHTML += "<tr onclick=\"showRoom(\'" + obj[i].id + "\');\"><td class=\"mdl-data-table__cell--non-numeric\">" + atob(obj[i].name) + "</td></tr>";
         }
           
         document.getElementById('rooms-table').innerHTML = roomsHTML;

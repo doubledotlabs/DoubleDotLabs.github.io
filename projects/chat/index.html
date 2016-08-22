@@ -190,7 +190,7 @@
       - delete a room: managed by site admins
     -->
     <script>    
-  function createRequest(url, finishedCallback, errorCallback) {
+  function createRequest(url, credentials, finishedCallback, errorCallback) {
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr) {
       xhr.open("GET", url, true);
@@ -200,6 +200,7 @@
     } else {
       xhr = null;
     }
+    xhr.withCredentials = credentials;
 
     xhr.onload = function() {
       if(xhr.readyState === 4) {
@@ -313,7 +314,7 @@
       document.getElementById('chat-panel').style.display = "hidden";
 
       //TODO: replace with user-specific list of rooms once sign-ij works properly
-      createRequest("http://doubledotlabs.byethost31.com/index.php", function(obj) {
+      createRequest("http://doubledotlabs.byethost31.com/index.php", true, function(obj) {
         var roomsHTML = "";
           
         for (var i = 0; true; i++) {
@@ -335,13 +336,13 @@
       document.getElementById('rooms-panel').style.display = "none";
       document.getElementById('chat-panel').style.display = "block";
 
-      createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + roomId, function(obj) {          
+      createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + roomId, true, function(obj) {          
         for (var i = 0; true; i++) {
           if (obj[i] == null) break;
 
           var parent = document.getElementById('chat-messages');
           
-          createRequest("http://picasaweb.google.com/data/entry/api/user/" + obj[i].user + "?alt=json", function(user) {
+          createRequest("http://picasaweb.google.com/data/entry/api/user/" + obj[i].user + "?alt=json", false, function(user) {
             var HTML = "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + obj[i].text + "<br>" + obj[i].date + "</p></div>";
             var child = htmlToElement(HTML);
 
@@ -369,11 +370,13 @@
   function createRoom(id, name) {
     //TODO: create the room
     /*
-    createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + id + "&name=" + name, function(obj) {          
+    createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + id + "&name=" + name, true, function(obj) {          
       for (var i = 0; true; i++) {
         if (obj[i] == null) break;
         //TODO: show a confirmation message
       }
+    }, function() {
+      console.log("Something has gone horribly wrong.");
     });  
     */
   }
@@ -382,11 +385,13 @@
     if (googleUser && room) {
       //TODO: send the message
       /*
-      createRequest("http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&text=" + message, function(obj) {          
+      createRequest("http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&text=" + message, true, function(obj) {          
         for (var i = 0; true; i++) {
           if (obj[i] == null) break;
           //TODO: show a confirmation message
         }
+      }, function() {
+        console.log("Something has gone horribly wrong.");
       });  
       */
     }  
@@ -396,11 +401,13 @@
     if (googleUser && room) {
       //TODO: send the image
       /*
-      createRequest("http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&image=" + url, function(obj) {          
+      createRequest("http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&image=" + url, true, function(obj) {          
         for (var i = 0; true; i++) {
           if (obj[i] == null) break;
           //TODO: show a confirmation message
         }
+      }, function() {
+        console.log("Something has gone horribly wrong.");
       });  
       */
     }  

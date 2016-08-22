@@ -84,7 +84,7 @@
         bottom: 0;
         left: 0;
         right: 0; 
-        background-color: #E3F2FD;
+        background-color: #FCE4EC;
         text-align: center;
         height: 64px;
         border-radius: 32px;
@@ -115,7 +115,7 @@
 
       .message-text {
         display: inline-block;
-        background-color: #212121;
+        background-color: #424242;
         color: white;
         border-radius: 16px;
         padding: 16px;  
@@ -332,7 +332,7 @@
       }, function() {
           alert("Something has gone horribly wrong.");
       });
-    }  
+    }  #E3F2FD
   }
 
   function showRoom(roomId) {
@@ -349,17 +349,13 @@
 
         var requestUsers = [];
 
-        for (var i = 0; true; i++) {
-          if (!messages[i]) break;
-
+        for (var i = 0; messages[i]; i++) {
           if (!getUser(messages[i].id)) {
             requestUsers.push(messages[i].id);  
           }
         }
-
-        for (var i = 0; true; i++) {
-          if (!requestUsers[i]) break;
-
+#E3F2FD
+        for (var i = 0; requestUsers[i]; i++) {
           if (requestUsers[i + 1]) {
             createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function(user) {
               users.push(user);
@@ -370,6 +366,7 @@
             createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function(user) {
               users.push(user);
               addMessages();  
+              console.log("addMessages() called");
             }, function() {
               console.log("Error fetching info for a user.");
             });   
@@ -382,8 +379,7 @@
   }
 
   function getUser(id) {
-    for (var i = 0; true; i++) {
-      if (!users[i]) break;
+    for (var i = 0; users[i]; i++) {
       if (users[i].entry.title.gphoto$user.$t == id) return users[i];  
     }
     return null;  
@@ -393,9 +389,7 @@
     var parent = document.getElementById('chat-messages');
     parent.innerHTML = "";    
 
-    for (var i = 0; true; i++) {
-      if (!messages[i]) break;
-
+    for (var i = 0; messages[i]; i++) {
       var user = getUser(messages[i].user);
       if (user) {
         var HTML = "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + messages[i].text + "<br>" + messages[i].date + "</p></div>";
@@ -431,8 +425,7 @@
   function sendMessage(message) {
     if (googleUser && room) {
       createRequest("http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&text=" + message, true, function(obj) {          
-        for (var i = 0; true; i++) {
-          if (!obj[i]) break;
+        for (var i = 0; obj[i]; i++) {
           //TODO: show a confirmation message
         }
       }, function() {

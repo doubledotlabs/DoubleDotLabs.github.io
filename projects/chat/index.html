@@ -78,6 +78,42 @@
       #chat-panel {
         display: none;
       }
+
+      #chat-form {
+        position: fixed;  
+        bottom: 0;
+        left: 0;
+        right: 0; 
+        background-color: #E3F2FD;
+        text-align: center;
+        height: 72px;
+        border-radius: 36px;
+        margin: 16px;
+      }
+
+      .message {
+        width: 100%;
+        padding: 16px;
+      }
+
+      .message-profile {
+        height: 64px;
+        width: 64px;
+        border-radius: 32px;
+        background-color: #BDBDBD;  
+      }
+
+      .message-text {
+        display: inline-block;
+        background-color: #212121;
+        color: white;
+        border-radius: 16px;
+        padding: 16px;  
+      }
+
+      .message-text:hover {
+        background-color: #616161;  
+      }
     </style>
   </head>
   <body>
@@ -111,11 +147,26 @@
     </div>
 
     <div id="chat-panel">
+      <div id="chat-messages"></div>
+
+      <form id="chat-form">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" maxlength="250">
+          <label class="mdl-textfield__label" for="sample4">Type a message...</label>
+          <span class="mdl-textfield__error">Input is greater than 250 characters!</span>
+        </div>
+
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" type="submit">
+          <i class="material-icons">send</i>
+        </button>
+      </form>  
     </div>
 
 
     <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
-    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"
+        background-color: #212121;
+        color: white;></script>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <!--
@@ -131,7 +182,7 @@
       - delete a room: managed by site admins
     -->
     <script>    
-  function createRequest(url, requestFinished) {
+  function createRequest(url, finishedCallback, errorCallback) {
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr) {
       xhr.open("GET", url, true);
@@ -147,20 +198,24 @@
       if(xhr.readyState === 4) {
         if(xhr.status === 200 || xhr.status == 0) {
           var response = xhr.responseText;
-          if (response.includes('[') && response.includes(']')) response = response.substring(response.indexOf('['), response.indexOf(']') + 1);
+          if (response.includes('<body>') && response.includes('</body>')) response = response.substring(response.indexOf('<body>') + 6, response.indexOf('</body>'));
           else {
             alert("Error: " + response);
             return;
           }
 
-          var obj = JSON.parse(response);
-          requestFinished(obj);
+          try {
+            var obj = JSON.parse(response);
+            finishedCallback(obj);  
+          } catch(err) {
+              errorCallback();
+          }
         }
       }
     };
 
     xhr.onerror = function() {
-      alert("Something has gone horribly wrong.");
+      errorCallback();
     }
 
     xhr.send();
@@ -175,7 +230,7 @@
     gapi.load('auth2', initSigninV2);
   }
 
-  var initSigninV2 = function() {
+  function initSigninV2() {
     auth2 = gapi.auth2.init({
       client_id: 'CLIENT_ID.apps.googleusercontent.com',
       scope: 'profile'
@@ -191,7 +246,7 @@
     refreshValues();
   };
 
-  var signinChanged = function(val) {
+  function signinChanged(val) {
     if (val) {
       if (room) showRoom(room);
       else showRooms();
@@ -199,12 +254,12 @@
     else showLogin();
   };
 
-  var userChanged = function(user) {
+  function userChanged(user) {
     googleUser = user;
     updateGoogleUser();
   };
 
-  var updateGoogleUser = function () {
+  function updateGoogleUser() {
     if (googleUser) {
       //update the UI for the current google user
       if (room) showRoom(room);
@@ -213,7 +268,7 @@
   };
 
 
-  var refreshValues = function() {
+  function refreshValues() {
     if (auth2) {
       googleUser = auth2.currentUser.get();
       updateGoogleUser();
@@ -260,6 +315,8 @@
         }
           
         document.getElementById('rooms-table').innerHTML = roomsHTML;
+      }, function() {
+          alert("Something has gone horribly wrong.");
       });
     }  
   }
@@ -273,10 +330,31 @@
       createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + roomId, function(obj) {          
         for (var i = 0; true; i++) {
           if (obj[i] == null) break;
+
+          var parent = document.getElementById('chat-messages');
+          
+          createRequest("http://picasaweb.google.com/data/entry/api/user/" + obj[i].user + "?alt=json", function(user) {
+            var HTML = "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + obj[i].text + "<br>" + obj[i].date + "</p></div>";
+            var child = htmlToElement(HTML);
+
+            if (i > parent.childNodes.length - 1) parent.appendChild(child);
+            else parent.insertBefore(child, parent.children[i + 1]);
+
+          }, function() {
+            console.log("Error fetching info for user" + obj[i].user);
+          })
+
           //TODO: show room content
         }
+      }, function() {
       });  
     } 
+  }
+
+  function htmlToElement(html) {
+    var template = document.createElement('template');
+    template.innerHTML = html;
+    return template.content.firstChild;
   }
 
   //UI actions

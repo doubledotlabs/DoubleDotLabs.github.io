@@ -92,7 +92,7 @@
       }
 
       #chat-input {
-        width: calc(70% - 72px);  
+        width: calc(100% - 128px);  
       }
 
       #chat-submit {
@@ -192,17 +192,17 @@
       - delete a room: managed by site admins
     -->
     <script>    
-  function createRequest(url, credentials, finishedCallback, errorCallback) {
+  function createRequest(request, finishedCallback, errorCallback) {
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr) {
-      xhr.open("GET", url, true);
+      xhr.open("GET", request.url, true);
     } else if (typeof XDomainRequest != "undefined") {
       xhr = new XDomainRequest();
       xhr.open("GET", url);
     } else {
       xhr = null;
     }
-    xhr.withCredentials = credentials;
+    xhr.withCredentials = request.credentials;
 
     xhr.onload = function() {
       if(xhr.readyState === 4) {
@@ -211,8 +211,10 @@
           if (response.includes('<body>') && response.includes('</body>')) response = response.substring(response.indexOf('<body>') + 6, response.indexOf('</body>'));
 
           try {
-            var obj = JSON.parse(response);
-            finishedCallback(obj);  
+            if (request.json) {
+              var obj = JSON.parse(response);
+              finishedCallback(obj);    
+            } else finishedCallback(response); 
           } catch(err) {
             console.log(err);  
             console.log(err.stack);
@@ -241,23 +243,32 @@
       e.preventDefault();
       var input = document.getElementById('chat-input-input');
       sendMessage(input.value);
+      input.value = "";
     }, false); 
   }
 
   function initSigninV2() {
-    auth2 = gapi.auth2.init({
-      client_id: 'CLIENT_ID.apps.googleusercontent.com',
-      scope: 'profile'
-    });
+    createRequest({
+        url: "http://doubledotlabs.byethost31.com/auth.php?key=gauth",
+        credentials: true,
+        json: false
+    }, function(clientId) {          
+      auth2 = gapi.auth2.init({
+        client_id: clientId,
+        scope: 'profile'
+      });
 
-    auth2.isSignedIn.listen(signinChanged);
-    auth2.currentUser.listen(userChanged);
+      auth2.isSignedIn.listen(signinChanged);
+      auth2.currentUser.listen(userChanged);
 
-    if (auth2.isSignedIn.get() == true) {
-      auth2.signIn();
-    }
+      if (auth2.isSignedIn.get() == true) {
+        auth2.signIn();
+      }
 
-    refreshValues();
+      refreshValues();
+    }, function(url, message) {
+      console.log("Client id request failed :/");
+    });  
   };
 
   function signinChanged(val) {
@@ -321,7 +332,11 @@
       document.getElementById('chat-panel').style.display = "hidden";
 
       //TODO: replace with user-specific list of rooms once sign-ij works properly
-      createRequest("http://doubledotlabs.byethost31.com/index.php", true, function(obj) {
+      createRequest({
+        url: "http://doubledotlabs.byethost31.com/index.php",
+        credentials: true,
+        json: true
+      }, function(obj) {
         var roomsHTML = "";
           
         for (var i = 0; true; i++) {
@@ -345,7 +360,11 @@
       document.getElementById('rooms-panel').style.display = "none";
       document.getElementById('chat-panel').style.display = "block";
 
-      createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + roomId, true, function(obj) {
+      createRequest({
+        url: "http://doubledotlabs.byethost31.com/index.php?room=" + roomId,
+        credentials: true,
+        json: true
+      }, function(obj) {
         messages = obj;
         users = [];
 
@@ -359,13 +378,21 @@
 
         for (var i = 0; requestUsers[i]; i++) {
           if (requestUsers[i + 1]) {
-            createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function(user) {
+            createRequest({
+              url: "http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json",
+              credentials: false,
+              json: true
+            }, function(user) {
               users.push(user);
             }, function(url, message) {
               console.log("Error fetching user:" + url);
             }); 
           } else {
-            createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function(user) {
+            createRequest({
+              url: "http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json",
+              credentials: false,
+              json: true
+            }, function(user) {
               users.push(user);
               addMessages();
             }, function(url, message) {
@@ -415,7 +442,11 @@
 
   function sendMessage(message) {
     if (googleUser && room) {
-      createRequest("http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&text=" + message, true, function(obj) {          
+      createRequest({
+        url: "http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&text=" + message,
+        credentials: true,
+        json: true
+      }, function(obj) {          
         for (var i = 0; obj[i]; i++) {
           //TODO: show a confirmation message
         }

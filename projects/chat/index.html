@@ -350,7 +350,7 @@
         var requestUsers = [];
 
         for (var i = 0; true; i++) {
-          if (messages[i] == null) break;
+          if (!messages[i]) break;
 
           if (!getUser(messages[i].id)) {
             requestUsers.push(messages[i].id);  
@@ -367,7 +367,7 @@
               console.log("Error fetching info for a user.");
             }); 
           } else {
-            createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function() {
+            createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function(user) {
               users.push(user);
               addMessages();  
             }, function() {
@@ -383,7 +383,7 @@
 
   function getUser(id) {
     for (var i = 0; true; i++) {
-      if (users[i] == null) break;
+      if (!users[i]) break;
       if (users[i].entry.title.gphoto$user.$t == id) return users[i];  
     }
     return null;  
@@ -394,7 +394,7 @@
     parent.innerHTML = "";    
 
     for (var i = 0; true; i++) {
-      if (messages[i] == null) break;
+      if (!messages[i]) break;
 
       var user = getUser(obj[i].user);
       if (user) {
@@ -419,7 +419,7 @@
     /*
     createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + id + "&name=" + name, true, function(obj) {          
       for (var i = 0; true; i++) {
-        if (obj[i] == null) break;
+        if (!obj[i]) break;
         //TODO: show a confirmation message
       }
     }, function() {
@@ -432,7 +432,7 @@
     if (googleUser && room) {
       createRequest("http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&text=" + message, true, function(obj) {          
         for (var i = 0; true; i++) {
-          if (obj[i] == null) break;
+          if (!obj[i]) break;
           //TODO: show a confirmation message
         }
       }, function() {
@@ -447,7 +447,7 @@
       /*
       createRequest("http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&image=" + url, true, function(obj) {          
         for (var i = 0; true; i++) {
-          if (obj[i] == null) break;
+          if (!obj[i]) break;
           //TODO: show a confirmation message
         }
       }, function() {

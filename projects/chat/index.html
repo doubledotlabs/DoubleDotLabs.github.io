@@ -332,7 +332,7 @@
       }, function() {
           alert("Something has gone horribly wrong.");
       });
-    }  #E3F2FD
+    }
   }
 
   function showRoom(roomId) {
@@ -354,7 +354,7 @@
             requestUsers.push(messages[i].id);  
           }
         }
-#E3F2FD
+
         for (var i = 0; requestUsers[i]; i++) {
           if (requestUsers[i + 1]) {
             createRequest("http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json", false, function(user) {

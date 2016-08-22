@@ -147,7 +147,7 @@
     xhr.onload = function() {
       if(xhr.readyState === 4) {
         if(xhr.status === 200 || xhr.status == 0) {
-          var response = roomContent.responseText;
+          var response = xhr.responseText;
           if (response.includes('[') && response.includes(']')) response = response.substring(response.indexOf('['), response.indexOf(']') + 1);
           else {
             alert("Error: " + response);
@@ -161,7 +161,7 @@
     };
 
     xhr.onerror = function() {
-      alert("Something went wrong: Error " + xhr.status);
+      alert("Something has gone horribly wrong.");
     }
 
     xhr.send();

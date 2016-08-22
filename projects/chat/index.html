@@ -49,7 +49,7 @@
 
     <style>
       #login-panel {
-        visibility: visible;
+        display: block;
         text-align: center;
         padding-left: calc(10% - 64px);
         padding-right: calc(10% - 64px);
@@ -67,11 +67,11 @@
       }
 
       #rooms-panel {
-        visibility: hidden;
+        display: none;
       }
 
       #chat-panel {
-        visibility: hidden;
+        display: none;
       }
 
       #rooms-table {
@@ -234,41 +234,51 @@
   var room;
 
   function showLogin() {
-    document.getElementById('login-panel').style.visibility = "visible";
-    document.getElementById('rooms-panel').style.visibility = "hidden";
-    document.getElementById('chat-panel').style.visibility = "hidden";
+    if (googleUser) {
+      if (room) showRoom(room);
+      else showRooms();  
+    }
+    else {
+      document.getElementById('login-panel').style.display = "block";
+      document.getElementById('rooms-panel').style.display = "none";
+      document.getElementById('chat-panel').style.display = "none";  
+    }
   }
 
   function showRooms() {
-    document.getElementById('login-panel').style.visibility = "hidden";
-    document.getElementById('rooms-panel').style.visibility = "visible";
-    document.getElementById('chat-panel').style.visibility = "hidden";
+    if (googleUser) {
+      document.getElementById('login-panel').style.display = "none";
+      document.getElementById('rooms-panel').style.display = "block";
+      document.getElementById('chat-panel').style.display = "hidden";
 
-    //TODO: replace with user-specific list of rooms once sign-ij works properly
-    createRequest("http://doubledotlabs.byethost31.com/index.php", function(obj) {
-      var roomsHTML = "";
+      //TODO: replace with user-specific list of rooms once sign-ij works properly
+      createRequest("http://doubledotlabs.byethost31.com/index.php", function(obj) {
+        var roomsHTML = "";
           
-      for (var i = 0; true; i++) {
-        if (obj[i] == null) break;
+        for (var i = 0; true; i++) {
+          if (obj[i] == null) break;
           
-        roomsHTML += "<tr onclick=\"showRoom(\'" + obj[i].id + "\');\"><td class=\"mdl-data-table__cell--non-numeric\">" + atob(obj[i].name) + "</td><td>Hai</td><td>Ayyyyyy</td></tr>";
-      }
+          roomsHTML += "<tr onclick=\"showRoom(\'" + obj[i].id + "\');\"><td class=\"mdl-data-table__cell--non-numeric\">" + atob(obj[i].name) + "</td><td>Hai</td><td>Ayyyyyy</td></tr>";
+        }
           
-      document.getElementById('rooms-table').innerHTML = roomsHTML;
-    });
+        document.getElementById('rooms-table').innerHTML = roomsHTML;
+      });
+    }  
   }
 
   function showRoom(roomId) {
-    document.getElementById('login-panel').style.visibility = "hidden";
-    document.getElementById('rooms-panel').style.visibility = "hidden";
-    document.getElementById('chat-panel').style.visibility = "visible";
+    if (googleUser) {
+      document.getElementById('login-panel').style.display = "none";
+      document.getElementById('rooms-panel').style.display = "none";
+      document.getElementById('chat-panel').style.display = "block";
 
-    createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + roomId, function(obj) {          
-      for (var i = 0; true; i++) {
-        if (obj[i] == null) break;
-        //TODO: show room content
-      }
-    });
+      createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + roomId, function(obj) {          
+        for (var i = 0; true; i++) {
+          if (obj[i] == null) break;
+          //TODO: show room content
+        }
+      });  
+    } 
   }
 
   //UI actions

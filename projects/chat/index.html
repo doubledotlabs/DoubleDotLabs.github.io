@@ -86,9 +86,17 @@
         right: 0; 
         background-color: #E3F2FD;
         text-align: center;
-        height: 72px;
-        border-radius: 36px;
-        margin: 16px;
+        height: 64px;
+        border-radius: 32px;
+        margin: 32px;
+      }
+
+      #chat-input {
+        width: calc(70% - 72px);  
+      }
+
+      #chat-submit {
+        margin-left: 8px;  
       }
 
       .message {
@@ -151,12 +159,12 @@
 
       <form id="chat-form">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" maxlength="250">
+          <input id="chat-input" class="mdl-textfield__input" type="text" maxlength="250">
           <label class="mdl-textfield__label" for="sample4">Type a message...</label>
           <span class="mdl-textfield__error">Input is greater than 250 characters!</span>
         </div>
 
-        <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" type="submit">
+        <button id="chat-submit" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" type="submit">
           <i class="material-icons">send</i>
         </button>
       </form>  
@@ -199,10 +207,6 @@
         if(xhr.status === 200 || xhr.status == 0) {
           var response = xhr.responseText;
           if (response.includes('<body>') && response.includes('</body>')) response = response.substring(response.indexOf('<body>') + 6, response.indexOf('</body>'));
-          else {
-            alert("Error: " + response);
-            return;
-          }
 
           try {
             var obj = JSON.parse(response);
@@ -228,6 +232,11 @@
 
   window.onload = function() {
     gapi.load('auth2', initSigninV2);
+
+    document.getElementById('chat-form').addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+    }, false); 
   }
 
   function initSigninV2() {

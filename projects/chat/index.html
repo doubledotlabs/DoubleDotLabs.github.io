@@ -84,11 +84,12 @@
         bottom: 0;
         left: 0;
         right: 0; 
-        background-color: #FCE4EC;
+        background-color: #E8EAF6;
         text-align: center;
         height: 64px;
         border-radius: 32px;
         margin: 32px;
+        box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);
       }
 
       #chat-input {
@@ -111,6 +112,7 @@
         background-color: #BDBDBD;  
         vertical-align: top;
         margin-right: 16px;
+        box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);
       }
 
       .message-text {
@@ -118,11 +120,13 @@
         background-color: #424242;
         color: white;
         border-radius: 12px;
-        padding: 16px;  
+        padding: 16px;
+        box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);  
       }
 
       .message-text:hover {
         background-color: #616161;  
+        box-shadow: 0 0 0 0;
       }
     </style>
   </head>
@@ -166,7 +170,7 @@
           <span class="mdl-textfield__error">Input is greater than 250 characters!</span>
         </div>
 
-        <button id="chat-submit" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored" type="submit">
+        <button id="chat-submit" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" type="submit">
           <i class="material-icons">send</i>
         </button>
       </form>  

@@ -350,8 +350,8 @@
         var requestUsers = [];
 
         for (var i = 0; messages[i]; i++) {
-          if (!getUser(messages[i].id)) {
-            requestUsers.push(messages[i].id);  
+          if (!getUser(messages[i].user)) {
+            requestUsers.push(messages[i].user);  
           }
         }
 
@@ -392,19 +392,9 @@
     for (var i = 0; messages[i]; i++) {
       var user = getUser(messages[i].user);
       if (user) {
-        var HTML = "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + messages[i].text + "<br>" + messages[i].date + "</p></div>";
-        var child = htmlToElement(HTML);
-
-        if (i > parent.childNodes.length - 1) parent.appendChild(child);
-        else parent.insertBefore(child, parent.children[i + 1]);    
+        parent.innerHTML += "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + messages[i].text + "<br>" + messages[i].date + "</p></div>";
       }  
     }  
-  }
-
-  function htmlToElement(html) {
-    var template = document.createElement('template');
-    template.innerHTML = html;
-    return template.content.firstChild;
   }
 
   //UI actions

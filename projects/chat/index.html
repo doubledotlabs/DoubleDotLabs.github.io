@@ -93,11 +93,11 @@
       }
 
       #chat-input {
-        width: calc(100% - 128px);  
+        width: calc(100% - 116px);  
       }
 
       #chat-submit {
-        margin-left: 8px;  
+        margin-left: 16px;  
       }
 
       .message {
@@ -133,7 +133,7 @@
     <div id="login-panel">
       <h2>Login:</h2> 
       <hr>
-      <div id="login-button" class="g-signin2"></div>
+      <div id="login-button" class="g-signin2" data-onsuccess="refreshValues"></div>
       <p id="login-notice">Please note: by logging in with your google account, you acknowledge that any information entered into this site is publicly available and that your google account will be associated with any actions you perform. Please be courteous and have respect for other users on this site.</p>
     </div>
 
@@ -205,6 +205,7 @@
     } else {
       xhr = null;
     }
+
     xhr.withCredentials = request.credentials;
 
     xhr.onload = function() {
@@ -240,17 +241,6 @@
   var googleUser;
 
   window.onload = function() {
-    gapi.load('auth2', initSigninV2);
-
-    document.getElementById('chat-form').addEventListener("submit", function(e) {
-      e.preventDefault();
-      var input = document.getElementById('chat-input-input');
-      sendMessage(input.value);
-      input.value = "";
-    }, false); 
-  }
-
-  function initSigninV2() {
     createRequest({
         url: "http://doubledotlabs.byethost31.com/auth.php?key=gauth",
         credentials: true,
@@ -272,7 +262,14 @@
     }, function(url, message) {
       console.log("Client id request failed :/");
     });  
-  };
+
+    document.getElementById('chat-form').addEventListener("submit", function(e) {
+      e.preventDefault();
+      var input = document.getElementById('chat-input-input');
+      sendMessage(input.value);
+      input.value = "";
+    }, false); 
+  }
 
   function signinChanged(val) {
     if (val) {

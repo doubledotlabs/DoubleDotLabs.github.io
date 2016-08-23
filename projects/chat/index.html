@@ -327,7 +327,7 @@
       if (room) showRoom(room);
       else showRooms();  
     } else {
-      window.history.pushState(roomId, document.title, "http://doubledotlabs.github.io/projects/chat/");
+      window.history.pushState("login", document.title, "http://doubledotlabs.github.io/projects/chat/");
 
       document.getElementById('login-panel').style.display = "block";
       document.getElementById('rooms-panel').style.display = "none";
@@ -337,11 +337,11 @@
 
   function showRooms() {
     if (googleUser) {
-      window.history.pushState(roomId, document.title, "http://doubledotlabs.github.io/projects/chat/");
+      window.history.pushState("rooms", document.title, "http://doubledotlabs.github.io/projects/chat/");
 
       document.getElementById('login-panel').style.display = "none";
       document.getElementById('rooms-panel').style.display = "block";
-      document.getElementById('chat-panel').style.display = "hidden";
+      document.getElementById('chat-panel').style.display = "none";
 
       //TODO: replace with user-specific list of rooms once sign-ij works properly
       createRequest({
@@ -484,6 +484,15 @@
       });  
       */
     }  
+  }
+
+  function getQueryVariable(variable) {
+    var vars = window.location.search.substring(1).split("&");
+    for (var i = 0; vars[i]; i++) {
+      var pair = vars[i].split("=");
+      if (pair[0] == variable) return pair[1];
+    }
+    return null;
   }
 
   window.addEventListener('WebComponentsReady', function() {

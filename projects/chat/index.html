@@ -250,6 +250,8 @@
         client_id: clientId,
         scope: 'profile'
       }).then(function() {
+        auth2 = gapi.auth2.getAuthInstance();  
+
         auth2.isSignedIn.listen(signinChanged);
         auth2.currentUser.listen(userChanged);
 

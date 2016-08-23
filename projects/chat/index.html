@@ -277,11 +277,15 @@
       else showRooms();
     }
     else showLogin();
+
+    console.log("User signed in: " + val);
   };
 
   function userChanged(user) {
     googleUser = user;
     updateGoogleUser();
+
+    console.log("User changed");
   };
 
   function updateGoogleUser() {
@@ -290,6 +294,8 @@
       if (room) showRoom(room);
       else showRooms();
     } else showLogin();
+
+    console.log("User updated");
   };
 
 

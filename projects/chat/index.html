@@ -223,6 +223,7 @@
             console.log(err);  
             console.log(err.stack);
             console.log(response);
+            console.log(request.url);
             errorCallback(request.url, response);
           }
         }
@@ -230,7 +231,7 @@
     };
 
     xhr.onerror = function() {
-      errorCallback(url, null);
+      errorCallback(request.url, null);
     }
 
     xhr.send();

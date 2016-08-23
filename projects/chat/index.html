@@ -249,16 +249,16 @@
       auth2 = gapi.auth2.init({
         client_id: clientId,
         scope: 'profile'
+      }).then(function() {
+        auth2.isSignedIn.listen(signinChanged);
+        auth2.currentUser.listen(userChanged);
+
+        if (auth2.isSignedIn.get() == true) {
+          auth2.signIn();
+        }
+
+        refreshValues();  
       });
-
-      auth2.isSignedIn.listen(signinChanged);
-      auth2.currentUser.listen(userChanged);
-
-      if (auth2.isSignedIn.get() == true) {
-        auth2.signIn();
-      }
-
-      refreshValues();
     }, function(url, message) {
       console.log("Client id request failed :/");
     });  

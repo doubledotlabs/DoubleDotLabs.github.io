@@ -327,7 +327,7 @@
       if (room) showRoom(room);
       else showRooms();  
     } else {
-      window.location.pathname = "/projects/chat/";
+      window.history.pushState(roomId, document.title, "http://doubledotlabs.github.io/projects/chat/");
 
       document.getElementById('login-panel').style.display = "block";
       document.getElementById('rooms-panel').style.display = "none";
@@ -337,7 +337,7 @@
 
   function showRooms() {
     if (googleUser) {
-      window.location.pathname = "/projects/chat/";  
+      window.history.pushState(roomId, document.title, "http://doubledotlabs.github.io/projects/chat/");
 
       document.getElementById('login-panel').style.display = "none";
       document.getElementById('rooms-panel').style.display = "block";
@@ -368,7 +368,7 @@
     document.getElementById('chat-messages').innerHTML = "";  
 
     if (googleUser) {
-      window.location.pathname = "/projects/chat/room/" + roomId + "/";  
+      window.history.pushState(roomId, document.title, "http://doubledotlabs.github.io/projects/chat/room/" + roomId + "/");
 
       document.getElementById('login-panel').style.display = "none";
       document.getElementById('rooms-panel').style.display = "none";

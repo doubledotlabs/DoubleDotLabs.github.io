@@ -119,13 +119,23 @@
         background-color: #424242;
         color: white;
         border-radius: 12px;
-        padding: 16px;
+        padding: 12px 16px 12px 16px;;
         box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);  
       }
 
       .message-text:hover {
         background-color: #616161;  
         box-shadow: 0 0 0 0;
+      }
+
+      .message-text-title {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .message-text-date {
+        font-style: italic;
+        font-size: 12px;
       }
     </style>
   </head>
@@ -432,7 +442,7 @@
               for (var i = 0; messages[i]; i++) {
                 var user = getUser(messages[i].user);
                 if (user) {
-                  parent.innerHTML += "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + atob(messages[i].text) + "<br>" + messages[i].date + "</p></div>";
+                  parent.innerHTML += "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><div class=\"message-text\"><p class=\"message-text-title\">" + user.entry.gphoto$nickname.$t + "</p><br><p>" + atob(messages[i].text) + "</p><br><p class=\"message-text-date\">" + messages[i].date + "</p></div></div>";
                 }  
               }    
             }  

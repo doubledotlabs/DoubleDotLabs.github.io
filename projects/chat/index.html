@@ -370,7 +370,7 @@
     document.getElementById('chat-messages').innerHTML = "";  
 
     if (googleUser) {
-      window.history.pushState(roomId, document.title, "http://doubledotlabs.github.io/projects/chat/room/" + roomId + "/");
+      window.history.pushState(roomId, document.title, "http://doubledotlabs.github.io/projects/chat/#!/room/" + roomId + "/");
 
       document.getElementById('login-panel').style.display = "none";
       document.getElementById('rooms-panel').style.display = "none";
@@ -436,7 +436,7 @@
     for (var i = 0; messages[i]; i++) {
       var user = getUser(messages[i].user);
       if (user) {
-        parent.innerHTML += "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + messages[i].text + "<br>" + messages[i].date + "</p></div>";
+        parent.innerHTML += "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + atob(messages[i].text) + "<br>" + messages[i].date + "</p></div>";
       }  
     }  
   }
@@ -445,7 +445,7 @@
   function createRoom(id, name) {
     //TODO: create the room
     /*
-    createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + id + "&name=" + name, true, function(obj) {          
+    createRequest("http://doubledotlabs.byethost31.com/index.php?room=" + id + "&name=" + btoa(name), true, function(obj) {          
       for (var i = 0; true; i++) {
         if (!obj[i]) break;
         //TODO: show a confirmation message
@@ -459,7 +459,7 @@
   function sendMessage(message) {
     if (googleUser && room) {
       createRequest({
-        url: "http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&text=" + message,
+        url: "http://doubledotlabs.byethost31.com/index.php?user=" + googleUser.getAuthResponse().id_token + "&room=" + room + "&text=" + btoa(message),
         credentials: true,
         json: true
       }, function(obj) {          

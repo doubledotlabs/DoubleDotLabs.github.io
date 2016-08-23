@@ -211,8 +211,8 @@
     xhr.onload = function() {
       if(xhr.readyState === 4) {
         if(xhr.status === 200 || xhr.status == 0) {
-          var response = xhr.responseText.replace(/^\s+|\s+$/g,'');
-          if (response.includes('<body>') && response.includes('</body>')) response = response.substring(response.indexOf('<body>') + 6, response.indexOf('</body>'));
+          var response = xhr.responseText.replace('/^\s+|\s+$/g','');
+          if (response.includes('<body>') && response.includes('</body>')) response = response.substring(response.indexOf('<body>') + 7, response.indexOf('</body>'));
 
           try {
             if (request.json) {
@@ -222,7 +222,7 @@
           } catch(err) {
             console.log(err);  
             console.log(err.stack);
-            errorCallback(url, response);
+            errorCallback(request.url, response);
           }
         }
       }

@@ -17,9 +17,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="We are developers, for developers.">
+    <meta name="description" content="This is a thing.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Double Dot Labs</title>
+    <title>Double Dot Labs Chatroom</title>
     
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -101,7 +101,6 @@
       }
 
       .message {
-        width: 100%;
         padding: 16px;
       }
 
@@ -211,7 +210,7 @@
     xhr.onload = function() {
       if(xhr.readyState === 4) {
         if(xhr.status === 200 || xhr.status == 0) {
-          var response = xhr.responseText;
+          var response = xhr.responseText.replace(/^\s+|\s+$/g,'');
           if (response.includes('<body>') && response.includes('</body>')) response = response.substring(response.indexOf('<body>') + 6, response.indexOf('</body>'));
 
           try {

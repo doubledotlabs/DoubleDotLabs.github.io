@@ -323,6 +323,7 @@
   var room;
   var messages;
   var users;
+  var requestedUsers;
 
   function showLogin() {
     if (googleUser) {
@@ -376,6 +377,13 @@
       document.getElementById('rooms-panel').style.display = "none";
       document.getElementById('chat-panel').style.display = "block";
 
+      room = roomId;
+      refreshRoom();          
+    } 
+  }
+
+  function refreshRoom() {
+    if (room) {
       createRequest({
         url: "http://doubledotlabs.byethost31.com/index.php?room=" + roomId,
         credentials: true,
@@ -384,61 +392,64 @@
         messages = obj;
         users = [];
 
-        var requestUsers = [];
+        var requestedUsers = [];
 
         for (var i = 0; messages[i]; i++) {
           if (!getUser(messages[i].user)) {
-            requestUsers.push(messages[i].user);  
+            requestedUsers.push(messages[i].user);  
           }
         }
 
-        for (var i = 0; requestUsers[i]; i++) {
-          if (requestUsers[i + 1]) {
-            createRequest({
-              url: "http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json",
-              credentials: false,
-              json: true
-            }, function(user) {
-              users.push(user);
-            }, function(url, message) {
-              console.log("Error fetching user:" + url);
-            }); 
-          } else {
-            createRequest({
-              url: "http://picasaweb.google.com/data/entry/api/user/" + requestUsers[i] + "?alt=json",
-              credentials: false,
-              json: true
-            }, function(user) {
-              users.push(user);
-              addMessages();
-            }, function(url, message) {
-              console.log("Error fetching user:" + url);
-            });
-          }
+        if (requestedUsers[0]) {
+          createRequest({
+            url: "http://picasaweb.google.com/data/entry/api/user/" + requestedUsers[0] + "?alt=json",
+            credentials: false,
+            json: true  
+          }, function(user) {
+            users.push(user);
+
+            var next = null;
+            for (var i = 0; requestedUsers[i]; i++) {
+              if (user.entry.gphoto$user.$t == requestedUsers[i]) {
+                next = requestedUsers[i + 1];
+                break;
+              }
+            }
+
+            if (next) {
+              createRequest({
+                url: "http://picasaweb.google.com/data/entry/api/user/" + next + "?alt=json",
+                credentials: false,
+                json: true 
+              }, this, function(url, message) {
+                console.log("Error fetching user:" + url);
+              })  
+            } else {
+              //finished requests, add the messages  
+              var parent = document.getElementById('chat-messages');
+              parent.innerHTML = "";    
+
+              for (var i = 0; messages[i]; i++) {
+                var user = getUser(messages[i].user);
+                if (user) {
+                  parent.innerHTML += "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + atob(messages[i].text) + "<br>" + messages[i].date + "</p></div>";
+                }  
+              }    
+            }  
+          });  
         }
       }, function() {
         document.getElementById('chat-messages').innerHTML = "Something didn't work properly."; //most descriptive error message in existence
       });  
-    } 
+    }  
   }
 
+  //returns the user of the id if they are in the room
   function getUser(id) {
     for (var i = 0; users[i]; i++) {
       if (users[i].entry.gphoto$user.$t == id) return users[i];  
     }
     return null;  
-  }
-
-  function addMessages() {
-    var parent = document.getElementById('chat-messages');
-    parent.innerHTML = "";    
-
-    for (var i = 0; messages[i]; i++) {
-      var user = getUser(messages[i].user);
-      if (user) {
-        parent.innerHTML += "<div id=\"message-" + i + "\" class=\"message\"><img class=\"message-profile\" src=\"" + user.entry.gphoto$thumbnail.$t + "\"></img><p class=\"message-text\"><strong>" + user.entry.gphoto$nickname.$t + "</strong><br>" + atob(messages[i].text) + "<br>" + messages[i].date + "</p></div>";
-      }  
-    }  
   }
 
   //UI actions

@@ -1,0 +1,8 @@
+[
+  {
+    "name": "Code Styles",
+    "description": "Many people use a lot of different coding styles in a lot of different languages, and this makes it somewhat difficult to read code written by someone other than the one who made it. It does, however, give it an identity, so in a small group it can be easy to identify who wrote a specific part of a program. Since there are usually a lot of very long and boring arguments about which code styles are the best, we've decided to document as many different styles as we can and write about them extensively in order to document their traits, usefulness, and what they are best (or worst) at.",
+    "date": "Friday August 19, 2016",
+    "url": "http://doubledotlabs.github.io/developer/styles/"
+  }
+]

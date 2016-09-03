@@ -588,24 +588,24 @@ body .demo-blog {
         "#304FFE"
       ];
     
-      var repoContent = new XMLHttpRequest();
-      repoContent.open("GET", "http://doubledotlabs.github.io/images/design/resources.json", false);
-      repoContent.onreadystatechange = function () {
-        if(repoContent.readyState === 4) {
-          if(repoContent.status === 200 || repoContent.status == 0) {
-            var obj = JSON.parse(repoContent.responseText);
+      var resourceContent = new XMLHttpRequest();
+      resourceContent.open("GET", "http://doubledotlabs.github.io/developer/resources.json", false);
+      resourceContent.onreadystatechange = function () {
+        if(resourceContent.readyState === 4) {
+          if(resourceContent.status === 200 || resourceContent.status == 0) {
+            var obj = JSON.parse(resourceContent.responseText);
             for (var i = 0; true; i++) {
               if (obj[i] == null) break;
               
               var description = "";
               if (obj[i].description != null) description = obj[i].description;
               
-              document.getElementById('list').innerHTML += "<div onclick=\"location.href=\'" + obj[i].link + "\';\" class=\"mdl-card shopping mdl-cell mdl-cell--12-col\"><div class=\"mdl-card__media mdl-color-text--grey-50\"><h3>" + obj[i].name + "</h3></div><div class=\"mdl-card__supporting-text mdl-color-text--grey-600\">" + obj[i].name + "<br>" + description + "</div><div class=\"mdl-card__supporting-text meta mdl-color-text--grey-600\"><div class=\"minilogo\"></div><div><strong>Double Dot Labs</strong><span>" + obj[i].date + "</span></div></div></div>";
+              document.getElementById('list').innerHTML += "<div onclick=\"location.href=\'" + obj[i].link + "\';\" class=\"mdl-card shopping mdl-cell mdl-cell--12-col\"><div class=\"mdl-card__media mdl-color-text--grey-50\" style=\"background-color:" + colors[i % colors.length] + ";\"><h3>" + obj[i].name + "</h3></div><div class=\"mdl-card__supporting-text mdl-color-text--grey-600\">" + obj[i].name + "<br>" + description + "</div><div class=\"mdl-card__supporting-text meta mdl-color-text--grey-600\"><div class=\"minilogo\"></div><div><strong>Double Dot Labs</strong><span>" + obj[i].date + "</span></div></div></div>";
             }
           }
         }
       }
-      repoContent.send(null);
+      resourceContent.send(null);
     
       var repoContent = new XMLHttpRequest();
       repoContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/repos", false);

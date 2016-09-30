@@ -56,6 +56,14 @@
       margin-bottom: 40px;
       z-index: 900;
     }
+      
+       * {
+        transition: all .25s;
+        -moz-transition: all .25s;
+        -webkit-transition: all .25s;
+      }
+      
+      
     body {
   margin: 0;
 }
@@ -196,19 +204,13 @@ p {
 
 .mdl-font {
   font-family: 'VT323', 'Helvetica', 'Arial', sans-serif; !important
-  animation-name: text;
-  animation-duration: 1s;
+  font-weight: 100;
+  opacity: 1;
 }
       
-@keyframes text {
-  from {
-    font-weight: 900;
-    opacity: 0;
-  }
-  to {
-    font-weight: 100;
-    opacity: 1;
-  }
+.mdl-font:hover {
+  font-weight: 900;
+  opacity: .5;
 }
 
 .logo-font {

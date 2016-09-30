@@ -196,22 +196,19 @@ p {
 
 .mdl-font {
   font-family: 'VT323', 'Helvetica', 'Arial', sans-serif; !important
-  animation: type 4s steps(60, end); 
+  animation: text 1s;
 }
       
-.mdl-font:nth-child(2){
-  animation: type2 8s steps(60, end);
+@keyframes text {
+  from {
+    font-weight: 900;
+    opacity: 0;
+  }
+  to {
+    font-weight: 100;
+    opacity: 1;
+  }
 }
-      
-@keyframes type{ 
-  from { width: 0; } 
-} 
-
-@keyframes type2{
-  0%{width: 0;}
-  50%{width: 0;}
-  100%{ width: 100; } 
-} 
 
 .logo-font {
   line-height: 1;

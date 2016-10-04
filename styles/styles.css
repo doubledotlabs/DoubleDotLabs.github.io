@@ -1,1 +1,21 @@
+* {
+  transition: all .25s;
+  -moz-transition: all .25s;
+  -webkit-transition: all .25s;
+}
 
+/* Disable ugly boxes around images in IE10 */
+a img{
+  border: 0px;
+}
+
+.mdl-font {
+  font-family: 'VT323', 'Helvetica', 'Arial', sans-serif; !important
+  font-weight: 100;
+  opacity: 1;
+}
+      
+.mdl-font:hover {
+  font-weight: 900;
+  opacity: .5;
+}

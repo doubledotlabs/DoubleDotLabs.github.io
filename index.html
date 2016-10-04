@@ -23,19 +23,19 @@
     
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="http://doubledotlabs.github.io/images/favicon.png">
+    <link rel="icon" sizes="192x192" href="images/favicon.png">
     
      <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Double Dot Labs">
-    <link rel="apple-touch-icon-precomposed" href="http://doubledotlabs.github.io/images/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="images/favicon.png">
     
     <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="http://doubledotlabs.github.io/images/favicon.png">
+    <meta name="msapplication-TileImage" content="images/favicon.png">
     <meta name="msapplication-TileColor" content="#3372DF">
 
-    <link rel="shortcut icon" href="http://doubledotlabs.github.io/images/favicon.png">
+    <link rel="shortcut icon" href="images/favicon.png">
 
     <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
     <!--
@@ -46,6 +46,7 @@
     <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <style>
     #view-source {
       position: fixed;
@@ -57,19 +58,9 @@
       z-index: 900;
     }
       
-       * {
-        transition: all .25s;
-        -moz-transition: all .25s;
-        -webkit-transition: all .25s;
-      }
       
-      
-    body {
+body {
   margin: 0;
-}
-/* Disable ugly boxes around images in IE10 */
-a img{
-  border: 0px;
 }
 
 p {
@@ -80,20 +71,25 @@ p {
   background-color: #6ab344;
   color: #fff;
 }
+      
 ::selection {
   background-color: #6ab344;
   color: #fff;
 }
+      
 .android-search-box .mdl-textfield__input {
   color: rgba(0, 0, 0, 0.87);
 }
+      
 .android-header .mdl-menu__container {
   z-index: 50;
   margin: 0 !important;
 }
+      
 .mdl-textfield--expandable {
   width: auto;
 }
+      
 .android-fab {
   position: absolute;
   right: 20%;
@@ -102,29 +98,36 @@ p {
   background: #64ffda !important;
   color: black !important;
 }
+      
 .android-mobile-title {
   display: none !important;
 }
+      
 .android-logo-image {
   height: 28px;
   width: auto;
 }
+      
 .android-header {
   overflow: visible;
   background-color: white;
 }
+      
   .android-header .material-icons {
     color: #767777 !important;
   }
+      
   .android-header .mdl-layout__drawer-button {
     background: transparent;
     color: #767777;
   }
+      
   .android-header .mdl-navigation__link {
     color: #757575;
     font-weight: 700;
     font-size: 14px;
   }
+      
   .android-navigation-container {
     /* Simple hack to make the overflow happen to the left instead... */
     direction: rtl;
@@ -200,17 +203,6 @@ p {
   background-color: #f3f3f3;
   background: url('http://doubledotlabs.github.io/images/doubledot.png') center 30% no-repeat;
   background-size: cover;
-}
-
-.mdl-font {
-  font-family: 'VT323', 'Helvetica', 'Arial', sans-serif; !important
-  font-weight: 100;
-  opacity: 1;
-}
-      
-.mdl-font:hover {
-  font-weight: 900;
-  opacity: .5;
 }
 
 .logo-font {

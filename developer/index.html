@@ -588,7 +588,7 @@
       ];
     
       var resourceContent = new XMLHttpRequest();
-      resourceContent.open("GET", "https://doubledotlabs.github.io/developer/resources.json", false);
+      resourceContent.open("GET", "https://doubledotlabs.github.io/developer/resources.json", true);
       resourceContent.onreadystatechange = function () {
         if(resourceContent.readyState === 4) {
           if(resourceContent.status === 200 || resourceContent.status == 0) {
@@ -607,7 +607,7 @@
       resourceContent.send(null);
     
       var repoContent = new XMLHttpRequest();
-      repoContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/repos", false);
+      repoContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/repos", true);
       repoContent.onreadystatechange = function () {
         if(repoContent.readyState === 4) {
           if(repoContent.status === 200 || repoContent.status == 0) {

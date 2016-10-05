@@ -639,7 +639,7 @@ p {
     
     <script>    
   var userContent = new XMLHttpRequest();
-  userContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/members", false);
+  userContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/members", true);
   userContent.onreadystatechange = function () {
     if(userContent.readyState === 4) {
       if(userContent.status === 200 || userContent.status == 0) {

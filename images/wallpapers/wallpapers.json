@@ -4,15 +4,15 @@
     "wallpapers": [
       {
         "name": "London",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/London.jpg"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/London.jpg"
       },
       {
         "name": "Oxford",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Oxford.jpg"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/Oxford.jpg"
       },
       {
         "name": "Village Locks",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Village-Locks.jpg"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/Village-Locks.jpg"
       }
     ]
   },
@@ -21,7 +21,7 @@
     "wallpapers": [
       {
         "name": "Highway",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Highway.jpg"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/Highway.jpg"
       }
     ]
   },
@@ -30,19 +30,19 @@
     "wallpapers": [
       {
         "name": "Beach",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Beach.jpg"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/Beach.jpg"
       },
       {
         "name": "Red Rocks",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Rocks-Lake.jpg"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/Rocks-Lake.jpg"
       },
       {
         "name": "Red Rocks 2",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Rocks-Lake_2.jpg"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/Rocks-Lake_2.jpg"
       },
       {
         "name": "Village River",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Village-River.jpg"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/Village-River.jpg"
       }
     ]
   },
@@ -51,15 +51,15 @@
     "wallpapers": [
       {
         "name": "Mulch",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Mulch.jpg"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/Mulch.jpg"
       },
       {
         "name": "Trees",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Trees.jpg"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/Trees.jpg"
       },
       {
         "name": "Leaves",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/Leaves.jpg"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/Leaves.jpg"
       }
     ]
   },
@@ -68,19 +68,19 @@
     "wallpapers": [
       {
         "name": "Blue V",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/blue_v.png"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/blue_v.png"
       },
       {
         "name": "Orange V",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/orange_v.png"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/orange_v.png"
       },
       {
         "name": "Blue Slash",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/black-blue_slash.png"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/black-blue_slash.png"
       },
       {
         "name": "Purple Slash",
-        "url": "http://doubledotlabs.github.io/images/wallpapers/purple_slash.png"
+        "url": "https://doubledotlabs.github.io/images/wallpapers/purple_slash.png"
       }
     ]
   }

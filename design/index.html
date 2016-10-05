@@ -569,7 +569,7 @@
     <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
     <script>
       var repoContent = new XMLHttpRequest();
-      repoContent.open("GET", "https://doubledotlabs.github.io/images/design/resources.json", false);
+      repoContent.open("GET", "https://doubledotlabs.github.io/images/design/resources.json", true);
       repoContent.onreadystatechange = function () {
         if(repoContent.readyState === 4) {
           if(repoContent.status === 200 || repoContent.status == 0) {

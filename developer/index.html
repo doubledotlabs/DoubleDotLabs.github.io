@@ -25,28 +25,29 @@
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="http://doubledotlabs.github.io/images/favicon.png">
+    <link rel="icon" sizes="192x192" href="../images/favicon.png">
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Double Dot Labs Repositories">
-    <link rel="apple-touch-icon-precomposed" href="http://doubledotlabs.github.io/images/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="../images/favicon.png">
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="http://doubledotlabs.github.io/images/favicon.png">
+    <meta name="msapplication-TileImage" content="../images/favicon.png">
     <meta name="msapplication-TileColor" content="#3372DF">
 
-    <link rel="shortcut icon" href="http://doubledotlabs.github.io/images/favicon.png">
+    <link rel="shortcut icon" href="../images/favicon.png">
 
     <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
     <!--
     <link rel="canonical" href="http://www.example.com/">
     -->
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.blue-green.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
     <style>
     #view-source {
       position: fixed;
@@ -93,8 +94,9 @@
     background-image: url('http://doubledotlabs.github.io/images/wallpapers/Beach.jpg');
   }
 }
-body .demo-blog {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+      
+.demo-blog .mdl-card__supporting-text {
+  font-size: 1.2rem !important;
 }
 
 .demo-blog .demo-blog__posts {
@@ -402,9 +404,6 @@ body .demo-blog {
 /* Workaround for Firefox.
  * User agent stylesheet kept overwriting the font in FF only.
  */
-.demo-blog--blogpost .comments > form .mdl-textfield .mdl-textfield__input {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
-}
 .demo-blog--blogpost .comments > form .mdl-textfield input,
 .demo-blog--blogpost .comments > form .mdl-textfield textarea {
   resize: none;
@@ -538,7 +537,7 @@ body .demo-blog {
         <div id="list" class="demo-blog__posts mdl-grid">
           <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
             <div class="mdl-card__media mdl-color-text--grey-50">
-              <h3 style="color: black;">Developer Repositories</h3>
+              <h3 class="mdl-font" style="color: black;">Developer Repositories</h3>
             </div>
           </div>
           <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
@@ -549,7 +548,7 @@ body .demo-blog {
             <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
               <img src="http://doubledotlabs.github.io/images/favicon.png">
             </div>
-            <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
+            <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600 mdl-font">
               <div>
                 <strong>Double Dot Labs</strong>
               </div>
@@ -558,8 +557,8 @@ body .demo-blog {
         </div>
         <footer class="demo-footer mdl-mini-footer">
           <div class="mdl-mini-footer--left-section">
-            <ul class="mdl-mini-footer--link-list">
-              <li><a href="http://doubledotlabs.github.io/">Home Page</a></li>
+            <ul class="mdl-mini-footer--link-list mdl-font">
+              <li><a href="https://doubledotlabs.github.io/">Home Page</a></li>
               <li><a href="https://github.com/DoubleDotLabs/">Github</a></li>
               <li><a href="https://plus.google.com/106577217343717481759">Google+</a></li>
             </ul>
@@ -600,7 +599,7 @@ body .demo-blog {
               var description = "";
               if (obj[i].description != null) description = obj[i].description;
               
-              document.getElementById('list').innerHTML += "<div onclick=\"location.href=\'" + obj[i].link + "\';\" class=\"mdl-card shopping mdl-cell mdl-cell--12-col\"><div class=\"mdl-card__media mdl-color-text--grey-50\" style=\"background-color:" + colors[i % colors.length] + ";\"><h3>" + obj[i].name + "</h3></div><div class=\"mdl-card__supporting-text mdl-color-text--grey-600\">" + obj[i].name + "<br><br>" + description + "</div><div class=\"mdl-card__supporting-text meta mdl-color-text--grey-600\"><div class=\"minilogo\"></div><div><strong>Double Dot Labs</strong><span>" + obj[i].date + "</span></div></div></div>";
+              document.getElementById('list').innerHTML += "<div onclick=\"location.href=\'" + obj[i].link + "\';\" class=\"mdl-card shopping mdl-cell mdl-cell--12-col\"><div class=\"mdl-card__media mdl-color-text--grey-50\" style=\"background-color:" + colors[i % colors.length] + ";\"><h3 class=\"mdl-font\">" + obj[i].name + "</h3></div><div class=\"mdl-card__supporting-text mdl-color-text--grey-600 mdl-font\">" + obj[i].name + "<br><br>" + description + "</div><div class=\"mdl-card__supporting-text meta mdl-color-text--grey-600 mdl-font\"><div class=\"minilogo\"></div><div><strong>Double Dot Labs</strong><span>" + obj[i].date + "</span></div></div></div>";
             }
           }
         }
@@ -615,7 +614,7 @@ body .demo-blog {
             var obj = JSON.parse(repoContent.responseText);
             for (var i = 0; true; i++) {
               if (obj[i] == null) break;
-              document.getElementById('list').innerHTML += "<div class=\"mdl-card shopping mdl-cell mdl-cell--12-col\" onclick=\"location.href=\'" + obj[i].html_url + "\';\"><div class=\"mdl-card__media mdl-color-text--grey-50\" style=\"background-color:" + colors[i % colors.length] + ";\"><h3>" + obj[i].name + "</h3></div><div class=\"mdl-card__supporting-text mdl-color-text--grey-600\">" + obj[i].full_name + "<br><br>" + obj[i].description + "</div><div class=\"mdl-card__supporting-text meta mdl-color-text--grey-600\"><div class=\"minilogo\"></div><div><strong>" + obj[i].owner.login + "</strong><span>" + new Date(obj[i].updated_at).toString().substr(0, 15) + "</span></div></div></div>";
+              document.getElementById('list').innerHTML += "<div class=\"mdl-card shopping mdl-cell mdl-cell--12-col\" onclick=\"location.href=\'" + obj[i].html_url + "\';\"><div class=\"mdl-card__media mdl-color-text--grey-50\" style=\"background-color:" + colors[i % colors.length] + ";\"><h3 class=\"mdl-font\">" + obj[i].name + "</h3></div><div class=\"mdl-card__supporting-text mdl-color-text--grey-600 mdl-font\">" + obj[i].full_name + "<br><br>" + obj[i].description + "</div><div class=\"mdl-card__supporting-text meta mdl-color-text--grey-600 mdl-font\"><div class=\"minilogo\"></div><div><strong>" + obj[i].owner.login + "</strong><span>" + new Date(obj[i].updated_at).toString().substr(0, 15) + "</span></div></div></div>";
             }
           }
         }

@@ -164,6 +164,12 @@
     .mobile {
       display: none;
     }
+      
+    .phone {
+      width: 10em;
+      height: 15em;
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    }
 
     @media (max-width: 999px) {      
       .desktop {
@@ -191,21 +197,55 @@
         </div>
         <div class="section black">
           <h2>Butterboard</h2>
-          <h4>Butterboard is a keyboard that changes color based on the app it is being used in.</h4>
-          <h4>It will come with sticker packs and a gif search, as well as all the normal features of a keyboard.</h4>
+          <h4>Butterboard is a keyboard that has the ability to adapt to any situation.</h4>
           <br>
           <h4>
             <a href="https://github.com/DoubleDotLabs/Butterboard">Github</a>
           </h4>
         </div>
+        <div class="section black">
+          <ul>
+            <li class="phone" id="colors">
+            </li>
+            <li>
+              <h3>Color Schemes</h3>
+              <h4>Butterboard will change its background color to match whatever app you're in.</h4>
+            </li>
+          </ul>
+        </div>
       </main>
     </div>
 
     <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
-
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <script>
+      var colors = [
+        "#F44336",
+        "#E91E63",
+        "#9C27B0",
+        "#673AB7",
+        "#3F51B5",
+        "#2196F3",
+        "#0097A7",
+        "#009688",
+        "#43A047",
+        "#689F38",
+        "#827717",
+        "#F57F17",
+        "#FF6F00",
+        "#EF6C00",
+        "#FF5722"
+      ];
+      
+      var color = 0;
+      
+      setTimeout(function() {
+        color++;
+        if (color >= colors.length) color = 0;
+        
+        document.getElementById('colors').style.background = colors[color];
+      }, 3000);
     </script>
   </body>
 </html>

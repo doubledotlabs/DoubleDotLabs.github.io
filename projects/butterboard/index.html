@@ -222,6 +222,10 @@
             </li>
           </ul>
         </div>
+        <div class="section overflow black" >
+          <h2>Open Issues</h2>
+          <ul id="issues"></ul>
+        </div>
       </main>
     </div>
 
@@ -229,32 +233,48 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <script>
-      var colors = [
-        "#F44336",
-        "#E91E63",
-        "#9C27B0",
-        "#673AB7",
-        "#3F51B5",
-        "#2196F3",
-        "#0097A7",
-        "#009688",
-        "#43A047",
-        "#689F38",
-        "#827717",
-        "#F57F17",
-        "#FF6F00",
-        "#EF6C00",
-        "#FF5722"
-      ];
+    var colors = [
+      "#F44336",
+      "#E91E63",
+      "#9C27B0",
+      "#673AB7",
+      "#3F51B5",
+      "#2196F3",
+      "#0097A7",
+      "#009688",
+      "#43A047",
+      "#689F38",
+      "#827717",
+      "#F57F17",
+      "#FF6F00",
+      "#EF6C00",
+      "#FF5722"
+    ];
       
-      var color = 0;
+    var color = 0;
       
-      setInterval(function() {
-        color++;
-        if (color >= colors.length) color = 0;
+    setInterval(function() {
+      color++;
+      if (color >= colors.length) color = 0;
         
-        document.getElementById('colors').style.background = colors[color];
-      }, 1000);
+      document.getElementById('colors').style.background = colors[color];
+    }, 1000);
+      
+    var issueContent = new XMLHttpRequest();
+    issueContent.open("GET", "https://api.github.com/repos/DoubleDotLabs/Butterboard/issues", true);
+    issueContent.onreadystatechange = function () {
+      if(issueContent.readyState === 4) {
+        if(issueContent.status === 200 || issueContent.status == 0) {
+          var obj = JSON.parse(issueContent.responseText);
+          var HTML = "";
+          for (var i = 0; obj[i]; i++) {
+            HTML += "<li><a href=\"" + obj[i].html_url + "\"><div class=\"mdl-card mdl-shadow--2dp fixed\"><div class=\"mdl-card__actions translucent\">" + obj[i].title + "</div></div></a></li>";
+          }
+          document.getElementById('issues').innerHTML = HTML;
+        }
+      }
+    }
+    issueContent.send(null);
     </script>
   </body>
 </html>

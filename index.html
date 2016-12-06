@@ -226,7 +226,9 @@
           var obj = JSON.parse(repoContent.responseText);
           var HTML = "";
           for (var i = 1; obj[i]; i++) {
-            HTML += "<li><a href=\"" + obj[i].html_url + "\"><div class=\"mdl-card mdl-shadow--2dp fixed\"><div class=\"mdl-card__title mdl-card--expand\"><h4>" + obj[i].name + "</h4><p>" + obj[i].description + "</p></div></div></a></li>";
+            var url = obj[i].html_url;
+            if (obj[i].homepage != null) url = obj[i].homepage;
+            HTML += "<li><a href=\"" + url + "\"><div class=\"mdl-card mdl-shadow--2dp fixed\"><div class=\"mdl-card__title mdl-card--expand\"><h4>" + obj[i].name + "</h4><p>" + obj[i].description + "</p></div></div></a></li>";
           }
           document.getElementById('repos').innerHTML = HTML;
         }

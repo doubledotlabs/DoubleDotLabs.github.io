@@ -36,6 +36,10 @@ a:hover {
   opacity: 1;
 }
 
+.mdl-button {
+  margin: 5px 0;
+}
+
 .mobile {
   display: none;
 }

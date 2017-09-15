@@ -14,199 +14,315 @@
 -->
 
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Developing for developers.">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Double Dot Labs</title>
 
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="https://doubledotlabs.github.io/images/favicon.png">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Developing for developers.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Double Dot Labs</title>
 
-     <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Double Dot Labs">
-    <link rel="apple-touch-icon-precomposed" href="https://doubledotlabs.github.io/images/favicon.png">
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="icon" sizes="192x192" href="https://doubledotlabs.github.io/images/favicon.png">
 
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="https://doubledotlabs.github.io/images/favicon.png">
-    <meta name="msapplication-TileColor" content="#3372DF">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="Double Dot Labs">
+	<link rel="apple-touch-icon-precomposed" href="https://doubledotlabs.github.io/images/favicon.png">
 
-    <link rel="shortcut icon" href="https://doubledotlabs.github.io/images/favicon.png">
+	<meta name="msapplication-TileImage" content="https://doubledotlabs.github.io/images/favicon.png">
+	<meta name="msapplication-TileColor" content="#3372DF">
 
-    <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
-    <!--
-    <link rel="canonical" href="http://www.example.com/">
-    -->
+	<link rel="shortcut icon" href="https://doubledotlabs.github.io/images/favicon.png">
+	<link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 
-    <!-- Page styles -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.min.css">
-    <link rel="stylesheet" href="https://doubledotlabs.github.io/styles/styles.css">
+	<style>
+		* {
+			font-family: 'Rubik', sans-serif;
+		}
 
-    <!-- Uses a transparent header that draws on top of the layout's background -->
-    <style>
-    .mdl-layout__header {
-      color: white;
-    }
+		body {
+			margin: 0;
+		}
 
-    .mdl-layout__content {
-      background: white;
-    }
+		nav {
+			background-color: black;
+			color: white;
+			text-align: center;
+			animation-name: alphaIn;
+			animation-duration: 0.5s;
+			animation-timing-function: ease-in;
+		}
 
-    .section {
-      padding: calc(5% + 32px);
-    }
+		nav > span {
+			display: inline-block;
+			padding: 12px 16px;
+			transition: background-color .25s;
+      -moz-transition: background-color .25s;
+      -webkit-transition: background-color .25s;
+		}
 
-    .section.green {
-      background: #80EACE;
-    }
+		.selected {
+			font-weight: bold;
+			color: #80EACE;
+		}
 
-    .section.purple {
-      background: #8CA0ff;
-      color: black;
-    }
+		footer {
+			padding: 24px 16px;
+			background-color: black;
+			color: white;
+		}
 
-    .section.white {
-      background: white;
-      color: black;
-    }
+		footer > a {
+			color: white;
+			font-weight: bold;
+			padding-left: 12px;
+			padding-right: 12px;
+			text-decoration: none;
+		}
 
-    .section.overflow {
-      overflow-x: auto;
-    }
+		main {
+			padding-top: 24px;
+			padding-bottom: 24px;
+			animation-name: alphaIn;
+			animation-duration: 1s;
+			animation-timing-function: ease-in;
+		}
 
-    ul {
-      list-style-type: none;
-      white-space: nowrap;
-      margin-top: 0;
-      margin-bottom: 0;
-      margin-left: -20px;
-      padding: 0;
-    }
+		nav > span:hover {
+			background-color: rgba(255, 255, 255, 0.25);
+		}
 
-    li {
-      display: inline;
-    }
+		.padded {
+			padding-left: 16px;
+			padding-right: 16px;
+		}
 
-    .mdl-card {
-      margin: 20px;
-      display: inline-block;
-    }
+		.project {
+			display: block;
+			color: black;
+			text-decoration: none;
+			padding: 12px 16px;
+			transition: background-color .25s;
+      -moz-transition: background-color .25s;
+      -webkit-transition: background-color .25s;
+		}
 
-    .mdl-card.fixed {
-      width: 250px;
-      height: 250px;
-    }
+		.project:hover {
+			background-color: rgba(0, 0, 0, 0.1);
+		}
 
-    .mdl-card__actions {
-      position: absolute;
-      bottom: 0;
-    }
+		.project > h4 {
+			margin: 0;
+		}
 
-    .mdl-card__title {
-      display: block;
-      white-space: normal;
-    }
+		#members {
+			width: 166px;
+			margin-left: auto;
+			margin-right: auto;
+		}
 
-    .mdl-card__actions.translucent {
-      background: rgba(0, 0, 0, 0.2);
-      color: white;
-      padding: 20px;
-    }
+		.member {
+			display: inline-block;
+			width: 150px;
+			height: 150px;
+			margin: 8px;
+			text-decoration: none;
+		}
 
-    .mdl-button.mdl-button--colored {
-      opacity: 1;
-    }
+		.member > div {
+			width: calc(100% - 24px);
+			background: rgba(0, 0, 0, 0.3);
+			color: white;
+			display: block;
+			padding: 12px;
+		}
 
-    img {
-      width: auto;
-      height: 60vh;
-      display: block;
-      margin: 0 auto;
-    }
-    </style>
-  </head>
+		@keyframes alphaIn {
+			from {opacity: 0;}
+			to {opacity: 1;}
+		}
 
-    <body>
-    <div class="mdl-layout mdl-js-layout">
-      <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-          <span class="mdl-layout-title">Double Dot Labs</span>
-          <div class="mdl-layout-spacer"></div>
-        </div>
-      </header>
-      <main class="mdl-layout__content">
-        <div class="section purple desktop" style="padding: 0;">
-          <img src="https://doubledotlabs.github.io/images/doubledot.png">
-        </div>
-        <div class="section white">
-          <h2>Our Mission</h2>
-          <p>We created Double Dot Labs to make a collection of open source projects accessible to everyone. With the right resources, we believe anyone can make whatever they want. We want to make everything, and to have fun doing it.</p>
-          <p>Our projects range from messing around with user interfaces in augmented reality to creating our own version of Android based on the parts we like most.</p>
-          <br>
-          <div>
-            <a href="https://github.com/DoubleDotLabs"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Github</button></a>
-            &nbsp;
-            <a href="https://plus.google.com/b/106577217343717481759/106577217343717481759"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Google+</button></a>
-            &nbsp;
-            <a href="https://twitter.com/doubledotlabs"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Twitter</button></a>
-            &nbsp;
-            <a href="mailto:doubledotlabs@gmail.com"><button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">Email</button></a>
-          </div>
-        </div>
-        <div class="section green" >
-          <h2>Projects</h2>
-          <div style="margin-left: -20px; margin-right: -20px;" id="repos"></div>
-        </div>
-        <div class="section white" >
-          <h2>Members</h2>
-          <div style="margin-left: -20px; margin-right: -20px;" id="members"></div>
-        </div>
-      </main>
-    </div>
+		@media(max-width: 379px) {
+			header {
+				text-align: center;
+			}
+		}
 
-    <script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+		@media(min-width: 380px) {
+			#members {
+				width: 332px;
+			}
+		}
 
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+		@media(min-width: 545px) {
+			#members {
+				width: 498px;
+			}
+		}
 
-    <script>
-    var repoContent = new XMLHttpRequest();
-    repoContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/repos", true);
-    repoContent.onreadystatechange = function() {
-      if (repoContent.readyState === 4) {
-        if (repoContent.status === 200 || repoContent.status == 0) {
-          var obj = JSON.parse(repoContent.responseText);
-          var HTML = "";
-          for (var i = 1; obj[i]; i++) {
-            var url = obj[i].html_url;
-            if (obj[i].homepage != null) url = obj[i].homepage;
-            HTML += "<a href=\"" + url + "\"><div class=\"mdl-card mdl-shadow--2dp fixed\"><div class=\"mdl-card__title mdl-card--expand\"><h4>" + obj[i].name + "</h4><p>" + obj[i].description + "</p></div></div></a>";
-          }
-          document.getElementById('repos').innerHTML = HTML;
-        }
-      }
-    }
-    repoContent.send(null);
+		@media(min-width: 1100px) {
+			#members {
+				width: 664px;
+			}
 
-    var memberContent = new XMLHttpRequest();
-    memberContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/members", true);
-    memberContent.onreadystatechange = function () {
-      if(memberContent.readyState === 4) {
-        if(memberContent.status === 200 || memberContent.status == 0) {
-          var obj = JSON.parse(memberContent.responseText);
-          var HTML = "";
-          for (var i = 0; obj[i]; i++) {
-            HTML += "<a href=\"https://github.com/" + obj[i].login + "\"><div class=\"mdl-card mdl-shadow--2dp fixed\" style=\"background: url(\'" + obj[i].avatar_url + "\') center / cover;\"><div class=\"mdl-card__actions translucent\">" + obj[i].login + "</div></div></a>";
-          }
-          document.getElementById('members').innerHTML = HTML;
-        }
-      }
-    }
-    memberContent.send(null);
-    </script>
-  </body>
+			#about {
+				width: 60%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			#projects {
+				width: 60%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<header class="padded">
+		<h2>Double Dot Labs</h2>
+	</header>
+	<nav class="padded" id="navigation">
+		<span class="selected" onclick="setPage('about')" id="page-about">About</span>
+		<span onclick="setPage('projects')" id="page-projects">Projects</span>
+		<span onclick="setPage('members')" id="page-members">Members</span>
+	</nav>
+	<main class="padded" id="main">
+		<div id="about">
+			<h3>Prologue</h3>
+			<p>
+				We created Double Dot Labs to make a collection of open source
+				projects accessible to everyone. With the right resources, we
+				believe anyone can make whatever they want. We want to make
+				everything, and to have fun doing it.
+			</p>
+			<p>
+				Our projects range from messing around with user interfaces in
+				augmented reality to creating our own version of Android based
+				on the parts we like most.
+			</p>
+			<h3>The Problem</h3>
+			<p>
+				Our group was brought together by a lack of motivation. Well, that's
+				not entirely accurate. The main issue within Double Dot Labs was that
+				we had far too many ideas for apps that we never built, and we knew we
+				weren't the only people with this problem. Many open source projects
+				have the potential to gain millions of users, but they aren't properly
+				maintained, haven't been thought out and designed properly, or just
+				aren't very appealing to new users.
+			</p>
+			<h3>The Solution</h3>
+			<p>
+				The purpose of Double Dot Labs is to provide a way to organize
+				these projects. The community within Double Dot Labs will evaluate
+				an idea for a project, then create basic guidelines for development.
+				Once a project is ready for development, we can start building it.
+			</p>
+			<p>
+				But we don't have to. Double Dot Labs doesn't require contributors
+				to work on a new project if they don't want to. Developers have the
+				freedom to choose what to work on, and when to do it. GitHub's issue
+				tracking allows us to work on multiple projects with multiple developers
+				at once with as little setbacks as possible.
+			</p>
+			<h3>Progress</h3>
+			<p>
+				Currently, Double Dot Labs consists of only a very small group of
+				developers. This is because while we have a basic idea of the design
+				process for applications, we must still test and improve this process
+				before it is ready for implementation on a larger scale.
+			</p>
+		</div>
+		<div id="projects"></div>
+		<div id="members"></div>
+	</main>
+	<footer id="footer">
+		<a href="https://github.com/DoubleDotLabs">GitHub</a>
+		<a href="https://plus.google.com/b/106577217343717481759/106577217343717481759">Google Plus</a>
+		<a href="https://twitter.com/doubledotlabs">Twitter</a>
+		<a href="mailto:doubledotlabs@gmail.com">E-Mail</a>
+	</footer>
+
+	<script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+	<script>
+		var footer = document.getElementById('footer');
+
+		if (parent.location.hash)
+			setPage(parent.location.hash.substring(1));
+		else setPage("about");
+
+		var repoContent = new XMLHttpRequest();
+		repoContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/repos", true);
+		repoContent.onreadystatechange = function() {
+			if (repoContent.readyState === 4) {
+				if (repoContent.status === 200 || repoContent.status == 0) {
+					var obj = JSON.parse(repoContent.responseText);
+					var HTML = "";
+					for (var i = 1; obj[i]; i++) {
+						var url = obj[i].html_url;
+						if (obj[i].homepage != null) url = obj[i].homepage;
+						HTML += "<a href=\"" + url + "\" class=\"project\"><h4>" + obj[i].name + "</h4>" + obj[i].description + "</a>";
+					}
+					document.getElementById('projects').innerHTML = HTML;
+					onPageChange();
+				}
+			}
+		}
+		repoContent.send(null);
+
+		var memberContent = new XMLHttpRequest();
+		memberContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/members", true);
+		memberContent.onreadystatechange = function() {
+			if (memberContent.readyState === 4) {
+				if (memberContent.status === 200 || memberContent.status == 0) {
+					var obj = JSON.parse(memberContent.responseText);
+					var HTML = "";
+					for (var i = 0; obj[i]; i++) {
+						HTML += "<a href=\"https://github.com/" + obj[i].login + "\" class=\"member\" style=\"background: url(\'" + obj[i].avatar_url + "\') center / cover;\"><div>" + obj[i].login +
+							"</div></a>";
+					}
+					document.getElementById('members').innerHTML = HTML;
+					onPageChange();
+				}
+			}
+		}
+		memberContent.send(null);
+
+		function setPage(page) {
+			document.location.hash = page;
+
+			document.getElementById('navigation').childNodes.forEach(function(element) {
+				if (element.id && element.id.substring(5) == page)
+				  element.className = "selected";
+				else if (element.id) element.className = "";
+			});
+
+			document.getElementById('main').childNodes.forEach(function(element) {
+				if (element.id == page && element.style)
+				  element.style.display = "inherit";
+				else if (element.style) element.style.display = "none";
+			});
+
+			onPageChange();
+		}
+
+		function onPageChange() {
+			var contentHeight = 0;
+			var elements = document.getElementsByClassName('padded')
+			for (var i = 0; i < elements.length; i++) {
+				contentHeight += elements[i].offsetHeight;
+			}
+
+			contentHeight += footer.offsetHeight + 40;
+			footer.style.marginTop = Math.max(window.innerHeight - contentHeight, 0) + "px";
+		}
+	</script>
+</body>
+
 </html>

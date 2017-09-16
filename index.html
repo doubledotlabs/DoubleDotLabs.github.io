@@ -139,6 +139,7 @@
 		.logo {
 			width: 100px;
 			height: 100px;
+			animation: rotate 5s ease-out infinite;
 		}
 
 		#about>h3 {
@@ -151,12 +152,16 @@
 		}
 
 		@keyframes alphaIn {
-			from {
-				opacity: 0;
-			}
-			to {
-				opacity: 1;
-			}
+			from { opacity: 0; }
+			to { opacity: 1; }
+		}
+
+		@keyframes rotate {
+			0% { transform: rotate(0deg); }
+			25% { transform: rotate(90deg); }
+			50% { transform: rotate(180deg); }
+			75% { transform: rotate(270deg); }
+			100% { transform: rotate(360deg); }
 		}
 
 		@media(max-width: 479px) {
@@ -225,10 +230,10 @@
 				<img class="logo" src="./images/logo.svg">
 				<h3>Prologue</h3>
 				<p>
-					We created Double Dot Labs to make a collection of open source projects accessible to everyone. With the right resources, we believe anyone can make whatever they want. We want to make everything, and to have fun doing it.
+					We created Double Dot Labs to make a collection of open source projects accessible to everyone.
 				</p>
 				<p>
-					Our projects range from messing around with user interfaces in augmented reality to creating our own version of Android based on the parts we like most.
+					Our current projects range from messing around with user interfaces in augmented reality to creating our own version of Android based on the parts we like most.
 				</p>
 				<h3>The Problem</h3>
 				<p>

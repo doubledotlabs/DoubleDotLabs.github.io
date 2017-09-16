@@ -97,7 +97,7 @@
 
 		.project {
 			display: block;
-			color: black;
+			color: #757575;
 			text-decoration: none;
 			padding: 12px 16px;
 			transition: background-color .25s;
@@ -110,6 +110,7 @@
 		}
 
 		.project>h4 {
+			color: black;
 			margin: 0;
 		}
 
@@ -214,39 +215,41 @@
 		<h2>Double Dot Labs</h2>
 	</header>
 	<nav class="padded" id="navigation">
-		<span class="selected" onclick="setPage('about')" id="page-about">About</span>
-		<span onclick="setPage('projects')" id="page-projects">Projects</span>
-		<span onclick="setPage('members')" id="page-members">Members</span>
+		<span class="selected" onclick="fadeOut('about')" id="page-about">About</span>
+		<span onclick="fadeOut('projects')" id="page-projects">Projects</span>
+		<span onclick="fadeOut('members')" id="page-members">Members</span>
 	</nav>
 	<main class="padded" id="main">
 		<div id="about">
-			<img class="logo" src="./images/logo.svg">
-			<h3>Prologue</h3>
-			<p>
-				We created Double Dot Labs to make a collection of open source projects accessible to everyone. With the right resources, we believe anyone can make whatever they want. We want to make everything, and to have fun doing it.
-			</p>
-			<p>
-				Our projects range from messing around with user interfaces in augmented reality to creating our own version of Android based on the parts we like most.
-			</p>
-			<h3>The Problem</h3>
-			<p>
-				Our group was brought together by a lack of motivation. Well, that's not entirely accurate. The main issue within Double Dot Labs was that we had far too many ideas for apps that we never built, and we knew we weren't the only people with this problem.
-				Many open source projects have the potential to gain millions of users, but they aren't properly maintained, haven't been thought out and designed properly, or just aren't very appealing to new users.
-			</p>
-			<h3>The Solution</h3>
-			<p>
-				The purpose of Double Dot Labs is to provide a way to organize these projects. The community within Double Dot Labs will evaluate an idea for a project, then create basic guidelines for development. Once a project is ready for development, we can start
-				building it.
-			</p>
-			<p>
-				But we don't have to. Double Dot Labs doesn't require contributors to work on a new project if they don't want to. Developers have the freedom to choose what to work on, and when to do it. GitHub's issue tracking allows us to work on multiple projects
-				with multiple developers at once with as little setbacks as possible.
-			</p>
-			<h3>Progress</h3>
-			<p>
-				Currently, Double Dot Labs consists of only a very small group of developers. This is because while we have a basic idea of the design process for applications, we must still test and improve this process before it is ready for implementation on a larger
-				scale.
-			</p>
+			<div id="aboutContent">
+				<img class="logo" src="./images/logo.svg">
+				<h3>Prologue</h3>
+				<p>
+					We created Double Dot Labs to make a collection of open source projects accessible to everyone. With the right resources, we believe anyone can make whatever they want. We want to make everything, and to have fun doing it.
+				</p>
+				<p>
+					Our projects range from messing around with user interfaces in augmented reality to creating our own version of Android based on the parts we like most.
+				</p>
+				<h3>The Problem</h3>
+				<p>
+					Our group was brought together by a lack of motivation. Well, that's not entirely accurate. The main issue within Double Dot Labs was that we had far too many ideas for apps that we never built, and we knew we weren't the only people with this problem.
+					Many open source projects have the potential to gain millions of users, but they aren't properly maintained, haven't been thought out and designed properly, or just aren't very appealing to new users.
+				</p>
+				<h3>The Solution</h3>
+				<p>
+					The purpose of Double Dot Labs is to provide a way to organize these projects. The community within Double Dot Labs will evaluate an idea for a project, then create basic guidelines for development. Once a project is ready for development, we can start
+					building it.
+				</p>
+				<p>
+					But we don't have to. Double Dot Labs doesn't require contributors to work on a new project if they don't want to. Developers have the freedom to choose what to work on, and when to do it. GitHub's issue tracking allows us to work on multiple projects
+					with multiple developers at once with as little setbacks as possible.
+				</p>
+				<h3>Progress</h3>
+				<p>
+					Currently, Double Dot Labs consists of only a very small group of developers. This is because while we have a basic idea of the design process for applications, we must still test and improve this process before it is ready for implementation on a larger
+					scale.
+				</p>
+			</div>
 			<div id="background"></div>
 		</div>
 		<div id="projects"></div>
@@ -264,11 +267,21 @@
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 	<script>
+		var about = document.getElementById('about');
+		var aboutContent = document.getElementById('aboutContent');
+		var projects = document.getElementById('projects');
+		var members = document.getElementById('members');
 		var footer = document.getElementById('footer');
 
-		if (parent.location.hash)
-			setPage(parent.location.hash.substring(1));
-		else setPage("about");
+		window.onload = function() {
+			if (parent.location.hash)
+				setPage(parent.location.hash.substring(1));
+			else setPage("about");
+		};
+
+		window.onresize = function() {
+			onSizeChange();
+		}
 
 		var repoContent = new XMLHttpRequest();
 		repoContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/repos", true);
@@ -282,7 +295,7 @@
 						if (obj[i].homepage != null) url = obj[i].homepage;
 						HTML += "<a href=\"" + url + "\" class=\"project\"><h4>" + obj[i].name + "</h4>" + obj[i].description + "</a>";
 					}
-					document.getElementById('projects').innerHTML = HTML;
+					projects.innerHTML = HTML;
 					onPageChange();
 				}
 			}
@@ -300,7 +313,7 @@
 						HTML += "<a href=\"https://github.com/" + obj[i].login + "\" class=\"member\" style=\"background: url(\'" + obj[i].avatar_url + "\') center / cover;\"><div>" + obj[i].login +
 							"</div></a>";
 					}
-					document.getElementById('members').innerHTML = HTML;
+					members.innerHTML = HTML;
 					onPageChange();
 				}
 			}
@@ -317,28 +330,99 @@
 			});
 
 			document.getElementById('main').childNodes.forEach(function(element) {
-				if (element.id == page && element.style)
+				if (element.id == page && element.style) {
 					element.style.display = "inherit";
-				else if (element.style) element.style.display = "none";
+					element.style.opacity = 1;
+				} else if (element.style) element.style.display = "none";
 			});
 
 			onPageChange();
 		}
 
+		var isAnimating = false;
+
 		function onPageChange() {
 			footer.style.display = "none";
 			setTimeout(function() {
-				var contentHeight = 0;
-				var elements = document.getElementsByClassName('padded')
-				for (var i = 0; i < elements.length; i++) {
-					contentHeight += elements[i].offsetHeight;
+				onSizeChange();
+			}, 50);
+
+			if (!isAnimating) {
+				var element;
+				if (about.style.display != "none")
+					element = aboutContent;
+				else if (projects.style.display != "none")
+					element = projects;
+				else if (members.style.display != "none")
+					element = members;
+				else return;
+
+				isAnimating = true;
+				for (var i = 0; i < element.childNodes.length; i++) {
+					fadeIn(element.childNodes[i], 25 * (i + 1));
 				}
 
-				contentHeight += 67;
-				footer.style.marginTop = Math.max(window.innerHeight - contentHeight, 0) + "px";
-				document.body.scrollTop = 0;
-				footer.style.display = "inherit";
-			}, 50);
+				setTimeout(function() {
+					isAnimating = false;
+				}, 75 * element.childNodes.length);
+			}
+		}
+
+		function onSizeChange() {
+			var contentHeight = 0;
+			var elements = document.getElementsByClassName('padded')
+			for (var i = 0; i < elements.length; i++) {
+				contentHeight += elements[i].offsetHeight;
+			}
+
+			contentHeight += 67;
+			footer.style.marginTop = Math.max(window.innerHeight - contentHeight, 0) + "px";
+			document.body.scrollTop = 0;
+			footer.style.display = "inherit";
+		}
+
+		function fadeOut(pageTo) {
+			var id = document.location.hash.substring(1);
+			if (id == "about")
+				id = "aboutContent";
+
+			var element = document.getElementById(id);
+
+			if (!isAnimating) {
+				isAnimating = true;
+				var opacity = 1;
+				var interval = setInterval(function() {
+					if (opacity < 0) {
+						clearInterval(interval);
+						element.style.opacity = 0;
+						isAnimating = false;
+						setPage(pageTo);
+					} else {
+						element.style.opacity = Math.pow(opacity, 2);
+						opacity -= 0.02;
+					}
+				});
+			} else setPage(pageTo);
+		}
+
+		function fadeIn(element, delay) {
+			if (!element.tagName)
+				return;
+
+			element.parentElement.style.opacity = 1;
+			element.style.opacity = 0;
+			setTimeout(function() {
+				var opacity = 0;
+				var interval = setInterval(function() {
+					if (opacity > 1) {
+						clearInterval(interval);
+						element.style.opacity = 1;
+					} else {
+						element.style.opacity = Math.pow(opacity, 2);
+						opacity += 0.02;
+					}
+				}, 10);
+			}, delay);
 		}
 	</script>
 </body>

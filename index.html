@@ -1,17 +1,4 @@
-<!doctype html>
-<!--
-  Material Design Lite
-  Copyright 2015 Google Inc. All rights reserved.
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-      https://www.apache.org/licenses/LICENSE-2.0
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
--->
+<!DOCTYPE html>
 
 <html lang="en">
 
@@ -54,12 +41,12 @@
 			animation-timing-function: ease-in;
 		}
 
-		nav > span {
+		nav>span {
 			display: inline-block;
 			padding: 12px 16px;
 			transition: background-color .25s;
-      -moz-transition: background-color .25s;
-      -webkit-transition: background-color .25s;
+			-moz-transition: background-color .25s;
+			-webkit-transition: background-color .25s;
 		}
 
 		.selected {
@@ -73,12 +60,19 @@
 			color: white;
 		}
 
-		footer > a {
+		footer>a {
 			color: white;
 			font-weight: bold;
 			padding-left: 12px;
 			padding-right: 12px;
 			text-decoration: none;
+			transition: color .25s;
+			-moz-transition: color .25s;
+			-webkit-transition: color .25s;
+		}
+
+		footer>a:hover {
+			color: #80EACE;
 		}
 
 		main {
@@ -89,7 +83,7 @@
 			animation-timing-function: ease-in;
 		}
 
-		nav > span:hover {
+		nav>span:hover {
 			background-color: rgba(255, 255, 255, 0.25);
 		}
 
@@ -104,33 +98,33 @@
 			text-decoration: none;
 			padding: 12px 16px;
 			transition: background-color .25s;
-      -moz-transition: background-color .25s;
-      -webkit-transition: background-color .25s;
+			-moz-transition: background-color .25s;
+			-webkit-transition: background-color .25s;
 		}
 
 		.project:hover {
 			background-color: rgba(0, 0, 0, 0.1);
 		}
 
-		.project > h4 {
+		.project>h4 {
 			margin: 0;
 		}
 
 		#members {
-			width: 166px;
+			width: 216px;
 			margin-left: auto;
 			margin-right: auto;
 		}
 
 		.member {
 			display: inline-block;
-			width: 150px;
-			height: 150px;
+			width: 200px;
+			height: 200px;
 			margin: 8px;
 			text-decoration: none;
 		}
 
-		.member > div {
+		.member>div {
 			width: calc(100% - 24px);
 			background: rgba(0, 0, 0, 0.3);
 			color: white;
@@ -139,31 +133,35 @@
 		}
 
 		@keyframes alphaIn {
-			from {opacity: 0;}
-			to {opacity: 1;}
+			from {
+				opacity: 0;
+			}
+			to {
+				opacity: 1;
+			}
 		}
 
-		@media(max-width: 379px) {
+		@media(max-width: 479px) {
 			header {
 				text-align: center;
 			}
 		}
 
-		@media(min-width: 380px) {
+		@media(min-width: 480px) {
 			#members {
-				width: 332px;
+				width: 432px;
 			}
 		}
 
-		@media(min-width: 545px) {
+		@media(min-width: 690px) {
 			#members {
-				width: 498px;
+				width: 648px;
 			}
 		}
 
-		@media(min-width: 1100px) {
+		@media(min-width: 900px) {
 			#members {
-				width: 664px;
+				width: 864px;
 			}
 
 			#about {
@@ -194,46 +192,29 @@
 		<div id="about">
 			<h3>Prologue</h3>
 			<p>
-				We created Double Dot Labs to make a collection of open source
-				projects accessible to everyone. With the right resources, we
-				believe anyone can make whatever they want. We want to make
-				everything, and to have fun doing it.
+				We created Double Dot Labs to make a collection of open source projects accessible to everyone. With the right resources, we believe anyone can make whatever they want. We want to make everything, and to have fun doing it.
 			</p>
 			<p>
-				Our projects range from messing around with user interfaces in
-				augmented reality to creating our own version of Android based
-				on the parts we like most.
+				Our projects range from messing around with user interfaces in augmented reality to creating our own version of Android based on the parts we like most.
 			</p>
 			<h3>The Problem</h3>
 			<p>
-				Our group was brought together by a lack of motivation. Well, that's
-				not entirely accurate. The main issue within Double Dot Labs was that
-				we had far too many ideas for apps that we never built, and we knew we
-				weren't the only people with this problem. Many open source projects
-				have the potential to gain millions of users, but they aren't properly
-				maintained, haven't been thought out and designed properly, or just
-				aren't very appealing to new users.
+				Our group was brought together by a lack of motivation. Well, that's not entirely accurate. The main issue within Double Dot Labs was that we had far too many ideas for apps that we never built, and we knew we weren't the only people with this problem.
+				Many open source projects have the potential to gain millions of users, but they aren't properly maintained, haven't been thought out and designed properly, or just aren't very appealing to new users.
 			</p>
 			<h3>The Solution</h3>
 			<p>
-				The purpose of Double Dot Labs is to provide a way to organize
-				these projects. The community within Double Dot Labs will evaluate
-				an idea for a project, then create basic guidelines for development.
-				Once a project is ready for development, we can start building it.
+				The purpose of Double Dot Labs is to provide a way to organize these projects. The community within Double Dot Labs will evaluate an idea for a project, then create basic guidelines for development. Once a project is ready for development, we can start
+				building it.
 			</p>
 			<p>
-				But we don't have to. Double Dot Labs doesn't require contributors
-				to work on a new project if they don't want to. Developers have the
-				freedom to choose what to work on, and when to do it. GitHub's issue
-				tracking allows us to work on multiple projects with multiple developers
-				at once with as little setbacks as possible.
+				But we don't have to. Double Dot Labs doesn't require contributors to work on a new project if they don't want to. Developers have the freedom to choose what to work on, and when to do it. GitHub's issue tracking allows us to work on multiple projects
+				with multiple developers at once with as little setbacks as possible.
 			</p>
 			<h3>Progress</h3>
 			<p>
-				Currently, Double Dot Labs consists of only a very small group of
-				developers. This is because while we have a basic idea of the design
-				process for applications, we must still test and improve this process
-				before it is ready for implementation on a larger scale.
+				Currently, Double Dot Labs consists of only a very small group of developers. This is because while we have a basic idea of the design process for applications, we must still test and improve this process before it is ready for implementation on a larger
+				scale.
 			</p>
 		</div>
 		<div id="projects"></div>
@@ -299,13 +280,13 @@
 
 			document.getElementById('navigation').childNodes.forEach(function(element) {
 				if (element.id && element.id.substring(5) == page)
-				  element.className = "selected";
+					element.className = "selected";
 				else if (element.id) element.className = "";
 			});
 
 			document.getElementById('main').childNodes.forEach(function(element) {
 				if (element.id == page && element.style)
-				  element.style.display = "inherit";
+					element.style.display = "inherit";
 				else if (element.style) element.style.display = "none";
 			});
 
@@ -321,6 +302,7 @@
 
 			contentHeight += footer.offsetHeight + 40;
 			footer.style.marginTop = Math.max(window.innerHeight - contentHeight, 0) + "px";
+			document.body.scrollTop = 0;
 		}
 	</script>
 </body>

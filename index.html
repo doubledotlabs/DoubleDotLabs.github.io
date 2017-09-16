@@ -10,17 +10,17 @@
 	<title>Double Dot Labs</title>
 
 	<meta name="mobile-web-app-capable" content="yes">
-	<link rel="icon" sizes="192x192" href="https://doubledotlabs.github.io/images/favicon.png">
+	<link rel="icon" sizes="192x192" href="./images/logo.png">
 
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
 	<meta name="apple-mobile-web-app-title" content="Double Dot Labs">
-	<link rel="apple-touch-icon-precomposed" href="https://doubledotlabs.github.io/images/favicon.png">
+	<link rel="apple-touch-icon-precomposed" href="./images/logo.png">
 
-	<meta name="msapplication-TileImage" content="https://doubledotlabs.github.io/images/favicon.png">
+	<meta name="msapplication-TileImage" content="./images/logo.png">
 	<meta name="msapplication-TileColor" content="#3372DF">
 
-	<link rel="shortcut icon" href="https://doubledotlabs.github.io/images/favicon.png">
+	<link rel="shortcut icon" href="./images/logo.png">
 	<link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 
 	<style>
@@ -135,6 +135,16 @@
 			padding: 12px;
 		}
 
+		.logo {
+			width: 100px;
+			height: 100px;
+		}
+
+		#about>h3 {
+			margin-top: 40px;
+			margin-bottom: 0;
+		}
+
 		#background {
 			display: none;
 		}
@@ -179,33 +189,15 @@
 
 			#background {
 				display: inherit;
-				position: absolute;
-				right: 0;
-				bottom: 0;
-				height: calc(100% - 100px);
-				z-index: -2;
-			}
-
-			#backgroundContainer {
 				position: fixed;
 				right: 0;
 				top: 0;
 				bottom: 0;
 				width: 40%;
 				z-index: -1;
-				background: linear-gradient(to right, white, transparent), url(./images/illustrations/background.svg) right top repeat;
+				background: linear-gradient(to right, white, transparent), url(./images/background.svg) right top repeat;
 				background-size: contain;
 				overflow: hidden;
-			}
-
-			#backgroundForeground {
-				position: absolute;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				width: 100%;
-				background: linear-gradient(to right, white, transparent);
-				z-index: -1;
 			}
 
 			#projects {
@@ -228,6 +220,7 @@
 	</nav>
 	<main class="padded" id="main">
 		<div id="about">
+			<img class="logo" src="./images/logo.svg">
 			<h3>Prologue</h3>
 			<p>
 				We created Double Dot Labs to make a collection of open source projects accessible to everyone. With the right resources, we believe anyone can make whatever they want. We want to make everything, and to have fun doing it.
@@ -254,10 +247,7 @@
 				Currently, Double Dot Labs consists of only a very small group of developers. This is because while we have a basic idea of the design process for applications, we must still test and improve this process before it is ready for implementation on a larger
 				scale.
 			</p>
-			<div id="backgroundContainer">
-				<!--<img id="background" src="./images/illustrations/background.svg">
-				<div id="backgroundForeground"></div>-->
-			</div>
+			<div id="background"></div>
 		</div>
 		<div id="projects"></div>
 		<div id="members"></div>

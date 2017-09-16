@@ -78,6 +78,12 @@
 		main {
 			padding-top: 24px;
 			padding-bottom: 24px;
+			color: #757575;
+		}
+
+		header {
+			padding: 12px 16px;
+    	background-color: white;
 		}
 
 		nav>span:hover {
@@ -129,6 +135,10 @@
 			padding: 12px;
 		}
 
+		#background {
+			display: none;
+		}
+
 		@keyframes alphaIn {
 			from {
 				opacity: 0;
@@ -162,9 +172,40 @@
 			}
 
 			#about {
-				width: 60%;
-				margin-left: auto;
-				margin-right: auto;
+				width: 40%;
+				padding: 10%;
+				background-color: white;
+			}
+
+			#background {
+				display: inherit;
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				height: calc(100% - 100px);
+				z-index: -2;
+			}
+
+			#backgroundContainer {
+				position: fixed;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 40%;
+				z-index: -1;
+				background: linear-gradient(to right, white, transparent), url(./images/illustrations/background.svg) right top repeat;
+				background-size: contain;
+				overflow: hidden;
+			}
+
+			#backgroundForeground {
+				position: absolute;
+				right: 0;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				background: linear-gradient(to right, white, transparent);
+				z-index: -1;
 			}
 
 			#projects {
@@ -213,6 +254,10 @@
 				Currently, Double Dot Labs consists of only a very small group of developers. This is because while we have a basic idea of the design process for applications, we must still test and improve this process before it is ready for implementation on a larger
 				scale.
 			</p>
+			<div id="backgroundContainer">
+				<!--<img id="background" src="./images/illustrations/background.svg">
+				<div id="backgroundForeground"></div>-->
+			</div>
 		</div>
 		<div id="projects"></div>
 		<div id="members"></div>
@@ -291,15 +336,19 @@
 		}
 
 		function onPageChange() {
-			var contentHeight = 0;
-			var elements = document.getElementsByClassName('padded')
-			for (var i = 0; i < elements.length; i++) {
-				contentHeight += elements[i].offsetHeight;
-			}
+			footer.style.display = "none";
+			setTimeout(function() {
+				var contentHeight = 0;
+				var elements = document.getElementsByClassName('padded')
+				for (var i = 0; i < elements.length; i++) {
+					contentHeight += elements[i].offsetHeight;
+				}
 
-			contentHeight += footer.offsetHeight + 40;
-			footer.style.marginTop = Math.max(window.innerHeight - contentHeight, 0) + "px";
-			document.body.scrollTop = 0;
+				contentHeight += 67;
+				footer.style.marginTop = Math.max(window.innerHeight - contentHeight, 0) + "px";
+				document.body.scrollTop = 0;
+				footer.style.display = "inherit";
+			}, 50);
 		}
 	</script>
 </body>

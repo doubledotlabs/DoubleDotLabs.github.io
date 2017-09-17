@@ -97,8 +97,16 @@
 			padding-right: 16px;
 		}
 
+		#projects {
+			width: 332px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
 		.project {
-			display: block;
+			display: inline-block;
+			width: 300px;
+			text-align: center;
 			color: #757575;
 			text-decoration: none;
 			padding: 12px 16px;
@@ -109,6 +117,11 @@
 
 		.project:hover {
 			background-color: rgba(0, 0, 0, 0.1);
+		}
+
+		.project>img {
+			width: 64px;
+			height: 64px;
 		}
 
 		.project>h4 {
@@ -179,6 +192,10 @@
 		}
 
 		@media(min-width: 690px) {
+			#projects {
+				width: 664px;
+			}
+
 			#members {
 				width: 648px;
 			}
@@ -207,11 +224,11 @@
 				background-size: contain;
 				overflow: hidden;
 			}
+		}
 
+		@media(min-width: 1050px) {
 			#projects {
-				width: 60%;
-				margin-left: auto;
-				margin-right: auto;
+				width: 996px;
 			}
 		}
 	</style>
@@ -300,8 +317,9 @@
 					var HTML = "";
 					for (var i = 1; obj[i]; i++) {
 						var url = obj[i].html_url;
-						if (obj[i].homepage != null) url = obj[i].homepage;
-						HTML += "<a href=\"" + url + "\" class=\"project\"><h4>" + obj[i].name + "</h4>" + obj[i].description + "</a>";
+						if (obj[i].homepage)
+							url = obj[i].homepage;
+						HTML += "<a href=\"" + url + "\" class=\"project\"><img src=\"https://raw.githubusercontent.com/" + obj[i].full_name + "/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png\" onerror=\"this.src = \'https://doubledotlabs.github.io/images/testtube.png\';\"><h4>" + obj[i].name + "</h4>" + obj[i].description + "</a>";
 					}
 					projects.innerHTML = HTML;
 					onPageChange();

@@ -351,7 +351,7 @@
 		function onPageChange() {
 			footer.style.display = "none";
 
-			if (!isAnimating) {
+			if (isAnimating != document.location.hash) {
 				var element;
 				if (about.style.display != "none")
 					element = aboutContent;
@@ -361,7 +361,7 @@
 					element = members;
 				else return;
 
-				isAnimating = true;
+				isAnimating = document.location.hash;
 				for (var i = 0; i < element.childNodes.length; i++) {
 					fadeIn(element.childNodes[i], 25 * (i + 1));
 				}

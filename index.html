@@ -282,6 +282,7 @@
 			if (parent.location.hash)
 				setPage(parent.location.hash.substring(1));
 			else setPage("about");
+			document.body.scrollTop = 0;
 		};
 
 		window.onresize = function() {
@@ -382,7 +383,6 @@
 
 			contentHeight += 67;
 			footer.style.marginTop = Math.max(window.innerHeight - contentHeight, 0) + "px";
-			document.body.scrollTop = 0;
 			footer.style.display = "inherit";
 		}
 

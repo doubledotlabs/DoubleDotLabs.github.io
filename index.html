@@ -349,9 +349,6 @@
 
 		function onPageChange() {
 			footer.style.display = "none";
-			setTimeout(function() {
-				onSizeChange();
-			}, 50);
 
 			if (!isAnimating) {
 				var element;
@@ -372,6 +369,8 @@
 					isAnimating = false;
 				}, 75 * element.childNodes.length);
 			}
+
+			onSizeChange();
 		}
 
 		function onSizeChange() {

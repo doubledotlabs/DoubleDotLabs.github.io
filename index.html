@@ -307,8 +307,8 @@
 			var img = new Image();
 			img.className = "logo";
 			img.addEventListener("load", function() {
-				logo.replaceWith(img);
-				logo = img;
+				logo.src = img.src;
+				console.log("loaded");
 			}, false);
 			img.src = "images/logo.png";
 		};

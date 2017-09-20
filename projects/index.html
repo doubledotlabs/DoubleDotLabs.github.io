@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+
+	<meta name="description" content="App developer and designer">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="generator" content="James Fenn" />
+	<title>Repository</title>
+
+	<meta name="theme-color" content="#E3F2FD">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel="icon" sizes="256x256" href="../favicon.ico">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-title" content="James Fenn">
+	<link rel="apple-touch-icon-precomposed" sizes="1997x993" href="../images/logo.png">
+	<link rel="apple-touch-icon-precomposed" sizes="1997x993" href="../images/logo.png">
+	<link rel="apple-touch-icon-precomposed" sizes="1997x993" href="../images/logo.png">
+	<meta name="msapplication-TileImage" content="../images/logo.png">
+
+	<link href="https://fonts.googleapis.com/css?family=Rubik|Roboto+Mono" rel="stylesheet">
+	<script type="text/javascript" src="https://cdn.rawgit.com/showdownjs/showdown/1.7.4/dist/showdown.min.js"></script>
+	<style>
+		* {
+			font-family: 'Rubik', serif;
+		}
+
+		body {
+			padding: 0;
+			margin: 0;
+		}
+
+		header {
+			padding: 16px calc(8px + 20%);
+			margin: 0;
+			color: black;
+		}
+
+		nav {
+			padding: 8px calc(8px + 20%);
+			background-color: black;
+		}
+
+		a {
+			color: #58CCB0 !important;
+			font-weight: bold;
+			transition: color .25s;
+			-moz-transition: color .25s;
+			-webkit-transition: color .25s;
+		}
+
+		nav>a {
+			text-decoration: none;
+			color: white !important;
+		}
+
+		nav>a:hover {
+			color: #80EACE !important;
+		}
+
+		img {
+			max-width: 100%;
+		}
+
+		#content {
+			padding: 8px calc(8px + 20%);
+		}
+
+		pre {
+			background-color: #E0E0E0;
+			overflow-x: scroll;
+			border-radius: 4px;
+			padding: 16px;
+		}
+
+		code {
+			font-family: 'Roboto Mono', monospace;
+			background-color: #E0E0E0;
+			border-radius: 2px;
+			padding-left: 4px;
+			padding-right: 4px;
+			font-size: 0.9em;
+		}
+
+		pre>code {
+			padding-left: 0px;
+			padding-right: 0px;
+			font-size: 1em;
+		}
+
+		@media(max-width: 800px) {
+			header {
+				padding: 16px 16px;
+			}
+
+			nav {
+				padding: 8px 16px;
+			}
+
+			#content {
+				padding: 8px 16px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h1 id="title">Repository</h1>
+	</header>
+	<nav>
+		<a id="github" href="/" target="_blank">GitHub</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a id="releases" href="/">Releases</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a id="link" href="/" target="_blank"></a>
+	</nav>
+	<main id="content">
+		Something something something.
+	</main>
+</body>
+<script>
+	var title = document.getElementById('title');
+	var content = document.getElementById('content');
+	var github = document.getElementById('github');
+	var releases = document.getElementById('releases');
+	var link = document.getElementById('link');
+
+	var repository = parent.location.hash.substring(1);
+	var url = "https://raw.githubusercontent.com/" + repository + "/master/README.md";
+
+	document.title = repository.substring(repository.indexOf("/") + 1);
+	title.innerHTML = repository.substring(repository.indexOf("/") + 1);
+
+	github.href = "https://github.com/" + repository;
+	releases.href = "https://doubledotlabs.github.io/projects/releases/#" + repository;
+
+	var readme = createCORSRequest("GET", url);
+	readme.onreadystatechange = function() {
+		if (readme.readyState === 4) {
+			if (readme.status === 200 || readme.status == 0) {
+				console.log(readme.responseText);
+				var converter = new showdown.Converter();
+				converter.setOption('tables', true);
+				content.innerHTML = converter.makeHtml(readme.responseText);
+			}
+		}
+	};
+	readme.send(null);
+
+	var repo = createCORSRequest("GET", "https://api.github.com/repos/" + repository);
+	repo.onreadystatechange = function() {
+		if (repo.readyState === 4) {
+			if (repo.status === 200 || repo.status == 0) {
+				var obj = JSON.parse(repo.responseText);
+				if (obj.homepage) {
+					if (obj.homepage.startsWith("https://play.google.com/"))
+						link.innerHTML = "Google Play";
+					else {
+						if (obj.homepage.includes(".github.io")) {
+							link.innerHTML = "Website";
+						} else if (obj.homepage.replace(/[^.]/g, "").length > 1) {
+							var temp = obj.homepage.substring(obj.homepage.indexOf(".") + 1);
+							temp = temp.substring(0, temp.indexOf("."));
+							link.innerHTML = temp.charAt(0).toUpperCase() + temp.substring(1);
+						} else if (obj.homepage.replace(/[^.]/g, "").length > 0) {
+							var temp = obj.homepage.substring(obj.homepage.indexOf("/") + 2);
+							temp = temp.substring(0, temp.indexOf("."));
+							link.innerHTML = temp.charAt(0).toUpperCase() + temp.substring(1);
+						} else link.innerHTML = "Link";
+					}
+					link.href = obj.homepage;
+				}
+			}
+		}
+	};
+	repo.send(null);
+
+	function createCORSRequest(method, url) {
+		var xhr = new XMLHttpRequest();
+		if ("withCredentials" in xhr) {
+			xhr.open(method, url, true);
+		} else if (typeof XDomainRequest != "undefined") {
+			xhr = new XDomainRequest();
+			xhr.open(method, url);
+		} else {
+			xhr = null;
+		}
+		return xhr;
+	}
+</script>
+
+</html>

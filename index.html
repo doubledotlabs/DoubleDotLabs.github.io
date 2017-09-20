@@ -246,7 +246,7 @@
 	<main class="padded" id="main">
 		<div id="about">
 			<div id="aboutContent">
-				<img class="logo" src="./images/logo.svg">
+				<img id="logo" class="logo" src="./images/logo.svg">
 				<h3>Prologue</h3>
 				<p>
 					We created Double Dot Labs to make a collection of open source projects accessible to everyone.
@@ -291,6 +291,7 @@
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 	<script>
+		var logo = document.getElementById('logo');
 		var about = document.getElementById('about');
 		var aboutContent = document.getElementById('aboutContent');
 		var projects = document.getElementById('projects');
@@ -302,6 +303,14 @@
 				setPage(parent.location.hash.substring(1));
 			else setPage("about");
 			document.body.scrollTop = 0;
+
+			var img = new Image();
+			img.className = "logo";
+			img.addEventListener("load", function() {
+				logo.replaceWith(img);
+				logo = img;
+			}, false);
+			img.src = "images/logo.png";
 		};
 
 		window.onresize = function() {

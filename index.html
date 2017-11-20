@@ -299,9 +299,7 @@
 		var footer = document.getElementById('footer');
 
 		window.onload = function() {
-			if (parent.location.hash)
-				setPage(parent.location.hash.substring(1));
-			else setPage("about");
+			setPage(getSearch());
 			document.body.scrollTop = 0;
 
 			var img = new Image();
@@ -354,9 +352,15 @@
 			}
 		}
 		memberContent.send(null);
+		
+		function getSearch() {
+    			if (window.location.search) 
+      				return window.location.search.replace("?", "");
+    			else return "about";
+  		}
 
 		function setPage(page) {
-			document.location.hash = page;
+			window.history.replaceState(null, null, "?" + page);
 
 			document.getElementById('navigation').childNodes.forEach(function(element) {
 				if (element.id && element.id.substring(5) == page)
@@ -379,7 +383,7 @@
 		function onPageChange() {
 			footer.style.display = "none";
 
-			if (isAnimating != document.location.hash) {
+			if (isAnimating != getSearch()) {
 				var element;
 				if (about.style.display != "none")
 					element = aboutContent;
@@ -389,7 +393,7 @@
 					element = members;
 				else return;
 
-				isAnimating = document.location.hash;
+				isAnimating = getSearch();
 				for (var i = 0; i < element.childNodes.length; i++) {
 					fadeIn(element.childNodes[i], 25 * (i + 1));
 				}
@@ -415,7 +419,7 @@
 		}
 
 		function fadeOut(pageTo) {
-			var id = document.location.hash.substring(1);
+			var id = getSearch();
 			if (id == "about")
 				id = "aboutContent";
 

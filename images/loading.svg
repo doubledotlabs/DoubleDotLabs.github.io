@@ -1,0 +1,182 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 26.458333 26.458333" version="1.1">
+ <g>
+  <g transform="translate(0,-270.54167)">
+<g transform="translate(0.64276425,0.73568042)">
+    <path
+      style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.30460885;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 11.263486,283.03516 a 5,5 0 0 1 -5.0000001,5 5,5 0 0 1 -5,-5 5,5 0 0 1 5,-5 5,5 0 0 1 5.0000001,5 z"
+         id="path815">
+      <animate
+        id="frame1"
+        attributeName="display"
+        values="inline;none;inline;inline"
+        keyTimes="0;0.21875;0.984375;1"
+        dur="2s"
+        begin="0s"
+        repeatCount="indefinite" />
+    </path>
+    <path
+      style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.30460885;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 23.909319,283.03516 a 5,5 0 0 1 -5,5 5,5 0 0 1 -5,-5 5,5 0 0 1 5,-5 5,5 0 0 1 5,5 z"
+         id="path815-2">
+      <animate
+        id="frame1-2"
+        attributeName="display"
+        values="inline;none;inline;inline"
+        keyTimes="0;0.21875;0.984375;1"
+        dur="2s"
+        begin="0s"
+        repeatCount="indefinite" />
+    </path>
+</g>
+  </g>
+<g transform="translate(0,-270.54167)">
+  <path
+    d="m 12.40625,283.77084 a 5.2500001,5 0 0 1 -5.2499998,5 5.2500001,5 0 0 1 -5.2500001,-5 5.2500001,5 0 0 1 5.2500001,-5 5.2500001,5 0 0 1 5.2499998,5 z"
+       style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.3121312;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path900-1">
+    <animate
+      id="frame2-1"
+      attributeName="display"
+      values="none;inline;none;inline;none;none"
+      keyTimes="0;0.21875;0.234375;0.96875;0.984375;1"
+      dur="2s"
+      begin="0s"
+      repeatCount="indefinite" />
+  </path>
+  <path
+    d="m 24.552,283.77084 a 5.25,5 0 0 1 -5.25,5 5.25,5 0 0 1 -5.25,-5 5.25,5 0 0 1 5.25,-5 5.25,5 0 0 1 5.25,5 z"
+       style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.3121312;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path900-2">
+    <animate
+      id="frame2-2"
+      attributeName="display"
+      values="none;inline;none;inline;none;none"
+      keyTimes="0;0.21875;0.234375;0.96875;0.984375;1"
+      dur="2s"
+      begin="0s"
+      repeatCount="indefinite" />
+  </path>
+</g>
+<g transform="translate(0,-270.54167)">
+  <path
+    style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.46381825;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 24.552166,283.77612 c 0,0.97971 -0.76749,2.93481 -1.794504,3.83715 -1.027014,0.90234 -2.480985,1.19395 -3.205663,1.16285 -4.83359,-0.20745 -3.951883,-5.07812 -6.389651,-5.07812 -1.274083,0 -1.916538,2.43616 -2.892069,3.39537 -0.9788978,0.96252 -2.35722,1.71756 -3.3641116,1.68275 -2.0103223,-0.0695 -2.1223128,-0.32254 -3.2019902,-1.15978 -1.0796774,-0.83724 -1.7980103,-2.71233 -1.7980103,-3.84022 0,-1.10852 0.7651031,-3.0181 1.8388722,-3.87392 1.0737691,-0.85582 1.2011539,-1.21168 3.1611283,-1.12608 0.7188845,0.0314 2.4161769,0.67168 3.1889836,1.21611 1.334181,0.93991 1.832395,3.12703 3.067197,3.12703 1.274532,0 2.029155,-2.6152 3.255796,-3.50229 0.936611,-0.67734 2.304492,-0.81439 3.133855,-0.84085 1.915546,-0.0611 2.427104,0.50515 3.467202,1.39743 1.040098,0.89228 1.532965,2.58926 1.532965,3.60257 z"
+       id="path901">
+    <animate
+      id="frame3"
+      attributeName="display"
+      values="none;inline;none;inline;none;none"
+      keyTimes="0;0.234375;0.25;0.953125;0.96875;1"
+      dur="2s"
+      begin="0s"
+      repeatCount="indefinite" />
+  </path>
+</g>
+<g transform="translate(0,-270.54167)">
+  <path
+    style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.46381825;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 24.552166,283.77612 c 0,0.97971 -0.76749,2.93481 -1.794504,3.83715 -1.027014,0.90234 -2.480322,1.16534 -3.205663,1.16285 -2.094077,-0.007 -4.0187,-3.80859 -6.456468,-3.80859 -1.274083,0 -1.849721,1.16663 -2.825252,2.12584 -0.9788978,0.96252 -2.35722,1.71756 -3.3641116,1.68275 -2.0103223,-0.0695 -2.1223128,-0.32254 -3.2019902,-1.15978 -1.0796774,-0.83724 -1.7980103,-2.71233 -1.7980103,-3.84022 0,-1.10852 0.7651031,-3.0181 1.8388722,-3.87392 1.0737691,-0.85582 1.2011539,-1.21168 3.1611283,-1.12608 0.7188845,0.0314 2.4161769,0.67168 3.1889836,1.21611 1.334181,0.93991 1.765578,1.99113 3.00038,1.99113 1.274532,0 2.095972,-1.4793 3.322613,-2.36639 0.936611,-0.67734 2.304492,-0.81439 3.133855,-0.84085 1.915546,-0.0611 2.427104,0.50515 3.467202,1.39743 1.040098,0.89228 1.532965,2.58926 1.532965,3.60257 z"
+       id="path838">
+    <animate
+      id="frame4"
+      attributeName="display"
+      values="none;inline;none;inline;none;none"
+      keyTimes="0;0.25;0.265625;0.9375;0.953125;1"
+      dur="2s"
+      begin="0s"
+      repeatCount="indefinite" />
+  </path>
+</g>
+<g transform="translate(0,-270.54167)">
+  <path
+    style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.46381825;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 23.549905,283.77612 c 0,0.97971 -0.567038,2.46709 -1.594052,3.36943 -1.027014,0.90234 -2.480321,1.03164 -3.205663,1.02921 -0.951561,-0.003 -2.303927,-0.59889 -3.068897,-1.3209 -0.918481,-0.86689 -1.25573,-1.08452 -2.585762,-1.08452 -1.274083,0 -1.849721,0.36482 -2.825252,1.32403 -0.9788978,0.96252 -1.8226809,1.24984 -2.8295725,1.21503 -2.0103223,-0.0695 -1.9218607,-0.25572 -3.0015381,-1.09296 -1.0796774,-0.83724 -1.7311929,-2.31143 -1.7311929,-3.43932 0,-1.10852 0.3641988,-2.41674 1.4379679,-3.27256 1.0737691,-0.85582 1.2011539,-1.34532 3.1611283,-1.25972 0.7188845,0.0314 2.0152726,0.20396 2.7880793,0.74839 1.334181,0.93991 1.812531,1.5234 3.067198,1.5234 1.254667,0 0.854378,0.17165 2.654439,-0.76276 1.800061,-0.93441 2.304492,-1.48257 3.133855,-1.50903 1.915546,-0.0611 2.293469,0.23788 3.333567,1.13016 1.040098,0.89228 1.265695,2.38881 1.265695,3.40212 z"
+       id="path839">
+    <animate
+      id="frame5"
+      attributeName="display"
+      values="none;inline;none;inline;none;none"
+      keyTimes="0;0.265625;0.28125;0.921875;0.9375;1"
+      dur="2s"
+      begin="0s"
+      repeatCount="indefinite" />
+  </path>
+</g>
+<g transform="translate(0,-270.54167)">
+<path
+    style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.46381825;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 22.748096,283.77612 c 0,0.97971 -1.034759,2.26664 -2.061773,3.16898 -1.027014,0.90234 -1.350247,1.07287 -3.740202,1.02921 -2.389956,-0.0437 -1.160555,-1.00054 -3.783773,-1.00226 -2.623218,-0.002 -1.583597,1.06336 -3.7839374,1.00226 -2.2003404,-0.0611 -2.7904867,-0.32253 -3.8701641,-1.15977 -1.0796774,-0.83724 -1.6643755,-1.91053 -1.6643755,-3.03842 0,-1.10852 0.6314683,-2.01584 1.7052374,-2.87166 1.0737691,-0.85582 1.8768801,-1.93539 4.1633891,-1.52699 2.2865085,0.40841 1.1956925,0.786 3.5166685,0.73499 2.320977,-0.051 1.492776,-0.64808 3.449686,-0.73499 1.95691,-0.0869 3.429365,0.37152 4.469463,1.2638 1.040098,0.89228 1.599781,2.12154 1.599781,3.13485 z"
+       id="path840">
+    <animate
+      id="frame6"
+      attributeName="display"
+      values="none;inline;none;inline;none;none"
+      keyTimes="0;0.28125;0.296875;0.90625;0.921875;1"
+      dur="2s"
+      begin="0s"
+      repeatCount="indefinite" />
+  </path>
+</g>
+<g transform="translate(0,-270.54167)">
+<path
+    style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.46381825;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 21.278114,283.77612 c 0,0.97971 -0.834308,1.99937 -1.861322,2.90171 -1.626618,1.96597 -4.55443,1.03553 -6.187627,1.02921 -2.972031,0.19078 -4.6784773,0.64016 -6.5182056,-0.82568 -1.0796774,-0.83724 -1.5975581,-1.97735 -1.5975581,-3.10524 0,-1.10852 0.1637466,-1.61494 1.2375157,-2.47076 2.4063431,-2.76047 4.936932,-1.74432 6.878249,-1.79426 3.703877,-0.10742 4.91507,0.18928 6.181898,1.06336 1.266827,0.87407 1.86705,2.18835 1.86705,3.20166 z"
+       id="path841">
+    <animate
+      id="frame7"
+      attributeName="display"
+      values="none;inline;none;inline;none;none"
+      keyTimes="0;0.296875;0.3125;0.890625;0.90625;1"
+      dur="2s"
+      begin="0s"
+      repeatCount="indefinite" />
+  </path>
+</g>
+<g transform="translate(0,-270.54167)">
+<path
+    style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.75716567;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 19.729167,283.77084 a 6.5,4.5 0 0 1 -6.5,4.5 6.5,4.5 0 0 1 -6.5,-4.5 6.5,4.5 0 0 1 6.5,-4.5 6.5,4.5 0 0 1 6.5,4.5 z"
+       id="path842">
+    <animate
+      id="frame8"
+      attributeName="display"
+      values="none;inline;none;inline;none;none"
+      keyTimes="0;0.3125;0.328125;0.875;0.890625;1"
+      dur="2s"
+      begin="0s"
+      repeatCount="indefinite" />
+  </path>
+</g>
+<g transform="translate(0,-270.54167)">
+<path
+    style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.7506662;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 18.979167,283.77084 a 5.75,5 0 0 1 -5.75,5 5.75,5 0 0 1 -5.7500003,-5 5.75,5 0 0 1 5.7500003,-5 5.75,5 0 0 1 5.75,5 z"
+       id="path843">
+    <animate
+      id="frame9"
+      attributeName="display"
+      values="none;inline;none;inline;none;none"
+      keyTimes="0;0.328125;0.34375;0.859375;0.875;1"
+      dur="2s"
+      begin="0s"
+      repeatCount="indefinite" />
+  </path>
+</g>
+<g transform="translate(0,-270.54167)">
+<path
+    style="fill:#212121;fill-opacity:1;stroke:none;stroke-width:0.69999981;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 18.229167,283.77084 a 4.9999999,5 0 0 1 -5,5 4.9999999,5 0 0 1 -5.0000005,-5 4.9999999,5 0 0 1 5.0000005,-5 4.9999999,5 0 0 1 5,5 z"
+       id="path844">
+    <animate
+      id="frame10"
+      attributeName="display"
+      values="none;inline;none;none"
+      keyTimes="0;0.34375;0.859375;1"
+      dur="2s"
+      begin="0s"
+      repeatCount="indefinite" />
+  </path>
+</g>
+ </g>
+</svg>

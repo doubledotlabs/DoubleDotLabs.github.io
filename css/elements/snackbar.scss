@@ -1,0 +1,32 @@
+.snackbar {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding-left: 10vw;
+	padding-right: 10vw;
+	padding-top: 1em;
+	padding-bottom: .5em;
+	background-color: rgba(255, 255, 255, 0.7);
+	background-color: var(--normal-overlay);
+	border-top: 1px solid #BDBDBD;
+	border-top: 1px solid var(--normal-outline);
+	z-index: 102;
+
+	transition: padding .25s;
+	-moz-transition: padding .25s;
+	-webkit-transition: padding .25s;
+}
+
+.snackbar > * {
+	vertical-align: middle;
+}
+
+.snackbar__text {
+	display: inline-block;
+	padding-right: 2em;
+}
+
+.snackbar__link {
+	float: right;
+}

@@ -1,0 +1,29 @@
+table {
+	display: inline-block;
+	max-width: 100%;
+	overflow-x: auto;
+	border-collapse: collapse;
+	border: 1px solid #BDBDBD;
+	border: 1px solid var(--normal-outline);
+	border-radius: 5px;
+}
+
+thead {
+	background: #BDBDBD;
+	background: var(--normal-outline);
+}
+
+th, td {
+	padding: 0.5em 1em;
+	text-align: left;
+	word-break: normal;
+}
+
+tr {
+	border-bottom: 1px solid #BDBDBD;
+	border-bottom: 1px solid var(--normal-outline);
+}
+
+tr:last-child {
+	border-bottom: none;
+}

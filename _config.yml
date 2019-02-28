@@ -6,6 +6,7 @@ image: "/images/doubledot.png"
 url: "https://doubledotlabs.github.io"
 domainurl: "https://doubledotlabs.github.io"
 baseurl: "/"
+repository: doubledotlabs/DoubleDotLabs.github.io
 
 collections:
     blogs:
@@ -24,3 +25,4 @@ sass:
 
 plugins:
   - jekyll-sitemap
+  - jekyll-github-metadata

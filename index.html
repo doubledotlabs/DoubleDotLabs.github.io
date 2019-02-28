@@ -8,10 +8,10 @@ permalink: /
         <i class="nav__item__icon material-icons">home</i>
         <span class="nav__item__title">Home</span>
     </button>
-    <button page="blog" class="nav__item">
+    <!--<button page="blog" class="nav__item">
         <i class="nav__item__icon material-icons">notes</i>
         <span class="nav__item__title">Blog</span>
-    </button>
+    </button>-->
     <button page="projects" class="nav__item">
         <i class="nav__item__icon material-icons">code</i>
         <span class="nav__item__title">Projects</span>
@@ -54,9 +54,26 @@ permalink: /
     <div page="blog">
     </div>
 	<div page="projects">
+	    <div class="layout--grid">
+	        {% for repo in site.github.public_repositories %}
+	        <a class="item item--box" href="{{ repo.html_url }}">
+	            <span class="item__title">{{ repo.name }}</span>
+	            {{ repo.description }}
+	        </a>
+	        {% endfor %}
+	    </div>
 	</div>
 	<div page="members">
+	    <div class="layout--grid">
+	        {% for user in site.github.organization_members %}
+	        <a class="item item--box" href="{{ user.html_url }}">
+	            <img class="lozad img--round item--box__img" src="/images/ic/person.svg" data-src="{{ user.avatar_url }}" class="round" alt="Profile picture">
+	            <span class="item__title">{{ user.login }}</span>
+	        </a>
+	        {% endfor %}
+	    </div>
 	</div>
 </main>
 
 {% include navjs.html %}
+{% include lazyjs.html %}

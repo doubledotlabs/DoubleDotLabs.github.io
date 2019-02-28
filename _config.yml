@@ -1,13 +1,16 @@
 name: Double Dot Labs
-description: Developing for developers.
-url: https://doubledotlabs.github.io
+description: "A community of open source developers and designers building things for the community."
+icon: "/images/logo.png"
+image: "/images/doubledot.png"
+
+url: "https://doubledotlabs.github.io"
+domainurl: "https://doubledotlabs.github.io"
 baseurl: "/"
 
 collections:
-    types:
-        output: false
-    projects:
+    blogs:
         output: true
+        permalink: /blog/:year-:month-:day-:title/
 
 exclude:
   - Gemfile
@@ -16,5 +19,8 @@ exclude:
   - README.md
   - CNAME
 
-include:
-  - .scripts
+sass:
+    sass_dir: ./css
+
+plugins:
+  - jekyll-sitemap

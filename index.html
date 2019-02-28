@@ -1,467 +1,62 @@
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="Developing for developers.">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Double Dot Labs</title>
-
-	<meta name="mobile-web-app-capable" content="yes">
-	<link rel="icon" sizes="192x192" href="./images/logo.png">
-
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-title" content="Double Dot Labs">
-	<link rel="apple-touch-icon-precomposed" href="./images/logo.png">
-
-	<meta name="msapplication-TileImage" content="./images/logo.png">
-	<meta name="msapplication-TileColor" content="#3372DF">
-
-	<link rel="shortcut icon" href="./images/logo.png">
-	<link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
-
-	<style>
-		* {
-			font-family: 'Rubik', sans-serif;
-		}
-
-		body {
-			margin: 0;
-			animation-name: alphaIn;
-			animation-duration: 1s;
-			animation-timing-function: ease-in;
-		}
-
-		nav {
-			background-color: black;
-			color: white;
-			text-align: center;
-		}
-
-		nav>span {
-			display: inline-block;
-			user-select: none;
-			padding: 12px 16px;
-			transition: background-color .25s;
-			-moz-transition: background-color .25s;
-			-webkit-transition: background-color .25s;
-		}
-
-		.selected {
-			font-weight: bold;
-			color: #80EACE;
-		}
-
-		footer {
-			padding: 24px 16px;
-			background-color: black;
-			color: white;
-		}
-
-		footer>a {
-			display: inline-block;
-			color: white;
-			font-weight: bold;
-			padding-left: 12px;
-			padding-right: 12px;
-			text-decoration: none;
-			transition: color .25s;
-			-moz-transition: color .25s;
-			-webkit-transition: color .25s;
-		}
-
-		footer>a:hover {
-			color: #80EACE;
-		}
-
-		main {
-			padding-top: 24px;
-			padding-bottom: 24px;
-			color: #757575;
-		}
-
-		header {
-			padding: 12px 16px;
-    	background-color: white;
-		}
-
-		nav>span:hover {
-			background-color: rgba(255, 255, 255, 0.25);
-		}
-
-		.padded {
-			padding-left: 16px;
-			padding-right: 16px;
-		}
-
-		#projects {
-			width: 332px;
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		.project {
-			display: inline-block;
-			width: 300px;
-			text-align: center;
-			color: #757575;
-			text-decoration: none;
-			padding: 12px 16px;
-			transition: background-color .25s;
-			-moz-transition: background-color .25s;
-			-webkit-transition: background-color .25s;
-		}
-
-		.project:hover {
-			background-color: rgba(0, 0, 0, 0.1);
-		}
-
-		.project>img {
-			width: 64px;
-			height: 64px;
-		}
-
-		.project>h4 {
-			color: black;
-			margin: 0;
-		}
-
-		#members {
-			width: 216px;
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		.member {
-			display: inline-block;
-			width: 200px;
-			height: 200px;
-			margin: 8px;
-			text-decoration: none;
-		}
-
-		.member>div {
-			width: calc(100% - 24px);
-			background: rgba(0, 0, 0, 0.3);
-			color: white;
-			display: block;
-			padding: 12px;
-		}
-
-		.logo {
-			width: 100px;
-			height: 100px;
-			animation: rotate 3s cubic-bezier(0.26, 0.89, 0.76, 0.47) infinite;
-		}
-
-		#about>h3 {
-			margin-top: 40px;
-			margin-bottom: 0;
-		}
-
-		#background {
-			display: none;
-		}
-
-		@keyframes alphaIn {
-			from { opacity: 0; }
-			to { opacity: 1; }
-		}
-
-		@keyframes rotate {
-			0% { transform: rotate(0deg); }
-			25% { transform: rotate(90deg); }
-			50% { transform: rotate(180deg); }
-			75% { transform: rotate(270deg); }
-			100% { transform: rotate(360deg); }
-		}
-
-		@media(max-width: 479px) {
-			header {
-				text-align: center;
-			}
-		}
-
-		@media(min-width: 480px) {
-			#members {
-				width: 432px;
-			}
-		}
-
-		@media(min-width: 690px) {
-			#projects {
-				width: 664px;
-			}
-
-			#members {
-				width: 648px;
-			}
-		}
-
-		@media(min-width: 900px) {
-			#members {
-				width: 864px;
-			}
-
-			#about {
-				width: 40%;
-				padding: 10%;
-				background-color: white;
-			}
-
-			#background {
-				display: inherit;
-				position: fixed;
-				right: 0;
-				top: 0;
-				bottom: 0;
-				width: 40%;
-				z-index: -1;
-				background: linear-gradient(to right, white, transparent), url(./images/background.svg) right top repeat;
-				background-size: contain;
-				overflow: hidden;
-			}
-		}
-
-		@media(min-width: 1050px) {
-			#projects {
-				width: 996px;
-			}
-		}
-	</style>
-</head>
-
-<body>
-	<header class="padded">
-		<h2>Double Dot Labs</h2>
-	</header>
-	<nav class="padded" id="navigation">
-		<span class="selected" onclick="fadeOut('about')" id="page-about">About</span>
-		<span onclick="fadeOut('projects')" id="page-projects">Projects</span>
-		<span onclick="fadeOut('members')" id="page-members">Members</span>
-	</nav>
-	<main class="padded" id="main">
-		<div id="about">
-			<div id="aboutContent">
-				<img id="logo" class="logo" src="./images/logo.svg">
-				<h3>Prologue</h3>
-				<p>
-					We created Double Dot Labs to make a collection of open source projects accessible to everyone.
-				</p>
-				<p>
-					Our current projects range from messing around with user interfaces in augmented reality to creating our own version of Android based on the parts we like most.
-				</p>
-				<h3>The Problem</h3>
-				<p>
-					Our group was brought together by a lack of motivation. Well, that's not entirely accurate. The main issue within Double Dot Labs was that we had far too many ideas for apps that we never built, and we knew we weren't the only people with this problem.
-					Many open source projects have the potential to gain millions of users, but they aren't properly maintained, haven't been thought out and designed properly, or just aren't very appealing to new users.
-				</p>
-				<h3>The Solution</h3>
-				<p>
-					The purpose of Double Dot Labs is to provide a way to organize these projects. The community within Double Dot Labs will evaluate an idea for a project, then create basic guidelines for development. Once a project is ready for development, we can start
-					building it.
-				</p>
-				<p>
-					But we don't have to. Double Dot Labs doesn't require contributors to work on a new project if they don't want to. Developers have the freedom to choose what to work on, and when to do it. GitHub's issue tracking allows us to work on multiple projects
-					with multiple developers at once with as little setbacks as possible.
-				</p>
-				<h3>Progress</h3>
-				<p>
-					Currently, Double Dot Labs consists of only a very small group of developers. This is because while we have a basic idea of the design process for applications, we must still test and improve this process before it is ready for implementation on a larger
-					scale.
-				</p>
-			</div>
-			<div id="background"></div>
-		</div>
-		<div id="projects"></div>
-		<div id="members"></div>
-	</main>
-	<footer id="footer">
-		<a href="https://github.com/DoubleDotLabs">GitHub</a>
-		<a href="https://plus.google.com/b/106577217343717481759/106577217343717481759">Google Plus</a>
-		<a href="https://twitter.com/doubledotlabs">Twitter</a>
-		<a href="mailto:doubledotlabs@gmail.com">E-Mail</a>
-	</footer>
-
-	<script src="https://code.getmdl.io/1.1.1/material.min.js"></script>
-
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-	<script>
-		var logo = document.getElementById('logo');
-		var about = document.getElementById('about');
-		var aboutContent = document.getElementById('aboutContent');
-		var projects = document.getElementById('projects');
-		var members = document.getElementById('members');
-		var footer = document.getElementById('footer');
-
-		window.onload = function() {
-			setPage(getSearch());
-			document.body.scrollTop = 0;
-
-			var img = new Image();
-			img.className = "logo";
-			img.addEventListener("load", function() {
-				logo.src = img.src;
-				console.log("loaded");
-			}, false);
-			img.src = "images/logo.png";
-		};
-
-		window.onresize = function() {
-			onSizeChange();
-		}
-
-		var repoContent = new XMLHttpRequest();
-		repoContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/repos", true);
-		repoContent.onreadystatechange = function() {
-			if (repoContent.readyState === 4) {
-				if (repoContent.status === 200 || repoContent.status == 0) {
-					var obj = JSON.parse(repoContent.responseText);
-					var HTML = "";
-					for (var i = 1; obj[i]; i++) {
-						var url = obj[i].html_url;
-						if (obj[i].homepage)
-							url = obj[i].homepage;
-						HTML += "<a href=\"" + url + "\" class=\"project\"><img src=\"https://raw.githubusercontent.com/" + obj[i].full_name + "/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png\" onerror=\"this.src = \'https://doubledotlabs.github.io/images/testtube.png\';\"><h4>" + obj[i].name + "</h4>" + obj[i].description + "</a>";
-					}
-					projects.innerHTML = HTML;
-					onPageChange();
-				}
-			}
-		}
-		repoContent.send(null);
-
-		var memberContent = new XMLHttpRequest();
-		memberContent.open("GET", "https://api.github.com/orgs/DoubleDotLabs/members", true);
-		memberContent.onreadystatechange = function() {
-			if (memberContent.readyState === 4) {
-				if (memberContent.status === 200 || memberContent.status == 0) {
-					var obj = JSON.parse(memberContent.responseText);
-					var HTML = "";
-					for (var i = 0; obj[i]; i++) {
-						HTML += "<a href=\"https://github.com/" + obj[i].login + "\" class=\"member\" style=\"background: url(\'" + obj[i].avatar_url + "\') center / cover;\"><div>" + obj[i].login +
-							"</div></a>";
-					}
-					members.innerHTML = HTML;
-					onPageChange();
-				}
-			}
-		}
-		memberContent.send(null);
-		
-		function getSearch() {
-    			if (window.location.search) 
-      				return window.location.search.replace("?", "");
-    			else return "about";
-  		}
-
-		function setPage(page) {
-			window.history.replaceState(null, null, "?" + page);
-
-			document.getElementById('navigation').childNodes.forEach(function(element) {
-				if (element.id && element.id.substring(5) == page)
-					element.className = "selected";
-				else if (element.id) element.className = "";
-			});
-
-			document.getElementById('main').childNodes.forEach(function(element) {
-				if (element.id == page && element.style) {
-					element.style.display = "inherit";
-					element.style.opacity = 1;
-				} else if (element.style) element.style.display = "none";
-			});
-
-			onPageChange();
-		}
-
-		var isAnimating = false;
-
-		function onPageChange() {
-			footer.style.display = "none";
-
-			if (isAnimating != getSearch()) {
-				var element;
-				if (about.style.display != "none")
-					element = aboutContent;
-				else if (projects.style.display != "none")
-					element = projects;
-				else if (members.style.display != "none")
-					element = members;
-				else return;
-
-				isAnimating = getSearch();
-				for (var i = 0; i < element.childNodes.length; i++) {
-					fadeIn(element.childNodes[i], 25 * (i + 1));
-				}
-
-				setTimeout(function() {
-					isAnimating = false;
-				}, 75 * element.childNodes.length);
-			}
-
-			onSizeChange();
-		}
-
-		function onSizeChange() {
-			var contentHeight = 0;
-			var elements = document.getElementsByClassName('padded')
-			for (var i = 0; i < elements.length; i++) {
-				contentHeight += elements[i].offsetHeight;
-			}
-
-			contentHeight += 67;
-			footer.style.marginTop = Math.max(window.innerHeight - contentHeight, 0) + "px";
-			footer.style.display = "inherit";
-		}
-
-		function fadeOut(pageTo) {
-			var id = getSearch();
-			if (id == "about")
-				id = "aboutContent";
-
-			var element = document.getElementById(id);
-
-			if (!isAnimating) {
-				isAnimating = true;
-				var opacity = 1;
-				var interval = setInterval(function() {
-					if (opacity < 0) {
-						clearInterval(interval);
-						element.style.opacity = 0;
-						isAnimating = false;
-						setPage(pageTo);
-					} else {
-						element.style.opacity = Math.pow(opacity, 2);
-						opacity -= 0.02;
-					}
-				});
-			} else setPage(pageTo);
-		}
-
-		function fadeIn(element, delay) {
-			if (!element.tagName)
-				return;
-
-			element.parentElement.style.opacity = 1;
-			element.style.opacity = 0;
-			setTimeout(function() {
-				var opacity = 0;
-				var interval = setInterval(function() {
-					if (opacity > 1) {
-						clearInterval(interval);
-						element.style.opacity = 1;
-					} else {
-						element.style.opacity = Math.pow(opacity, 2);
-						opacity += 0.02;
-					}
-				}, 10);
-			}, delay);
-		}
-	</script>
-</body>
-
-</html>
+---
+layout: default
+permalink: /
+---
+
+<nav class="nav">
+    <button page="home" class="nav__item">
+        <i class="nav__item__icon material-icons">home</i>
+        <span class="nav__item__title">Home</span>
+    </button>
+    <button page="blog" class="nav__item">
+        <i class="nav__item__icon material-icons">notes</i>
+        <span class="nav__item__title">Blog</span>
+    </button>
+    <button page="projects" class="nav__item">
+        <i class="nav__item__icon material-icons">code</i>
+        <span class="nav__item__title">Projects</span>
+    </button>
+    <button page="members" class="nav__item">
+        <i class="nav__item__icon material-icons">people</i>
+        <span class="nav__item__title">Members</span>
+    </button>
+</nav>
+<main class="padded" id="main">
+	<div page="home">
+	    <h2>Double Dot Labs</h2>
+		<h3>Prologue</h3>
+		<p>
+			We created Double Dot Labs to make a collection of open source projects accessible to everyone.
+		</p>
+		<p>
+			Our current projects range from messing around with user interfaces in augmented reality to creating our own version of Android based on the parts we like most.
+		</p>
+		<h3>The Problem</h3>
+		<p>
+			Our group was brought together by a lack of motivation. Well, that's not entirely accurate. The main issue within Double Dot Labs was that we had far too many ideas for apps that we never built, and we knew we weren't the only people with this problem.
+			Many open source projects have the potential to gain millions of users, but they aren't properly maintained, haven't been thought out and designed properly, or just aren't very appealing to new users.
+		</p>
+		<h3>The Solution</h3>
+		<p>
+			The purpose of Double Dot Labs is to provide a way to organize these projects. The community within Double Dot Labs will evaluate an idea for a project, then create basic guidelines for development. Once a project is ready for development, we can start
+			building it.
+		</p>
+    	<p>
+			But we don't have to. Double Dot Labs doesn't require contributors to work on a new project if they don't want to. Developers have the freedom to choose what to work on, and when to do it. GitHub's issue tracking allows us to work on multiple projects
+			with multiple developers at once with as little setbacks as possible.
+		</p>
+		<h3>Progress</h3>
+		<p>
+			Currently, Double Dot Labs consists of only a very small group of developers. This is because while we have a basic idea of the design process for applications, we must still test and improve this process before it is ready for implementation on a larger
+			scale.
+		</p>
+</div>
+    <div page="blog">
+    </div>
+	<div page="projects">
+	</div>
+	<div page="members">
+	</div>
+</main>
+
+{% include navjs.html %}

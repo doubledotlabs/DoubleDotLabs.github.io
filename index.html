@@ -3,77 +3,31 @@ layout: default
 permalink: /
 ---
 
-<nav class="nav">
-    <button page="home" class="nav__item">
-        <i class="nav__item__icon material-icons">home</i>
-        <span class="nav__item__title">Home</span>
-    </button>
-    <!--<button page="blog" class="nav__item">
-        <i class="nav__item__icon material-icons">notes</i>
-        <span class="nav__item__title">Blog</span>
-    </button>-->
-    <button page="projects" class="nav__item">
-        <i class="nav__item__icon material-icons">code</i>
-        <span class="nav__item__title">Projects</span>
-    </button>
-    <button page="members" class="nav__item">
-        <i class="nav__item__icon material-icons">people</i>
-        <span class="nav__item__title">Members</span>
-    </button>
-</nav>
 <main class="padded" id="main">
-	<div page="home">
-	    <h2>Double Dot Labs</h2>
-		<h3>Prologue</h3>
-		<p>
-			We created Double Dot Labs to make a collection of open source projects accessible to everyone.
-		</p>
-		<p>
-			Our current projects range from messing around with user interfaces in augmented reality to creating our own version of Android based on the parts we like most.
-		</p>
-		<h3>The Problem</h3>
-		<p>
-			Our group was brought together by a lack of motivation. Well, that's not entirely accurate. The main issue within Double Dot Labs was that we had far too many ideas for apps that we never built, and we knew we weren't the only people with this problem.
-			Many open source projects have the potential to gain millions of users, but they aren't properly maintained, haven't been thought out and designed properly, or just aren't very appealing to new users.
-		</p>
-		<h3>The Solution</h3>
-		<p>
-			The purpose of Double Dot Labs is to provide a way to organize these projects. The community within Double Dot Labs will evaluate an idea for a project, then create basic guidelines for development. Once a project is ready for development, we can start
-			building it.
-		</p>
-    	<p>
-			But we don't have to. Double Dot Labs doesn't require contributors to work on a new project if they don't want to. Developers have the freedom to choose what to work on, and when to do it. GitHub's issue tracking allows us to work on multiple projects
-			with multiple developers at once with as little setbacks as possible.
-		</p>
-		<h3>Progress</h3>
-		<p>
-			Currently, Double Dot Labs consists of only a very small group of developers. This is because while we have a basic idea of the design process for applications, we must still test and improve this process before it is ready for implementation on a larger
-			scale.
-		</p>
-</div>
-    <div page="blog">
+    {% capture about_include %}{% include_relative about.md %}{% endcapture %}
+    {{ about_include | markdownify }}
+    <h2>Our Projects</h2>
+    <div class="layout--grid">
+        {% for repo in site.github.public_repositories %}
+        {% assign checkProgress = repo.description | split: '(' %}
+        {% assign checkProgressInt = checkProgress[0] | size %}
+        {% if checkProgressInt > 0 %}
+        <a class="item item--box" href="{{ repo.html_url }}">
+            <span class="item__title">{{ repo.name }}</span>
+            {{ repo.description }}
+        </a>
+        {% endif %}
+        {% endfor %}
     </div>
-	<div page="projects">
-	    <div class="layout--grid">
-	        {% for repo in site.github.public_repositories %}
-	        <a class="item item--box" href="{{ repo.html_url }}">
-	            <span class="item__title">{{ repo.name }}</span>
-	            {{ repo.description }}
-	        </a>
-	        {% endfor %}
-	    </div>
-	</div>
-	<div page="members">
-	    <div class="layout--grid">
-	        {% for user in site.github.organization_members %}
-	        <a class="item item--box" href="{{ user.html_url }}">
-	            <img class="lozad img--round item--box__img" src="/images/ic/person.svg" data-src="{{ user.avatar_url }}" class="round" alt="Profile picture">
-	            <span class="item__title">{{ user.login }}</span>
-	        </a>
-	        {% endfor %}
-	    </div>
-	</div>
+    <h2>Members</h2>
+    <div class="layout--grid">
+        {% for user in site.github.organization_members %}
+        <a class="item item--box" href="{{ user.html_url }}">
+            <img class="lozad img--round item--box__img" src="/images/ic/person.svg" data-src="{{ user.avatar_url }}" class="round" alt="Profile picture">
+            <span class="item__title">{{ user.login }}</span>
+        </a>
+        {% endfor %}
+    </div>
 </main>
 
-{% include navjs.html %}
 {% include lazyjs.html %}

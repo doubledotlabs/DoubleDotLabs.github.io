@@ -1,10 +1,11 @@
 name: Double Dot Labs
+email: "mail@doubledot.dev"
 description: "A group of developers and designers building things for the open source community."
 icon: "/images/logo.png"
 image: "/images/doubledot.png"
 
-url: "https://doubledotlabs.github.io"
-domainurl: "https://doubledotlabs.github.io"
+url: "https://doubledot.dev"
+domainurl: "https://doubledot.dev"
 baseurl: "/"
 repository: doubledotlabs/DoubleDotLabs.github.io
 

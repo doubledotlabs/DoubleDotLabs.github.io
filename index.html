@@ -5,7 +5,9 @@ permalink: /
 
 <main class="padded" id="main">
     {% capture about_include %}{% include_relative about.md %}{% endcapture %}
-    {{ about_include | markdownify }}
+    {% assign about_include = about_include | markdownify | split: '</p>' | first | append: '..</p>' %}
+    {{ about_include }}
+    <a href="/about"><h5>More...</h5></a>
     <h2>Our Projects</h2>
     <div class="layout--grid">
         {% for repo in site.github.public_repositories %}

@@ -19,7 +19,7 @@ Membership does not in any way imply an endorsement of a particular individual b
 Double Dot Labs has an off-topic channel on [freenode.net](https://freenode.net/) that is used for general discussion. To join, you can follow [this link](https://webchat.freenode.net/?channels=%23%23doubledotlabs&uio=MTY9dHJ1ZSY5PXRydWUmMTE9MjE1e1) to access the web client, or follow the steps below to add it to another client:
 
 1. Set the server address to `chat.freenode.net`.
-2. Does your client have support SSL/TLS? If so, set the port to `6697`, otherwise use port `6667`.
+2. Does your client have support for SSL/TLS? If so, set the port to `6697`, otherwise use port `6667`.
 3. Use the command `/nick <nickname>` to change your nickname.
 4. Join the `##doubledotlabs` channel by running the command `/join ##doubledotlabs`.
 

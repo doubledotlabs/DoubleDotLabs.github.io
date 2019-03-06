@@ -1,4 +1,6 @@
-This repository contains Double Dot Labs' website, which displays all current projects, blogs, and other information. It is written in [Jekyll](https://jekyllrb.com), and pulls information from the GitHub API using the [github-metadata](https://github.com/jekyll/github-metadata) plugin.
+# [doubledot.dev](https://doubledot.dev)
+
+This repository contains the source code of the Double Dot Labs website, which displays current projects, blogs, and other DDL-related information. It is written in [Jekyll](https://jekyllrb.com), and pulls information from the GitHub API using the [github-metadata](https://github.com/jekyll/github-metadata) plugin.
 
 [![Freenode IRC channel.](https://img.shields.io/badge/irc.freenode.net-%23%23doubledotlabs-brightgreen.svg?color=008499)](https://webchat.freenode.net/?channels=%23%23doubledotlabs&uio=MTY9dHJ1ZSY5PXRydWUmMTE9MjE1e1)
 [![Twitter account.](https://img.shields.io/badge/twitter-%40doubledotlabs-blue.svg?color=43b4f9&logo=twitter)](https://twitter.com/doubledotlabs)

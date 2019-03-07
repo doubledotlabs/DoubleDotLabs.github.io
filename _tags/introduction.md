@@ -1,5 +1,5 @@
 ---
-layout: tagpage
+layout: tag
 title: "Introduction"
 tag: introduction
 ---

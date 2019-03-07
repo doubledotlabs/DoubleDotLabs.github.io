@@ -10,7 +10,7 @@ permalink: /
     <a href="/about"><h5>More...</h5></a>
     <h2>Blog Posts</h2>
     <div>
-        {% assign posts = site.posts | reverse %}
+        {% assign posts = site.posts | sort: 'date' | reverse %}
         {% for i in (0..4) %}
         {% if posts[i] %}
         <a class="item item--box" href="{{ site.url }}{{ posts[i].url }}">

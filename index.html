@@ -7,7 +7,7 @@ permalink: /
     {% capture about_include %}{% include_relative about.md %}{% endcapture %}
     {% assign about_include = about_include | markdownify | split: '</p>' | first | append: '..</p>' %}
     {{ about_include }}
-    <a href="/about"><h5>More...</h5></a>
+    <a href="/about/"><h5>More...</h5></a>
     <h2>Blog Posts</h2>
     <div>
         {% assign posts = site.posts | sort: 'date' | reverse %}
@@ -22,10 +22,7 @@ permalink: /
         {% endif %}
         {% endfor %}
     </div>
-    <a class="link" href="/blog/">
-        <i class="link__img material-icons">arrow_forward</i>
-        <span class="link__title">All Blog Posts</span>
-    </a>
+    <a href="/blog/"><h5>More blog posts...</h5></a>
     
     <h2>Our Projects</h2>
     <div class="layout--grid">
@@ -39,11 +36,8 @@ permalink: /
         </a>
         {% endif %}
         {% endfor %}
-    </div><br>
-    <a class="link" href="https://github.com/DoubleDotLabs">
-        <i class="link__img material-icons">arrow_forward</i>
-        <span class="link__title">All Projects</span>
-    </a>
+    </div>
+    <a href="https://github.com/DoubleDotLabs"><h5>More projects...</h5></a>
     
     <h2>Members</h2>
     <div class="layout--grid">

@@ -30,21 +30,11 @@ layout: default
         </div>
         <hr>
         <h3>Sources:</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Source</th>
-                    <th>URL</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for citation in page.citations %}
-                <tr>
-                    <td>{{ citation.name }}</td>
-                    <td><a href="{{ citation.url }}">{{ citation.url }}</a></td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        {% for citation in page.citations %}
+        <a class="item" href="{{ citation.url }}">
+            {{ citation.name }}
+            <span class="item__title">{{ citation.url }}</span>
+        </a>
+        {% endfor %}
     </article>
 </main>

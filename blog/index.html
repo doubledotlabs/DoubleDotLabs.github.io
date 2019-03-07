@@ -12,7 +12,8 @@ description: "This blog exists as a centralized collection for documenting anyth
         If you would like to contribute your own article to this collection, please see the instructions in
         <a href="https://github.com/DoubleDotLabs/Blog">the blog's repository</a> on GitHub.
     </p>
-    {% for post in site.posts reversed %}
+    {% assign posts = site.posts | sort: 'date' | reverse %}
+    {% for post in posts %}
     <a class="item item--box" href="{{ site.url }}{{ post.url }}">
         <span class="item__title">{{ post.title }}</span>
         <small>{{ post.date | date: "%B %e %Y" }}</small>

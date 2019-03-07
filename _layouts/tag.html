@@ -3,11 +3,13 @@ layout: default
 ---
 
 <main>
-    <a href="/"><h1>Double Dot Labs</h1></a>
+    {% include title.html %}
+    
     <h2>#{{ page.title }}</h2>
     <div class="markdown">
         {{ content }}
     </div>
+    
     {% assign posts = site.posts | sort: 'date' | reverse %}
     {% for post in posts %}
     {% if post.tags contains page.tag %}

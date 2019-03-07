@@ -4,6 +4,8 @@ permalink: /
 ---
 
 <main class="padded" id="main">
+    {% include title.html %}
+    
     {% capture about_include %}{% include_relative about.md %}{% endcapture %}
     {% assign about_include = about_include | markdownify | split: '</p>' | first | append: '..</p>' %}
     {{ about_include }}

@@ -6,7 +6,8 @@ description: "A list of all Double Dot Labs members."
 ---
 
 <main>
-    <a href="/"><h1>Double Dot Labs</h1></a>
+    {% include title.html %}
+    
     <h2>Members</h2>
     <div class="layout--grid">
         {% for user in site.github.organization_members %}

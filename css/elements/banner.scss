@@ -1,0 +1,36 @@
+.banner {
+    display: block;
+    margin: 0;
+    margin-top: .5em;
+    padding: .5em 0;
+    color: #000;
+    color: var(--normal-color-focus);
+    text-decoration: none;
+}
+
+.banner__content {
+    display: flex;
+    align-items: center;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.banner__icon {
+    height: 2em;
+    width: auto;
+
+    transition: transform .25s;
+    -moz-transition: transform .25s;
+    -webkit-transition: transform .25s;
+}
+
+.banner:hover .banner__icon {
+    transform: rotate(180deg);
+}
+
+.banner__name {
+    color: #000;
+    color: var(--normal-color-focus);
+    font-family: 'Bitter', monospace;
+    margin-left: 0.5em;
+}

@@ -1,0 +1,43 @@
+---
+layout: default
+---
+
+<main>
+    <a href="/"><h1>Double Dot Labs</h1></a>
+    <article class="post">
+        <h1>
+            {{ page.title }}
+            <br>
+            <span style="font-size: 0.6em;">Written on {{ page.date | date: "%B %e %Y" }}</span>
+        </h1>
+        <p>
+            {% for author in page.authors %}
+            <a class="link" href="{{ author.url }}">
+                <img class="link__img--round" src="{{ author.avatar }}">
+                <span class="link__title">{{ author.name }}</span>
+            </a>
+            {% endfor %}
+        </p>
+        <div class="entry markdown">
+            {{ content }}
+        </div>
+        <hr>
+        <h3>Sources:</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for citation in page.citations %}
+                <tr>
+                    <td>{{ citation.name }}</td>
+                    <td><a href="{{ citation.url }}">{{ citation.url }}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+</main>

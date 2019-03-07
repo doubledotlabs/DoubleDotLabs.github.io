@@ -8,6 +8,25 @@ permalink: /
     {% assign about_include = about_include | markdownify | split: '</p>' | first | append: '..</p>' %}
     {{ about_include }}
     <a href="/about"><h5>More...</h5></a>
+    <h2>Blog Posts</h2>
+    <div>
+        {% assign posts = site.posts | reverse %}
+        {% for i in (0..4) %}
+        {% if posts[i] %}
+        <a class="item item--box" href="{{ site.url }}{{ posts[i].url }}">
+            <span class="item__title">{{ posts[i].title }}</span>
+            <small>{{ posts[i].date | date: "%B %e %Y" }}</small>
+            <br>
+            {{ posts[i].description }}
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <a class="link" href="/blog/">
+        <i class="link__img material-icons">arrow_forward</i>
+        <span class="link__title">All Blog Posts</span>
+    </a>
+    
     <h2>Our Projects</h2>
     <div class="layout--grid">
         {% for repo in site.github.public_repositories %}
@@ -20,7 +39,12 @@ permalink: /
         </a>
         {% endif %}
         {% endfor %}
-    </div>
+    </div><br>
+    <a class="link" href="https://github.com/DoubleDotLabs">
+        <i class="link__img material-icons">arrow_forward</i>
+        <span class="link__title">All Projects</span>
+    </a>
+    
     <h2>Members</h2>
     <div class="layout--grid">
         {% for user in site.github.organization_members %}

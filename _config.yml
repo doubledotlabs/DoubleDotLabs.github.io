@@ -10,7 +10,7 @@ baseurl: "/"
 repository: doubledotlabs/DoubleDotLabs.github.io
 
 collections:
-    blogs:
+    posts:
         output: true
         permalink: /blog/:year-:month-:day-:title/
 

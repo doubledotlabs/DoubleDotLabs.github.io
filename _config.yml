@@ -13,6 +13,9 @@ collections:
     posts:
         output: true
         permalink: /blog/:year-:month-:day-:title/
+    tags:
+        output: true
+        permalink: /blog/tags/:name/
 
 exclude:
   - Gemfile

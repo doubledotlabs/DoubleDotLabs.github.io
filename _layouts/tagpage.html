@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<main>
+    <a href="/"><h1>Double Dot Labs</h1></a>
+    <h2>{{ page.title }}</h2>
+    <div class="markdown">
+        {{ content }}
+    </div>
+    {% for post in site.posts reversed %}
+    {% if post.tags contains page.tag %}
+    <a class="item item--box" href="{{ site.url }}{{ post.url }}">
+        <span class="item__title">{{ post.title }}</span>
+        <small>{{ post.date | date: "%B %e %Y" }}</small>
+        <br>
+        {{ post.description }}
+    </a>
+    {% endif %}
+    {% endfor %}
+</main>

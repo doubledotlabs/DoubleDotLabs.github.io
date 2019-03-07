@@ -24,3 +24,5 @@ Double Dot Labs has an off-topic channel on [freenode.net](https://freenode.net/
 4. Join the `##doubledotlabs` channel by running the command `/join ##doubledotlabs`.
 
 If you plan to use the same nickname the next time you visit, it is recommended to register it with freenode so that you can verify your identity in the future and prevent the nickname from being taken by somebody else. You can do this by following the steps in [freenode's documentation](https://freenode.net/kb/answer/registration).
+
+For a more detailed version of the above steps, see our published article on [Joining Freenode IRC: A Guide](https://doubledot.dev/blog/2019-03-06-Freenode-IRC-Setup/).

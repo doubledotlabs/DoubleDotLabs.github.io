@@ -13,7 +13,7 @@ description: "This blog exists as a centralized collection for documenting anyth
         <a href="https://github.com/DoubleDotLabs/Blog">the blog's repository</a> on GitHub.
     </p>
     {% for post in site.posts reversed %}
-    <a class="item item--box" href="{{ site.url }}{{ posts[i].url }}">
+    <a class="item item--box" href="{{ site.url }}{{ post.url }}">
         <span class="item__title">{{ post.title }}</span>
         <small>{{ post.date | date: "%B %e %Y" }}</small>
         <br>

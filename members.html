@@ -1,0 +1,21 @@
+---
+layout: default
+permalink: /members/
+title: "Members - Double Dot Labs"
+description: "A list of all Double Dot Labs members."
+---
+
+<main>
+    <a href="/"><h1>Double Dot Labs</h1></a>
+    <h2>Members</h2>
+    <div class="layout--grid">
+        {% for user in site.github.organization_members %}
+        <a class="item item--box" href="{{ user.html_url }}">
+            <img class="lozad img--round item--box__img" src="/images/ic/person.svg" data-src="{{ user.avatar_url }}" class="round" alt="Profile picture">
+            <span class="item__title">{{ user.login }}</span>
+        </a>
+        {% endfor %}
+    </div>
+</main>
+
+{% include lazyjs.html %}

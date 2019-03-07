@@ -22,7 +22,7 @@ layout: default
             Tags: 
             {% for tag in page.tags %}
             {% assign item = site.tags | where: "tag", tag | first %}
-            <a href="{{ site.url }}{{ item.url }}">{{ item.title }}</a>&nbsp;
+            <a href="{{ site.url }}{{ item.url }}">#{{ item.title }}</a>&nbsp;
             {% endfor %}
         </small>
         <div class="entry markdown">

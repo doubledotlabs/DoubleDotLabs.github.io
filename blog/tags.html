@@ -8,11 +8,12 @@ title: "All Tags - Double Dot Labs"
     {% include banner.html %}
     
     <h2>All Tags</h2>
-    <div class="layout--grid">
+    <div>
         {% for tag in site.tags %}
-        <a class="item--box" href="{{ site.url }}{{ tag.url }}">
-            <span class="item__title">{{ tag.title }}</span>
-        </a>
+        <div class="item item--box" style="cursor: pointer;" onclick="location.href = '{{ site.url }}{{ tag.url }}';">
+            <a class="item__title" href="{{ site.url }}{{ tag.url }}">#{{ tag.title }}</a>
+            {{ tag.content }}
+        </div>
         {% endfor %}
     </div>
 </main>

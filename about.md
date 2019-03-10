@@ -10,7 +10,7 @@ In order to achieve this rather ambitious goal of "equal ownership for all", we 
 
 Currently, membership is restricted to people who have significant and active involvement in our projects. If you consider yourself an active contributor to our work and would like to be included as a member, send an email to [mail@doubledot.dev](mailto:mail@doubledot.dev) with the subject line 'Member Request' and we will respond accordingly.
 
-Membership does not in any way imply an endorsement of a particular individual by Double Dot Labs, nor does it grant any higher priveleges or priority over other people in the community.
+Membership does not in any way imply an endorsement of a particular individual by Double Dot Labs, nor does it grant any higher privileges or priority over other people in the community.
 
 ## Communication
 

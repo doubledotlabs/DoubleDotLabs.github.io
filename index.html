@@ -15,12 +15,8 @@ permalink: /
         {% assign posts = site.posts | sort: 'date' | reverse %}
         {% for i in (0..4) %}
         {% if posts[i] %}
-        <a class="item item--box" href="{{ site.url }}{{ posts[i].url }}">
-            <span class="item__title">{{ posts[i].title }}</span>
-            <small>{{ posts[i].date | date: "%B %e %Y" }}</small>
-            <br>
-            {{ posts[i].description }}
-        </a>
+        {% assign post = posts[i] %}
+        {% include item-post.html post=post %}
         {% endif %}
         {% endfor %}
     </div>

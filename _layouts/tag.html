@@ -13,12 +13,7 @@ layout: default
     {% assign posts = site.posts | sort: 'date' | reverse %}
     {% for post in posts %}
     {% if post.tags contains page.tag %}
-    <a class="item item--box" href="{{ site.url }}{{ post.url }}">
-        <span class="item__title">{{ post.title }}</span>
-        <small>{{ post.date | date: "%B %e %Y" }}</small>
-        <br>
-        {{ post.description }}
-    </a>
+    {% include item-post.html post=post %}
     {% endif %}
     {% endfor %}
 </main>

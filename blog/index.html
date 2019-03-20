@@ -15,11 +15,6 @@ description: "This blog exists as a centralized collection for documenting anyth
     </p>
     {% assign posts = site.posts | sort: 'date' | reverse %}
     {% for post in posts %}
-    <a class="item item--box" href="{{ site.url }}{{ post.url }}">
-        <span class="item__title">{{ post.title }}</span>
-        <small>{{ post.date | date: "%B %e %Y" }}</small>
-        <br>
-        {{ post.description }}
-    </a>
+    {% include item-post.html post=post %}
     {% endfor %}
 </main>

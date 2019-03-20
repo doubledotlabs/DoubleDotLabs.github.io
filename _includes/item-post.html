@@ -1,0 +1,6 @@
+<a class="item item--box" href="{% if include.post.redirect %}{{ include.post.redirect }}{% else %}{{ site.url }}{{ include.post.url }}{% endif %}">
+    <span class="item__title">{{ include.post.title }}{% if include.post.redirect %}{% assign domain = include.post.redirect | split: '/' %} | {{ domain[2] }}{% endif %}</span>
+    <small>{{ include.post.date | date: "%B %e %Y" }}</small>
+    <br>
+    {{ include.post.description }}
+</a>

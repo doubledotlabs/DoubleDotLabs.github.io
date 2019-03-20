@@ -18,12 +18,7 @@ description: "Community blog posts, grouped by the name of the primary author or
     <h3 id="{{ group.name }}">{{ group.name }}</h3>
     <div>
         {% for post in group.items %}
-        <a class="item item--box" href="{{ site.url }}{{ post.url }}">
-            <span class="item__title">{{ post.title }}</span>
-            <small>{{ post.date | date: "%B %e %Y" }}</small>
-            <br>
-            {{ post.description }}
-        </a>
+        {% include item-post.html post=post %}
         {% endfor %}
     </div>
     {% endfor %}

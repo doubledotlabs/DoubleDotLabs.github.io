@@ -30,12 +30,28 @@ layout: default
             {{ content }}
         </div>
         <hr>
-        <h3>Sources:</h3>
+        <h3>Sources</h3>
         {% for citation in page.citations %}
         <a class="item" href="{{ citation.url }}">
             {{ citation.name }}
             <span class="item__title">{{ citation.url }}</span>
         </a>
         {% endfor %}
+        <h3>Contributions</h3>
+        <p>
+            This article is an open and living document that is attributed to the public domain. It is open to any
+            kind of positive contribution, including spelling / grammar fixes, corrections, and the addition of new
+            information that is relevant to the focus of the article.
+        </p>
+        <p>
+            <a href="https://github.com/DoubleDotLabs/Blog/blob/master/{{ page.path | split: '/' | last }}">Edit this page on GitHub.</a>
+        </p>
+        <p>
+            To the extent possible under law, <a href="https://github.com/DoubleDotLabs/Blog/contributors">Double Dot Labs Blog contributors</a>
+            have waived all copyright and related or neighboring rights to this work.
+        </p>
+        <a href="https://creativecommons.org/publicdomain/zero/1.0/">
+            <img src="https://licensebuttons.net/p/zero/1.0/88x31.png">
+        </a>
     </article>
 </main>

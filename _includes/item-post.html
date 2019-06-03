@@ -1,6 +1,8 @@
-<a class="item item--box" href="{% if include.post.redirect %}{{ include.post.redirect }}{% else %}{{ site.url }}{{ include.post.url }}{% endif %}">
-    <span class="item__title">{{ include.post.title }}{% if include.post.redirect %}{% assign domain = include.post.redirect | split: '/' %} | {{ domain[2] }}{% endif %}</span>
-    <small>{{ include.post.date | date: "%B %e %Y" }}</small>
+{% assign url = site.url | append: include.post.url %}
+{% if include.post.redirect %}{% assign url = include.post.redirect %}{% endif %}
+<div class="item item--box" onclick="location.href = '{{ url }}';">
+    <a class="item__title" href="{{ url }}">{{ include.post.title }}{% if include.post.redirect %}{% assign domain = include.post.redirect | split: '/' %} | {{ domain[2] }}{% endif %}</a>
+    <small>{{ include.post.date | date: "%B %e %Y" }} - {% for author in include.post.authors %}<a href="{{ author.url }}">{{ author.name }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</small>
     <br>
     {{ include.post.description }}
-</a>
+</div>

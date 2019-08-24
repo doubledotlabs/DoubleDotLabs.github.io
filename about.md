@@ -2,17 +2,18 @@ Double Dot Labs is a group of developers and designers building things for the o
 By providing resources for developers and encouraging collaboration, we hope to bring new people into
 open source and help to connect them with meaningful projects and ideas.
 
-Okay, that's a fairly vague description of what we do. Double Dot Labs is not meant to be specific - rather,
-it represents a general ownership of a variety of community-managed projects in order to battle an
-increasingly difficult problem in open source software: Attribution. Our branding is intentionally
-vague because it doesn't actually exist. Our projects are not built by Double Dot Labs, they are
-built by the people that made them, and this undefined entity exists in order to represent that. Just
-as our projects are accessible to the community, no one person has total ownership over them, and as
-such everyone is credited equally for their work.
+Okay, that's a fairly vague description of what we do. We are hoping to expand upon this later, but
+to be honest we're not really quite ready to do that yet. At the moment, we are working with the
+amazing people at [Unicorn Utterances](https://unicorn-utterances.com/) to create a collection of
+educational material for everyone. We have various projects of our own - such as the
+["doki"](https://github.com/doubledotlabs/doki) Android library and ["DungeonGL"](https://github.com/doubledotlabs/DungeonGL),
+which we will continue to support and maintain. As ludicrous as it sounds for a bunch of nerds building
+free software, we hope to grow this into a profitable business which can support our goals and help us
+continue to write good code.
 
 ## Licensing
 
-In order to achieve this rather ambitious goal of "equal ownership for all", we largely rely on
+For most of our endeavors, we largely rely on
 either the [Unlicense](https://unlicense.org/) or [CC0](https://creativecommons.org/share-your-work/public-domain/cc0/)
 in order to attribute objectively educational material directly to the public domain. However,
 outside of educational material - in cases where the origin of a particular material may matter to

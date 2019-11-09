@@ -1,6 +1,0 @@
-[submodule "_posts"]
-	path = _posts
-	url = https://github.com/DoubleDotLabs/Blog/
-[submodule "community"]
-	path = community
-	url = https://github.com/DoubleDotLabs/Community

@@ -1,0 +1,23 @@
+{
+  "name": "doubledot.dev",
+  "version": "1.0.0",
+  "description": "This repository contains the source code of the Double Dot Labs website, which displays current projects, blogs, and other DDL-related information. It is written in [Jekyll](https://jekyllrb.com), and pulls information from the GitHub API using the [github-metadata](https://github.com/jekyll/github-metadata) plugin.",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doubledotlabs/DoubleDotLabs.github.io.git"
+  },
+  "author": "James Fenn <18jafenn90@gmail.com> (https://jfenn.me/)",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/doubledotlabs/DoubleDotLabs.github.io/issues"
+  },
+  "homepage": "https://github.com/doubledotlabs/DoubleDotLabs.github.io#readme",
+  "devDependencies": {
+    "@doubledotlabs/dot.css": "0.0.1",
+    "sass": "^1.23.3"
+  }
+}

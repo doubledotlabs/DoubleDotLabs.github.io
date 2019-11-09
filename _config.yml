@@ -24,9 +24,6 @@ exclude:
   - README.md
   - CNAME
 
-sass:
-    sass_dir: ./css
-
 plugins:
   - jekyll-sitemap
   - jekyll-github-metadata

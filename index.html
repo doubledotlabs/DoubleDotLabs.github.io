@@ -3,39 +3,6 @@ layout: default
 permalink: /
 ---
 
-<main class="padded" id="main">
-    {% include banner.html %}
-    
-    {% capture about_include %}{% include_relative about.md %}{% endcapture %}
-    {% assign about_include = about_include | markdownify | split: '</p>' | first | append: '..</p>' %}
-    {{ about_include }}
-    <a href="/about/"><h5>More...</h5></a><br>
-    <h2>Blog Posts</h2>
-    <div>
-        {% assign posts = site.posts | sort: 'date' | reverse %}
-        {% for i in (0..4) %}
-        {% if posts[i] %}
-        {% assign post = posts[i] %}
-        {% include item-post.html post=post %}
-        {% endif %}
-        {% endfor %}
-    </div>
-    <a href="/blog/"><h5>More blog posts...</h5></a><br>
-    
-    <h2>Our Projects</h2>
-    <div class="layout--grid">
-        {% for repo in site.github.public_repositories %}
-        {% assign checkProgress = repo.description | split: '(' %}
-        {% assign checkProgressInt = checkProgress[0] | size %}
-        {% if checkProgressInt > 0 %}
-        <a class="item item--box" href="{{ repo.html_url }}">
-            <span class="item__title">{{ repo.name }}</span>
-            {{ repo.description }}
-        </a>
-        {% endif %}
-        {% endfor %}
-    </div>
-    <a href="https://github.com/DoubleDotLabs"><h5>More projects...</h5></a><br>
+<main class="container">
+    <h1 class="text-center">Under Construction</h1>
 </main>
-
-{% include lazyjs.html %}

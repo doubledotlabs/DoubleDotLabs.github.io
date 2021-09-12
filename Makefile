@@ -15,8 +15,10 @@ package-install.lock: package.json
 	npm install
 	touch package-install.lock
 
-css/styles.css: install css/styles.scss
-	node_modules/sass/sass.js css/styles.scss css/styles.css
+css/styles.css: css/styles.scss
+	npx sass $^ $@.tmp
+	node_modules/postcss-cli/bin/postcss $@.tmp -o $@
+	rm $@.tmp $@.tmp.map
 
 clean:
 	bundle exec jekyll clean

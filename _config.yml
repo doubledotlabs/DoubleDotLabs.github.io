@@ -18,6 +18,7 @@ collections:
         permalink: /blog/tags/:name/
 
 exclude:
+  - css/styles.scss
   - Gemfile
   - Gemfile.lock
   - LICENSE
